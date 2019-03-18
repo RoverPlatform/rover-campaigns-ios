@@ -303,4 +303,3 @@ class BooleanValue: NSObject, NSCoding {
         self.value = value
     }
 }
-

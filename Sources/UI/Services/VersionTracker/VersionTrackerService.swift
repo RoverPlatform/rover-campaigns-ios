@@ -70,7 +70,7 @@ class VersionTrackerService: VersionTracker {
     }
     
     func trackAppUpdated(fromVersion previousVersion: String?, build previousBuild: String?) {
-        var attributes = Attributes()
+        let attributes = Attributes()
         if let previousVersion = previousVersion {
             attributes.rawValue["previousVersion"] = previousVersion
         }
