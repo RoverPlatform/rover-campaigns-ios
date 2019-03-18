@@ -1,11 +1,12 @@
-# Rover iOS SDK
+# Rover Campaigns iOS SDK
 
-NOTE: If you are currently using Rover SDK 1.x, please see the latest [1.x release
-README](https://github.com/RoverPlatform/rover-ios/tree/f7b585f1bc3019da162522c5244a86fd93b2d8e9).
+This is Rover Campaigns, the marketing campaigns automation SDK.  Rover Campaigns augments our core Rover product, the Experiences designer, to drive mobile engagement and monetization with better mobile campaigns.
 
 <hr />
 
-The Rover SDK is a collection of Cocoa Touch Frameworks written in Swift. Instead of a single monolithic framework, the Rover SDK takes a modular approach, allowing you to include only the functionality relevant to your application. The SDK is 100% open-source and available on [GitHub](https://github.com/RoverPlatform/rover-ios).
+The Campaigns SDK is a collection of Cocoa Touch Frameworks written in Swift. Instead of a single monolithic framework, the Rover SDK takes a modular approach, allowing you to include only the functionality relevant to your application. The SDK is 100% open-source and available on [GitHub](https://github.com/RoverPlatform/rover-ios).
+
+Note: if you are looking to include additionally include Experiences functionality, please take a look at the [Rover SDK](https://github.com/RoverPlatform/rover-ios).
 
 ---
 
@@ -19,7 +20,7 @@ The simplest approach is to specify `Rover` as a dependency of your app's target
 
 ```ruby
 target 'MyAppTarget' do
-  pod 'Rover', '~> 2.1.0'
+  pod 'RoverCampaigns', '~> 3.0.0'
 end
 ```
 
@@ -27,14 +28,13 @@ Alternatively you can specify the exact set of subspecs you want to include.
 
 ```ruby
 target 'MyAppTarget' do
-    pod 'Rover/Foundation',    '~> 2.1.0'
-    pod 'Rover/Data',          '~> 2.1.0'
-    pod 'Rover/UI',            '~> 2.1.0'
-    pod 'Rover/Experiences',   '~> 2.1.0'
-    pod 'Rover/Notifications', '~> 2.1.0'
-    pod 'Rover/Location',      '~> 2.1.0'
-    pod 'Rover/Bluetooth',     '~> 2.1.0'
-    pod 'Rover/Debug',         '~> 2.1.0'
+    pod 'Rover/Foundation',    '~> 3.0.0'
+    pod 'Rover/Data',          '~> 3.0.0'
+    pod 'Rover/UI',            '~> 3.0.0'
+    pod 'Rover/Notifications', '~> 3.0.0'
+    pod 'Rover/Location',      '~> 3.0.0'
+    pod 'Rover/Bluetooth',     '~> 3.0.0'
+    pod 'Rover/Debug',         '~> 3.0.0'
 end
 ```
 
