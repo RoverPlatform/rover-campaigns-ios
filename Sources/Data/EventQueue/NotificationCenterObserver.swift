@@ -31,10 +31,10 @@ public class NotificationCenterObserver {
                 return
             }
             guard let name = userInfo["name"] as? String else {
-                os_log("Rover event sent via Notification Center lacked its `name` field.", log: .events, type: .error)
+                os_log("Rover event sent via Notification Center lacked its `name` field within userinfo.", log: .events, type: .error)
                 return
             }
-            let namespace = userInfo["namespace"] as? String
+            let namespace = "rover"
             
             let attributes: Attributes?
             if let attributesHash = userInfo["attributes"] as? [String: Any] {
