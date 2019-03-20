@@ -1,5 +1,5 @@
 //
-//  EventQueueService.swift
+//  EventQueue.swift
 //  RoverCampaignsData
 //
 //  Created by Sean Rucker on 2017-09-01.
