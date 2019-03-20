@@ -28,13 +28,13 @@ Alternatively you can specify the exact set of subspecs you want to include.
 
 ```ruby
 target 'MyAppTarget' do
-    pod 'Rover/Foundation',    '~> 3.0.0-beta1'
-    pod 'Rover/Data',          '~> 3.0.0-beta1'
-    pod 'Rover/UI',            '~> 3.0.0-beta1'
-    pod 'Rover/Notifications', '~> 3.0.0-beta1'
-    pod 'Rover/Location',      '~> 3.0.0-beta1'
-    pod 'Rover/Bluetooth',     '~> 3.0.0-beta1'
-    pod 'Rover/Debug',         '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/Foundation',    '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/Data',          '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/UI',            '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/Notifications', '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/Location',      '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/Bluetooth',     '~> 3.0.0-beta1'
+    pod 'RoverCampaigns/Debug',         '~> 3.0.0-beta1'
 end
 ```
 
