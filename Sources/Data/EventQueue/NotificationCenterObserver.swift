@@ -24,24 +24,25 @@ public class NotificationCenterObserver {
         if notificationCenterObserverChit != nil {
             return
         }
-        let name = Notification.Name("RoverEmitterDidEmitEvent")
-        self.notificationCenterObserverChit = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { [weak self] notification in
-            guard let userInfo = notification.userInfo else {
-                os_log("Rover event sent via Notification Center lacked its `userInfo` field.", log: .events, type: .error)
+        
+        // broadcast to all globally broadcast Notification events on the Notification Center, because we want to filter them by the prefix on their name.
+        self.notificationCenterObserverChit = NotificationCenter.default.addObserver(forName: nil, object: nil, queue: nil) { [weak self] notification in
+            guard notification.name.rawValue.starts(with: NotificationCenterObserver.roverEventNamePrefix) else {
                 return
             }
-            guard let name = userInfo["name"] as? String else {
-                os_log("Rover event sent via Notification Center lacked its `name` field within userinfo.", log: .events, type: .error)
-                return
-            }
+            
+            let camelCaseEventName = notification.name.rawValue.dropFirst(NotificationCenterObserver.roverEventNamePrefix.count)
             let namespace = "rover"
             
             let attributes: Attributes?
-            if let attributesHash = userInfo["attributes"] as? [String: Any] {
+            if let attributesHash = notification.userInfo as? [String: Any] {
                 attributes = Attributes(rawValue: attributesHash)
             } else {
                 attributes = nil
             }
+            
+            // now to transform the name:
+            let name = camelCaseEventName.humanize()
             
             let eventInfo = EventInfo(
                 name: name,
@@ -51,5 +52,21 @@ public class NotificationCenterObserver {
             )
             self?.eventQueue.addEvent(eventInfo)
         }
+    }
+    
+    private static let roverEventNamePrefix = "io.rover."
+}
+
+extension String.SubSequence {
+    /// Convert "CamelCase" to "Camel Case".
+    func humanize() -> String {
+        return unicodeScalars.reduce("") {
+            if CharacterSet.uppercaseLetters.contains($1) {
+                return ($0 + " " + String($1))
+            }
+            else {
+                return $0 + String($1)
+            }
+        }.trimmingCharacters(in: CharacterSet.whitespaces)
     }
 }
