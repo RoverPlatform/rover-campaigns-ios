@@ -20,7 +20,7 @@
 		DB0C8E402055CCBD00E0D860 /* InfluenceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0C8E3F2055CCBD00E0D860 /* InfluenceTracker.swift */; };
 		DB0C8F2A20583A5600E0D860 /* RoverAppExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0C8F2120583A5600E0D860 /* RoverAppExtensions.framework */; };
 		DB0C8F2F20583A5600E0D860 /* RoverAppExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0C8F2E20583A5600E0D860 /* RoverAppExtensionsTests.swift */; };
-		DB0C8F3120583A5600E0D860 /* RoverCampaignsAppExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0C8F2320583A5600E0D860 /* RoverCampaignsAppExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB0C8F3120583A5600E0D860 /* RoverAppExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0C8F2320583A5600E0D860 /* RoverAppExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0C8F3820583A7A00E0D860 /* NotificationExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9DC0AD2055B82B00E5C77F /* NotificationExtensionHelper.swift */; };
 		DB1689EF2141A7060012DA01 /* BeaconsSyncParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1689ED2141A6F90012DA01 /* BeaconsSyncParticipant.swift */; };
 		DB1D5DC52107D32C0071928F /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1D5DC42107D32C0071928F /* Attributes.swift */; };
@@ -294,7 +294,7 @@
 		DB0C8E3D2055C62800E0D860 /* InfluenceTrackerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceTrackerService.swift; sourceTree = "<group>"; };
 		DB0C8E3F2055CCBD00E0D860 /* InfluenceTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceTracker.swift; sourceTree = "<group>"; };
 		DB0C8F2120583A5600E0D860 /* RoverAppExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RoverAppExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB0C8F2320583A5600E0D860 /* RoverCampaignsAppExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoverCampaignsAppExtensions.h; sourceTree = "<group>"; };
+		DB0C8F2320583A5600E0D860 /* RoverAppExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoverAppExtensions.h; sourceTree = "<group>"; };
 		DB0C8F2420583A5600E0D860 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB0C8F2920583A5600E0D860 /* RoverAppExtensionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoverAppExtensionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0C8F2E20583A5600E0D860 /* RoverAppExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverAppExtensionsTests.swift; sourceTree = "<group>"; };
@@ -784,7 +784,7 @@
 		DB41C8792161859A00DBF27C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DB0C8F2320583A5600E0D860 /* RoverCampaignsAppExtensions.h */,
+				DB0C8F2320583A5600E0D860 /* RoverAppExtensions.h */,
 				DB0C8F2420583A5600E0D860 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -1396,7 +1396,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB0C8F3120583A5600E0D860 /* RoverCampaignsAppExtensions.h in Headers */,
+				DB0C8F3120583A5600E0D860 /* RoverAppExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
