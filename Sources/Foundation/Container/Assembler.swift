@@ -1,6 +1,6 @@
 //
 //  Assembler.swift
-//  RoverCampaignsFoundation
+//  RoverFoundation
 //
 //  Created by Sean Rucker on 2017-09-15.
 //  Copyright © 2017 Rover Labs Inc. All rights reserved.

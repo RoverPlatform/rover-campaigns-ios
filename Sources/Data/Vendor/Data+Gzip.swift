@@ -3,6 +3,8 @@
 //
 //  Version 3.1.5
 
+// TODO: ANDREW START HERE AND FIGURE OUT https://github.com/1024jp/GzipSwift/issues/34
+
 /*
  The MIT License (MIT)
  

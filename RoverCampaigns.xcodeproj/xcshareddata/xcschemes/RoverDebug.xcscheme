@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
-               BuildableName = "RoverCampaignsData.framework"
-               BlueprintName = "RoverCampaignsData"
+               BlueprintIdentifier = "DBF31B1520E17176005D7C34"
+               BuildableName = "RoverDebug.framework"
+               BlueprintName = "RoverDebug"
                ReferencedContainer = "container:RoverCampaigns.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBD88A7A20C1B21700085AE0"
-               BuildableName = "RoverCampaignsDataTests.xctest"
-               BlueprintName = "RoverCampaignsDataTests"
+               BlueprintIdentifier = "DBF31B1D20E17176005D7C34"
+               BuildableName = "RoverDebugTests.xctest"
+               BlueprintName = "RoverDebugTests"
                ReferencedContainer = "container:RoverCampaigns.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
-            BuildableName = "RoverCampaignsData.framework"
-            BlueprintName = "RoverCampaignsData"
+            BlueprintIdentifier = "DBF31B1520E17176005D7C34"
+            BuildableName = "RoverDebug.framework"
+            BlueprintName = "RoverDebug"
             ReferencedContainer = "container:RoverCampaigns.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
-            BuildableName = "RoverCampaignsData.framework"
-            BlueprintName = "RoverCampaignsData"
+            BlueprintIdentifier = "DBF31B1520E17176005D7C34"
+            BuildableName = "RoverDebug.framework"
+            BlueprintName = "RoverDebug"
             ReferencedContainer = "container:RoverCampaigns.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
-            BuildableName = "RoverCampaignsData.framework"
-            BlueprintName = "RoverCampaignsData"
+            BlueprintIdentifier = "DBF31B1520E17176005D7C34"
+            BuildableName = "RoverDebug.framework"
+            BlueprintName = "RoverDebug"
             ReferencedContainer = "container:RoverCampaigns.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

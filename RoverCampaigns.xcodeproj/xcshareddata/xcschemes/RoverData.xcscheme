@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB1FBEDD2062C0B600850D59"
-               BuildableName = "RoverCampaignsBluetooth.framework"
-               BlueprintName = "RoverCampaignsBluetooth"
+               BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
+               BuildableName = "RoverData.framework"
+               BlueprintName = "RoverData"
                ReferencedContainer = "container:RoverCampaigns.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB1FBEE52062C0B600850D59"
-               BuildableName = "RoverCampaignsBluetoothTests.xctest"
-               BlueprintName = "RoverCampaignsBluetoothTests"
+               BlueprintIdentifier = "DBD88A7A20C1B21700085AE0"
+               BuildableName = "RoverDataTests.xctest"
+               BlueprintName = "RoverDataTests"
                ReferencedContainer = "container:RoverCampaigns.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB1FBEDD2062C0B600850D59"
-            BuildableName = "RoverCampaignsBluetooth.framework"
-            BlueprintName = "RoverCampaignsBluetooth"
+            BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
+            BuildableName = "RoverData.framework"
+            BlueprintName = "RoverData"
             ReferencedContainer = "container:RoverCampaigns.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB1FBEDD2062C0B600850D59"
-            BuildableName = "RoverCampaignsBluetooth.framework"
-            BlueprintName = "RoverCampaignsBluetooth"
+            BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
+            BuildableName = "RoverData.framework"
+            BlueprintName = "RoverData"
             ReferencedContainer = "container:RoverCampaigns.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB1FBEDD2062C0B600850D59"
-            BuildableName = "RoverCampaignsBluetooth.framework"
-            BlueprintName = "RoverCampaignsBluetooth"
+            BlueprintIdentifier = "DBD88A7220C1B21700085AE0"
+            BuildableName = "RoverData.framework"
+            BlueprintName = "RoverData"
             ReferencedContainer = "container:RoverCampaigns.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -6,6 +6,8 @@
 //  Copyright © 2018 Rover Labs Inc. All rights reserved.
 //
 
+import RoverFoundation
+
 import MobileCoreServices
 import UserNotifications
 
@@ -44,7 +46,7 @@ public class NotificationExtensionHelper {
             
             var rover: Rover
         }
-        
+
         guard let payload = try? JSONDecoder.default.decode(Payload.self, from: data) else {
             // This is not a Rover notification – clear the last received notification so we're not taking credit for an influenced open.
             clearLastReceivedNotification()

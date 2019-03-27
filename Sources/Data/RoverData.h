@@ -6,5 +6,5 @@
 //  Copyright © 2018 Rover Labs Inc. All rights reserved.
 //
 
-#import <RoverCampaignsFoundation/RoverCampaignsFoundation.h>
+#import <RoverFoundation/RoverFoundation.h>
 

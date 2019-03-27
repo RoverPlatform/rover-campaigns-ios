@@ -1,6 +1,6 @@
 //
 //  NotificationStoreService.swift
-//  RoverCampaignsNotifications
+//  RoverNotifications
 //
 //  Created by Sean Rucker on 2018-03-07.
 //  Copyright © 2018 Sean Rucker. All rights reserved.
