@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
 		492A84A42238351C00B59A5C /* NotificationCenterObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A84A32238351C00B59A5C /* NotificationCenterObserver.swift */; };
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
@@ -163,7 +164,6 @@
 		DBD88A9920C1B58E00085AE0 /* EventQueueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB1A88209B8CC500E99F9F /* EventQueueObserver.swift */; };
 		DBD88A9A20C1B58E00085AE0 /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB1A84209B8CC500E99F9F /* EventQueue.swift */; };
 		DBD88AA820C1B61200085AE0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF49ECF203DE49500B54652 /* Reachability.swift */; };
-		DBD88AA920C1B61800085AE0 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF49ECE203DE49500B54652 /* Data+Gzip.swift */; };
 		DBD88AB620C1B99C00085AE0 /* ContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF49EC3203DE3EB00B54652 /* ContextManager.swift */; };
 		DBD88ABE20C1BACF00085AE0 /* DataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD88ABC20C1BA7C00085AE0 /* DataAssembler.swift */; };
 		DBD88AC620C1BE1C00085AE0 /* RoverData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD88A7320C1B21700085AE0 /* RoverData.framework */; };
@@ -278,6 +278,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DB764902256C5DD00038605 /* Data+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
 		492A84A32238351C00B59A5C /* NotificationCenterObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterObserver.swift; sourceTree = "<group>"; };
 		49F7CE64223C2B1F00674784 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		49F7CE65223C2B1F00674784 /* SessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
@@ -470,7 +471,6 @@
 		DBF49DFE203DE1DE00B54652 /* ServiceKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
 		DBF49DFF203DE1DE00B54652 /* ServiceScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceScope.swift; sourceTree = "<group>"; };
 		DBF49EC3203DE3EB00B54652 /* ContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextManager.swift; sourceTree = "<group>"; };
-		DBF49ECE203DE49500B54652 /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		DBF49ECF203DE49500B54652 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		DBFB1A7C209B8CC500E99F9F /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		DBFB1A80209B8CC500E99F9F /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -1363,7 +1363,7 @@
 		DBFDF4B920AC95FD0031EF47 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				DBF49ECE203DE49500B54652 /* Data+Gzip.swift */,
+				0DB764902256C5DD00038605 /* Data+Compression.swift */,
 				DBF49ECF203DE49500B54652 /* Reachability.swift */,
 			);
 			path = Vendor;
@@ -2413,7 +2413,6 @@
 				DBC3FBE82154680600372A65 /* Context.swift in Sources */,
 				DBCBE09721614E9A001C7A96 /* NotificationsContextProvider.swift in Sources */,
 				DB8C0787215FEE46000DDD56 /* TokenManager.swift in Sources */,
-				DBD88AA920C1B61800085AE0 /* Data+Gzip.swift in Sources */,
 				DBD88AB620C1B99C00085AE0 /* ContextManager.swift in Sources */,
 				DBC3FBF8215581E500372A65 /* DeviceModel.swift in Sources */,
 				DBD88A9420C1B58E00085AE0 /* Event.swift in Sources */,
@@ -2493,6 +2492,7 @@
 				DBF2584120A107BD00400EA2 /* ObserverSet.swift in Sources */,
 				DBF49E06203DE1DE00B54652 /* ServiceKey.swift in Sources */,
 				DB6BE8AE215D41F7000A1FDA /* Foundation.OSLog.swift in Sources */,
+				0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */,
 				DBF49E03203DE1DE00B54652 /* ServiceEntry.swift in Sources */,
 				DBADA80320A4F37C00225C80 /* Dispatcher.swift in Sources */,
 				DBFDF52420AE2B1C0031EF47 /* Foundation.DateFormatter.swift in Sources */,
