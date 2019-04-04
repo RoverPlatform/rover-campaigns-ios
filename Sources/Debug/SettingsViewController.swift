@@ -192,17 +192,10 @@ extension SettingsViewController: UITableViewDataSource {
         let label = UILabel()
         let toggle = UISwitch()
         
-        #if swift(>=4.2)
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             self.configure()
         }
-        #else
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-            self.configure()
-        }
-        #endif
         
         @available(*, unavailable)
         required init?(coder aDecoder: NSCoder) {
@@ -243,17 +236,10 @@ extension SettingsViewController: UITableViewDataSource {
         let label = UILabel()
         let value = UILabel()
         
-        #if swift(>=4.2)
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             self.configure()
         }
-        #else
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-            self.configure()
-        }
-        #endif
         
         func configure() {
             backgroundColor = UIColor(red: 93 / 255, green: 93 / 255, blue: 93 / 255, alpha: 1.0)

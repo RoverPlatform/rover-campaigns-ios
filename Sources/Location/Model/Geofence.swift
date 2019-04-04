@@ -101,19 +101,15 @@ extension Geofence {
         do {
             os_log("Fetching all geofences", log: .persistence, type: .debug)
             
-            #if swift(>=4.2)
             if #available(iOS 12.0, *) {
                 os_signpost(.begin, log: .persistence, name: "fetchGeofences", "type=all")
             }
-            #endif
             
             geofences = try context.fetch(fetchRequest)
             
-            #if swift(>=4.2)
             if #available(iOS 12.0, *) {
                 os_signpost(.end, log: .persistence, name: "fetchGeofences", "type=all")
             }
-            #endif
         } catch {
             os_log("Failed to fetch geofences: %@", log: .persistence, type: .error, error.localizedDescription)
             return []
@@ -133,19 +129,15 @@ extension Geofence {
         do {
             os_log("Fetching geofence with predicate: %{public}", log: .persistence, type: .debug, predicate)
             
-            #if swift(>=4.2)
             if #available(iOS 12.0, *) {
                 os_signpost(.begin, log: .persistence, name: "fetchGeofences", "type=regionIdentifier")
             }
-            #endif
             
             geofences = try context.fetch(fetchRequest)
             
-            #if swift(>=4.2)
             if #available(iOS 12.0, *) {
                 os_signpost(.end, log: .persistence, name: "fetchGeofences", "type=regionIdentifier")
             }
-            #endif
         } catch {
             os_log("Failed to fetch geofence: %@", log: .persistence, type: .error, error.localizedDescription)
             return nil
@@ -176,22 +168,18 @@ extension Geofence {
 extension Collection where Element == Geofence {
     public func sortedByDistance(from coordinate: CLLocationCoordinate2D) -> [Geofence] {
         os_log("Sorting geofences...", log: .general, type: .debug)
-        
-        #if swift(>=4.2)
+
         if #available(iOS 12.0, *) {
             os_signpost(.begin, log: .general, name: "sortGeofences")
         }
-        #endif
         
         let sorted = self.sorted {
             coordinate.distanceTo($0.coordinate) < coordinate.distanceTo($1.coordinate)
         }
         
-        #if swift(>=4.2)
         if #available(iOS 12.0, *) {
             os_signpost(.end, log: .general, name: "sortGeofences")
         }
-        #endif
         
         os_log("Sorted %d geofences", log: .general, type: .debug, self.count)
         return sorted
@@ -202,11 +190,7 @@ extension Collection where Element == Geofence {
         if let coordinate = coordinate {
             regions = self.sortedByDistance(from: coordinate).prefix(maxLength).map { $0.region }
         } else {
-            #if swift(>=4.2)
             regions = self.shuffled().prefix(maxLength).compactMap { $0.region }
-            #else
-            regions = self.prefix(maxLength).compactMap { $0.region }
-            #endif
         }
         
         return Set<CLCircularRegion>(regions)
