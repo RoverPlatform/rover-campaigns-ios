@@ -11,7 +11,6 @@ Pod::Spec.new do |s|
   s.default_subspec   = "Core"
 
   s.subspec "Core" do |ss|
-    ss.dependency "RoverCampaigns/Experiences"
     ss.dependency "RoverCampaigns/Notifications"
     ss.dependency "RoverCampaigns/Location"
     ss.dependency "RoverCampaigns/Debug"
@@ -76,7 +75,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "AppExtensions" do |ss|
-    s.source_files      = "Sources/Foundation/**/*.swift", "Sources/AppExtensions/**/*.swift"
-    s.frameworks        = "MobileCoreServices", "UserNotifications"
+    ss.dependency "RoverCampaigns/Foundation"
+    ss.frameworks        = "MobileCoreServices", "UserNotifications"
   end
 end
