@@ -9,8 +9,8 @@
 import Foundation
 
 public struct Notification: Codable, Equatable, Hashable {
-    public var id: ID
-    public var campaignID: ID
+    public var id: String
+    public var campaignID: String
     public var title: String?
     public var body: String
     public var attachment: NotificationAttachment?
@@ -25,7 +25,7 @@ public struct Notification: Codable, Equatable, Hashable {
         hasher.combine(id.hashValue)
     }
     
-    public init(id: ID, campaignID: ID, title: String?, body: String, attachment: NotificationAttachment?, tapBehavior: NotificationTapBehavior, action: Action?, deliveredAt: Date, expiresAt: Date?, isRead: Bool, isNotificationCenterEnabled: Bool, isDeleted: Bool) {
+    public init(id: String, campaignID: String, title: String?, body: String, attachment: NotificationAttachment?, tapBehavior: NotificationTapBehavior, action: Action?, deliveredAt: Date, expiresAt: Date?, isRead: Bool, isNotificationCenterEnabled: Bool, isDeleted: Bool) {
         self.id = id
         self.campaignID = campaignID
         self.title = title
@@ -43,15 +43,15 @@ public struct Notification: Codable, Equatable, Hashable {
 extension Notification {
     func openedEvent(source: NotificationSource) -> EventInfo {
         let attributes: Attributes = [
-            "notification": self,
+            "notification": self.attributes,
             "source": source.rawValue
         ]
         return EventInfo(name: "Notification Opened", namespace: "rover", attributes: attributes)
     }
 }
 
-extension Notification: AttributeRepresentable {
-    public var attributeValue: AttributeValue {
+extension Notification {
+    public var attributes: Attributes {
         return [
             "id": id,
             "campaignID": campaignID
