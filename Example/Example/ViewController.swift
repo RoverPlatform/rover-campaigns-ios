@@ -6,15 +6,16 @@
 //  Copyright © 2019 Rover Labs Inc. All rights reserved.
 //
 
+import RoverNotifications
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    @IBAction func presentNotificationCenter(_ sender: Any) {
+        // Resolve the Rover Notification Center view controller
+        guard let notificationCenter = RoverCampaigns.shared?.resolve(UIViewController.self, name: "notificationCenter") else {
+            return
+        }
+        
+        present(notificationCenter, animated: true, completion: nil)
     }
-
-
 }
-
