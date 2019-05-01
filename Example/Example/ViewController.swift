@@ -11,7 +11,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBAction func presentNotificationCenter(_ sender: Any) {
-        // Resolve the Rover Notification Center view controller
+        // Resolve the Rover Notification Center view controller and present it
         guard let notificationCenter = RoverCampaigns.shared?.resolve(UIViewController.self, name: "notificationCenter") else {
             return
         }

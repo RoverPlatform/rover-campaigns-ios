@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Initialize Rover with all modules.
+        // Initialize the RoverCampaigns SDK with all modules.
         RoverCampaigns.initialize(assemblers: [
             AdSupportAssembler(),
             BluetoothAssembler(),
@@ -92,11 +92,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         // Handle RoverCampaigns specific deep links. E.g. rv-example://presentNotificationCenter or rv-example://presentSettings.
-        return RoverCampaigns.shared?.resolve(Router.self)?.handle(url) ?? false
+        if let router = RoverCampaigns.shared?.resolve(Router.self), router.handle(url) {
+            return true
+        }
+        
+        // This deep link isn't related to RoverCampaigns. You should check if the deep link is intended to launch a Rover experience and handle it here.
+        return false
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // The device successfully registered for push notifications. Pass the token to Rover.
+        // The device successfully registered for push notifications. Pass the token to RoverCampaigns.
         RoverCampaigns.shared!.resolve(TokenManager.self)?.setToken(deviceToken)
     }
 }
@@ -150,7 +155,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        // The user tapped a notification. Pass the response to Rover to handle the intended behavior.
+        // The user tapped a notification. Pass the response to RoverCampaigns to handle the intended behavior.
         RoverCampaigns.shared?.resolve(NotificationHandler.self)?.handle(response, completionHandler: completionHandler)
     }
 }
