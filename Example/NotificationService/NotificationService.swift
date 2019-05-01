@@ -9,6 +9,7 @@
 import RoverAppExtensions
 import UserNotifications
 
+// This is a standard `UNNotificationServiceExtension` implementation which is used for modifying the content of a remote notification before it's delivered to the user. 
 class NotificationService: UNNotificationServiceExtension {
 
     var contentHandler: ((UNNotificationContent) -> Void)?
