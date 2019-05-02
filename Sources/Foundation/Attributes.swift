@@ -62,6 +62,20 @@ public class Attributes: NSObject, NSCoding, Codable, RawRepresentable, Expressi
     }
     
     //
+    // MARK: Subscript
+    //
+    
+    public subscript(index: String) -> Any? {
+        get {
+            return rawValue[index]
+        }
+        
+        set(newValue) {
+            rawValue[index] = newValue
+        }
+    }
+    
+    //
     // MARK: NSCoding
     //
     
