@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "RoverCampaigns"
-  s.version           = "3.0.0-beta1"
+  s.version           = "3.0.0-beta.1"
   s.summary           = "iOS framework for the Rover Campaigns app"
   s.homepage          = "https://www.rover.io"
   s.license           = "Apache License, Version 2.0"
@@ -72,10 +72,5 @@ Pod::Spec.new do |s|
   s.subspec "Ticketmaster" do |ss|
     ss.source_files = "Sources/Ticketmaster/**/*.swift"
     ss.dependency "RoverCampaigns/Data"
-  end
-
-  s.subspec "AppExtensions" do |ss|
-    ss.dependency "RoverCampaigns/Foundation"
-    ss.frameworks        = "MobileCoreServices", "UserNotifications"
   end
 end
