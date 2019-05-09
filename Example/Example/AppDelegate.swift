@@ -100,7 +100,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        // This deep link isn't related to RoverCampaigns. You should check if the deep link is intended to launch a Rover experience and handle it here.
+        // This deep link isn't a RoverCampaigns specific URL. Check if the deep link is intended to launch a Rover
+        // experience.
+        if url.host == "presentExperience" {
+            guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems else {
+                return false
+            }
+            
+            guard let experienceID = queryItems.first(where: { $0.name == "id" })?.value else {
+                return false
+            }
+            
+            let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
+            let viewController = RoverViewController(experienceID: experienceID, campaignID: campaignID)
+            app.present(viewController, animated: true)
+            return true
+
+        }
+        
         return false
     }
     

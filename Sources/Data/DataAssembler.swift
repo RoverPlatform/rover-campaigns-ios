@@ -72,10 +72,10 @@ public struct DataAssembler: Assembler {
             )
         }
         
-        // MARK: NotificationCenterObserver
+        // MARK: RoverObserver
         
-        container.register(NotificationCenterObserver.self) { resolver in
-            NotificationCenterObserver(eventQueue: resolver.resolve(EventQueue.self)!)
+        container.register(RoverObserver.self) { resolver in
+            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!)
         }
         
         // MARK: HTTPClient
@@ -163,6 +163,6 @@ public struct DataAssembler: Assembler {
         // Set the context provider on the event queue after assembly to allow circular dependency injection
         eventQueue.contextProvider = resolver.resolve(ContextProvider.self)!
         
-        resolver.resolve(NotificationCenterObserver.self)?.startListening()
+        resolver.resolve(RoverObserver.self)?.enable()
     }
 }
