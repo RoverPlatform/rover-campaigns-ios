@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB25A5202284A6B50076CFDE /* Rover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB25A51F2284A6B50076CFDE /* Rover.framework */; };
+		DB25A5212284A6B50076CFDE /* Rover.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB25A51F2284A6B50076CFDE /* Rover.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DB637A3E2278F93C00F0E791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB637A3D2278F93C00F0E791 /* AppDelegate.swift */; };
 		DB637A402278F93C00F0E791 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB637A3F2278F93C00F0E791 /* ViewController.swift */; };
 		DB637A432278F93C00F0E791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB637A412278F93C00F0E791 /* Main.storyboard */; };
@@ -61,6 +63,7 @@
 				DB637A602278F9E700F0E791 /* RoverData.framework in Embed Frameworks */,
 				DB637A572278F9E700F0E791 /* RoverLocation.framework in Embed Frameworks */,
 				DB637A542278F9E700F0E791 /* RoverNotifications.framework in Embed Frameworks */,
+				DB25A5212284A6B50076CFDE /* Rover.framework in Embed Frameworks */,
 				DB637A5D2278F9E700F0E791 /* RoverUI.framework in Embed Frameworks */,
 				DB637A662278F9E800F0E791 /* RoverTicketmaster.framework in Embed Frameworks */,
 				DB637A692278F9E800F0E791 /* RoverTelephony.framework in Embed Frameworks */,
@@ -85,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB25A51F2284A6B50076CFDE /* Rover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Rover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB637A3A2278F93C00F0E791 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB637A3D2278F93C00F0E791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB637A3F2278F93C00F0E791 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				DB637A5F2278F9E700F0E791 /* RoverData.framework in Frameworks */,
 				DB637A562278F9E700F0E791 /* RoverLocation.framework in Frameworks */,
 				DB637A532278F9E700F0E791 /* RoverNotifications.framework in Frameworks */,
+				DB25A5202284A6B50076CFDE /* Rover.framework in Frameworks */,
 				DB637A5C2278F9E700F0E791 /* RoverUI.framework in Frameworks */,
 				DB637A652278F9E800F0E791 /* RoverTicketmaster.framework in Frameworks */,
 				DB637A682278F9E800F0E791 /* RoverTelephony.framework in Frameworks */,
@@ -144,6 +149,7 @@
 		DB637A312278F93C00F0E791 = {
 			isa = PBXGroup;
 			children = (
+				DB25A51F2284A6B50076CFDE /* Rover.framework */,
 				DB637A8022790B5000F0E791 /* RoverAppExtensions.framework */,
 				DB637A6A2278F9E800F0E791 /* RoverAdSupport.framework */,
 				DB637A672278F9E800F0E791 /* RoverTelephony.framework */,

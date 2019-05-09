@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Rover/Rover.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:../RoverCampaigns.xcodeproj">
    </FileRef>
    <FileRef
