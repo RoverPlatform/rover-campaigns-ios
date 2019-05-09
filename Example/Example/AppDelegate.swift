@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DebugAssembler(),
             FoundationAssembler(),
             LocationAssembler(),
-            NotificationsAssembler(appGroup: "YOUR_APP_GROUP"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
+            NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
             TelephonyAssembler(),
             TicketmasterAssembler(),
             UIAssembler(urlSchemes: ["rv-example"])

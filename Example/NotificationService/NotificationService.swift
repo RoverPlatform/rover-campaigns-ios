@@ -21,7 +21,7 @@ class NotificationService: UNNotificationServiceExtension {
         
         if let bestAttemptContent = bestAttemptContent {
             // Pass the notification content to Rover to configure "Rich Media" attachments before it is displayed to the user. Additionally, Rover will capture the delivered time for influence tracking.
-            NotificationExtensionHelper(appGroup: "YOUR_APP_GROUP")?.didReceive(request, withContent: bestAttemptContent)
+            NotificationExtensionHelper(appGroup: "group.io.rover.Example")?.didReceive(request, withContent: bestAttemptContent)
             
             contentHandler(bestAttemptContent)
         }
