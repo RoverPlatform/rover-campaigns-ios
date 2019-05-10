@@ -6,6 +6,7 @@
 //  Copyright © 2019 Rover Labs Inc. All rights reserved.
 //
 
+import Rover
 import RoverAdSupport
 import RoverBluetooth
 import RoverData
@@ -28,15 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Pass your account token from the Rover Settings app to the Rover SDK.
+        Rover.accountToken = "<YOUR_SDK_TOKEN>"
+        
         // Initialize the RoverCampaigns SDK with all modules.
         RoverCampaigns.initialize(assemblers: [
             AdSupportAssembler(),
             BluetoothAssembler(),
-            DataAssembler(accountToken: "YOUR_SDK_TOKEN"),
+            DataAssembler(accountToken: "<YOUR_SDK_TOKEN>"), // The same token used above
             DebugAssembler(),
             FoundationAssembler(),
             LocationAssembler(),
-            NotificationsAssembler(appGroup: "YOUR_APP_GROUP"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
+            NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
             TelephonyAssembler(),
             TicketmasterAssembler(),
             UIAssembler(urlSchemes: ["rv-example"])
@@ -96,7 +100,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        // This deep link isn't related to RoverCampaigns. You should check if the deep link is intended to launch a Rover experience and handle it here.
+        // This deep link isn't a RoverCampaigns specific URL. Check if the deep link is intended to launch a Rover
+        // experience.
+        if url.host == "presentExperience" {
+            guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems else {
+                return false
+            }
+            
+            guard let experienceID = queryItems.first(where: { $0.name == "id" })?.value else {
+                return false
+            }
+            
+            let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
+            let viewController = RoverViewController(experienceID: experienceID, campaignID: campaignID)
+            app.present(viewController, animated: true)
+            return true
+
+        }
+        
         return false
     }
     

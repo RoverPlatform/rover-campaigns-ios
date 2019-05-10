@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
-		492A84A42238351C00B59A5C /* NotificationCenterObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A84A32238351C00B59A5C /* NotificationCenterObserver.swift */; };
+		492A84A42238351C00B59A5C /* RoverObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A84A32238351C00B59A5C /* RoverObserver.swift */; };
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
 		49F7CE69223C2B1F00674784 /* SessionControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE66223C2B1F00674784 /* SessionControllerService.swift */; };
@@ -279,7 +279,7 @@
 
 /* Begin PBXFileReference section */
 		0DB764902256C5DD00038605 /* Data+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
-		492A84A32238351C00B59A5C /* NotificationCenterObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterObserver.swift; sourceTree = "<group>"; };
+		492A84A32238351C00B59A5C /* RoverObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverObserver.swift; sourceTree = "<group>"; };
 		49F7CE64223C2B1F00674784 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		49F7CE65223C2B1F00674784 /* SessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		49F7CE66223C2B1F00674784 /* SessionControllerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionControllerService.swift; sourceTree = "<group>"; };
@@ -1318,7 +1318,7 @@
 				DBFB1A88209B8CC500E99F9F /* EventQueueObserver.swift */,
 				DBFB1A84209B8CC500E99F9F /* EventQueue.swift */,
 				DB496E4121486E3D0026DE6A /* EventsClient.swift */,
-				492A84A32238351C00B59A5C /* NotificationCenterObserver.swift */,
+				492A84A32238351C00B59A5C /* RoverObserver.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -2444,7 +2444,7 @@
 				DBC3B42B2148A7D10096C74E /* HTTPClient.swift in Sources */,
 				DBCBE09121614D88001C7A96 /* StaticContextProvider.swift in Sources */,
 				DB75358621595F1000CB5654 /* SyncCoordinatorService.swift in Sources */,
-				492A84A42238351C00B59A5C /* NotificationCenterObserver.swift in Sources */,
+				492A84A42238351C00B59A5C /* RoverObserver.swift in Sources */,
 				DBCBE09921614EB3001C7A96 /* LocationContextProvider.swift in Sources */,
 				DB8C0785215FEC0E000DDD56 /* UserInfoManager.swift in Sources */,
 				DB71B7DB2145A7A100FF5034 /* PagingResponse.swift in Sources */,
