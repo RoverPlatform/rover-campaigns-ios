@@ -37,13 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AdSupportAssembler(),
             BluetoothAssembler(),
             DataAssembler(accountToken: "<YOUR_SDK_TOKEN>"), // The same token used above
-            DebugAssembler(),
+            RoverDebug.DebugAssembler(),
             FoundationAssembler(),
             LocationAssembler(),
             NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
             TelephonyAssembler(),
             TicketmasterAssembler(),
-            UIAssembler(urlSchemes: ["rv-example"])
+            UIAssembler(urlSchemes: ["rv-example"]),
+            
+            // ⚠️ The debug assembler provides customizations useful during development and debugging. It can be safely
+            // ignored and is not useful as a learning resource.
+            DebugAssembler()
         ])
         
         // Sync notifications, beacons and geofences when the app is opened from a terminated state.
@@ -107,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return false
             }
             
-            guard let experienceID = queryItems.first(where: { $0.name == "id" })?.value else {
+            guard let experienceID = queryItems.first(where: { $0.name == "experienceID" })?.value else {
                 return false
             }
             

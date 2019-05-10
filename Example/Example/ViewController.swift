@@ -9,13 +9,21 @@
 import RoverNotifications
 import UIKit
 
-class ViewController: UIViewController {
-    @IBAction func presentNotificationCenter(_ sender: Any) {
-        // Resolve the Rover Notification Center view controller and present it
-        guard let notificationCenter = RoverCampaigns.shared?.resolve(UIViewController.self, name: "notificationCenter") else {
-            return
-        }
+class ViewController: UITabBarController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        present(notificationCenter, animated: true, completion: nil)
+        // Add the notification center to the tab bar
+        let notificationCenter = RoverCampaigns.shared!.resolve(UIViewController.self, name: "notificationCenter")!
+        notificationCenter.tabBarItem = UITabBarItem(title: "Notifications", image: nil, tag: 0)
+        
+        // Add the settings view controller to the tab bar.  Note that you typically wouldn't want to add this to the tab bar in your application.  Refer to the documentation.
+        let settingsViewController = RoverCampaigns.shared!.resolve(UIViewController.self, name: "settings")!
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 0)
+        
+        viewControllers = [
+            notificationCenter,
+            settingsViewController
+        ]
     }
 }
