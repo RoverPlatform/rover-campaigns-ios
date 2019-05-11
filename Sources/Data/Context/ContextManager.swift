@@ -183,11 +183,11 @@ extension ContextManager: StaticContextProvider {
                 return bundle
             }
             
-            if let bundle = Bundle(identifier: "org.cocoapods.RoverCampaigns") {
+            if let bundle = Bundle(identifier: "org.cocoapods.RoverKit") {
                 return bundle
             }
             
-            fatalError("No bundle found with identifier io.rover.RoverFoundation or org.cocoapods.RoverCampaigns")
+            fatalError("No bundle found with identifier io.rover.RoverFoundation or org.cocoapods.RoverKit")
         }()
         
         return bundle.infoDictionary!["CFBundleShortVersionString"] as! String

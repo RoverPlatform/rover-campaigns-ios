@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rover Labs Inc. All rights reserved.
 //
 
-import RoverNotifications
+import RoverKit
 import UIKit
 
 class ViewController: UITabBarController {

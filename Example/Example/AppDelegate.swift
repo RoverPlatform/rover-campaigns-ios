@@ -7,16 +7,7 @@
 //
 
 import Rover
-import RoverAdSupport
-import RoverBluetooth
-import RoverData
-import RoverDebug
-import RoverFoundation
-import RoverLocation
-import RoverNotifications
-import RoverTelephony
-import RoverTicketmaster
-import RoverUI
+import RoverKit
 
 import CoreLocation
 import UIKit
@@ -30,14 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Pass your account token from the Rover Settings app to the Rover SDK.
-        Rover.accountToken = "<YOUR_SDK_TOKEN>"
+        Rover.accountToken = "d6ab40e8a45e3040c372806baba387fd"
         
         // Initialize the RoverCampaigns SDK with all modules.
         RoverCampaigns.initialize(assemblers: [
             AdSupportAssembler(),
             BluetoothAssembler(),
-            DataAssembler(accountToken: "<YOUR_SDK_TOKEN>"), // The same token used above
-            RoverDebug.DebugAssembler(),
+            DataAssembler(accountToken: "d6ab40e8a45e3040c372806baba387fd"), // The same token used above
+            RoverKit.DebugAssembler(),
             FoundationAssembler(),
             LocationAssembler(),
             NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
@@ -116,7 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
-            let viewController = RoverViewController(experienceID: experienceID, campaignID: campaignID)
+            let viewController = RoverViewController()
+            viewController.loadExperience(id: experienceID, campaignID: campaignID)
             app.present(viewController, animated: true)
             return true
 
