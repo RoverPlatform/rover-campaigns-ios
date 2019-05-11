@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import RoverNotifications
+import RoverKit
 
 class DebugNotificationCenterViewController: NotificationCenterViewController {
-    open override func filterNotifications() -> [RoverNotifications.Notification] {
+    open override func filterNotifications() -> [RoverKit.Notification] {
         return super.filterNotifications().map { notification in
             guard case let .openURL(url) = notification.tapBehavior else {
                 return notification

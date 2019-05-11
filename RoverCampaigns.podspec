@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "RoverCampaigns"
+  s.module_name       = "RoverKit"
   s.version           = "3.0.0-beta.1"
   s.summary           = "iOS framework for the Rover Campaigns app"
   s.homepage          = "https://www.rover.io"
@@ -24,6 +25,7 @@ Pod::Spec.new do |s|
   s.subspec "Data" do |ss|
     ss.source_files = "Sources/Data/**/*.swift"
     ss.dependency "RoverCampaigns/Foundation"
+    ss.dependency "Rover", "~> 3.0.0-beta.1"
     ss.frameworks = "SystemConfiguration", "UIKit"
   end
 
