@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rover Labs Inc. All rights reserved.
 //
 
-import RoverKit
+import RoverCampaignsKit
 import UIKit
 
 class DebugAssembler: Assembler {
