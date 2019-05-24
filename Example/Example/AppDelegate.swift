@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ExperiencesAssembler(),
             NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
             LocationAssembler(),
-            RoverKit.DebugAssembler(),
+            RoverCampaigns.DebugAssembler(),
             AdSupportAssembler(),
             BluetoothAssembler(),
             TelephonyAssembler(),
