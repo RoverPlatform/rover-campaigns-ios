@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
-		492A84A42238351C00B59A5C /* RoverObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A84A32238351C00B59A5C /* RoverObserver.swift */; };
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
 		49F7CE69223C2B1F00674784 /* SessionControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE66223C2B1F00674784 /* SessionControllerService.swift */; };
@@ -77,6 +76,15 @@
 		DB8C0783215FE043000DDD56 /* TicketmasterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C076E215FC56B000DDD56 /* TicketmasterManager.swift */; };
 		DB8C0785215FEC0E000DDD56 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C0784215FEC0E000DDD56 /* UserInfoManager.swift */; };
 		DB8C0787215FEE46000DDD56 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C0786215FEE46000DDD56 /* TokenManager.swift */; };
+		DB978B2B229835EA00E20A10 /* RoverExperiences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB978B22229835EA00E20A10 /* RoverExperiences.framework */; };
+		DB978B30229835EA00E20A10 /* RoverExperiencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB978B2F229835EA00E20A10 /* RoverExperiencesTests.swift */; };
+		DB978B32229835EA00E20A10 /* RoverExperiences.h in Headers */ = {isa = PBXBuildFile; fileRef = DB978B24229835EA00E20A10 /* RoverExperiences.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB978B392298368500E20A10 /* RoverData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD88A7320C1B21700085AE0 /* RoverData.framework */; };
+		DB978B3A2298368500E20A10 /* RoverFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF49DD3203DE00F00B54652 /* RoverFoundation.framework */; };
+		DB978B3B2298368500E20A10 /* RoverUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6ADD5A20B33EC0002F226C /* RoverUI.framework */; };
+		DB978B3C229836B600E20A10 /* RoverObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A84A32238351C00B59A5C /* RoverObserver.swift */; };
+		DB978B3F2298376200E20A10 /* ExperiencesAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB978B3D229836E600E20A10 /* ExperiencesAssembler.swift */; };
+		DB978B41229837F200E20A10 /* Rover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB978B40229837F100E20A10 /* Rover.framework */; };
 		DB9DBF7F2055974B00E5C77F /* RoverNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9DBF762055974B00E5C77F /* RoverNotifications.framework */; };
 		DB9DBF842055974B00E5C77F /* RoverNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9DBF832055974B00E5C77F /* RoverNotificationsTests.swift */; };
 		DB9DBF862055974B00E5C77F /* RoverNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = DB9DBF782055974B00E5C77F /* RoverNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -226,6 +234,13 @@
 			remoteGlobalIDString = DB8C0755215FC4D2000DDD56;
 			remoteInfo = RoverTicketmaster;
 		};
+		DB978B2C229835EA00E20A10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBF49DCA203DE00F00B54652 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB978B21229835EA00E20A10;
+			remoteInfo = RoverExperiences;
+		};
 		DB9DBF802055974B00E5C77F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DBF49DCA203DE00F00B54652 /* Project object */;
@@ -357,6 +372,14 @@
 		DB8C077E215FDFD7000DDD56 /* TicketmasterAuthorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketmasterAuthorizer.swift; sourceTree = "<group>"; };
 		DB8C0784215FEC0E000DDD56 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		DB8C0786215FEE46000DDD56 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		DB978B22229835EA00E20A10 /* RoverExperiences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RoverExperiences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB978B24229835EA00E20A10 /* RoverExperiences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoverExperiences.h; sourceTree = "<group>"; };
+		DB978B25229835EA00E20A10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB978B2A229835EA00E20A10 /* RoverExperiencesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoverExperiencesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB978B2F229835EA00E20A10 /* RoverExperiencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverExperiencesTests.swift; sourceTree = "<group>"; };
+		DB978B31229835EA00E20A10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB978B3D229836E600E20A10 /* ExperiencesAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperiencesAssembler.swift; sourceTree = "<group>"; };
+		DB978B40229837F100E20A10 /* Rover.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rover.framework; path = Carthage/Build/iOS/Rover.framework; sourceTree = "<group>"; };
 		DB9DBF762055974B00E5C77F /* RoverNotifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RoverNotifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9DBF782055974B00E5C77F /* RoverNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoverNotifications.h; sourceTree = "<group>"; };
 		DB9DBF792055974B00E5C77F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -549,6 +572,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DB978B1F229835EA00E20A10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB978B392298368500E20A10 /* RoverData.framework in Frameworks */,
+				DB978B3A2298368500E20A10 /* RoverFoundation.framework in Frameworks */,
+				DB978B3B2298368500E20A10 /* RoverUI.framework in Frameworks */,
+				DB978B41229837F200E20A10 /* Rover.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB978B27229835EA00E20A10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB978B2B229835EA00E20A10 /* RoverExperiences.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB9DBF722055974B00E5C77F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -723,6 +765,7 @@
 				DBF49DE0203DE00F00B54652 /* FoundationTests */,
 				DBD88A7F20C1B21700085AE0 /* DataTests */,
 				DB6ADD6620B33EC0002F226C /* UITests */,
+				DB978B2E229835EA00E20A10 /* ExperiencesTests */,
 				DB9DBF822055974B00E5C77F /* NotificationsTests */,
 				DB0C8F2D20583A5600E0D860 /* AppExtensionsTests */,
 				DB9DBFC12055980800E5C77F /* LocationTests */,
@@ -741,6 +784,7 @@
 				DBF49DD5203DE00F00B54652 /* Foundation */,
 				DBD88A7420C1B21700085AE0 /* Data */,
 				DB6ADD5B20B33EC0002F226C /* UI */,
+				DB978B23229835EA00E20A10 /* Experiences */,
 				DB9DBF772055974B00E5C77F /* Notifications */,
 				DB0C8F2220583A5600E0D860 /* AppExtensions */,
 				DB9DBFB62055980800E5C77F /* Location */,
@@ -916,9 +960,30 @@
 			path = TicketmasterTests;
 			sourceTree = "<group>";
 		};
+		DB978B23229835EA00E20A10 /* Experiences */ = {
+			isa = PBXGroup;
+			children = (
+				492A84A32238351C00B59A5C /* RoverObserver.swift */,
+				DB978B3D229836E600E20A10 /* ExperiencesAssembler.swift */,
+				DB978B24229835EA00E20A10 /* RoverExperiences.h */,
+				DB978B25229835EA00E20A10 /* Info.plist */,
+			);
+			path = Experiences;
+			sourceTree = "<group>";
+		};
+		DB978B2E229835EA00E20A10 /* ExperiencesTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB978B2F229835EA00E20A10 /* RoverExperiencesTests.swift */,
+				DB978B31229835EA00E20A10 /* Info.plist */,
+			);
+			path = ExperiencesTests;
+			sourceTree = "<group>";
+		};
 		DB9DBEBA205595F100E5C77F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB978B40229837F100E20A10 /* Rover.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1267,6 +1332,8 @@
 				DBA015D8217E6DE700268822 /* RoverTelephonyTests.xctest */,
 				DBA015FB217E71E900268822 /* RoverAdSupport.framework */,
 				DBA01603217E71E900268822 /* RoverAdSupportTests.xctest */,
+				DB978B22229835EA00E20A10 /* RoverExperiences.framework */,
+				DB978B2A229835EA00E20A10 /* RoverExperiencesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1318,7 +1385,6 @@
 				DBFB1A88209B8CC500E99F9F /* EventQueueObserver.swift */,
 				DBFB1A84209B8CC500E99F9F /* EventQueue.swift */,
 				DB496E4121486E3D0026DE6A /* EventsClient.swift */,
-				492A84A32238351C00B59A5C /* RoverObserver.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -1421,6 +1487,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB8C0766215FC4D2000DDD56 /* RoverTicketmaster.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB978B1D229835EA00E20A10 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB978B32229835EA00E20A10 /* RoverExperiences.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,6 +1700,42 @@
 			name = RoverTicketmasterTests;
 			productName = RoverTicketmasterTests;
 			productReference = DB8C075E215FC4D2000DDD56 /* RoverTicketmasterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB978B21229835EA00E20A10 /* RoverExperiences */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB978B37229835EA00E20A10 /* Build configuration list for PBXNativeTarget "RoverExperiences" */;
+			buildPhases = (
+				DB978B1D229835EA00E20A10 /* Headers */,
+				DB978B1E229835EA00E20A10 /* Sources */,
+				DB978B1F229835EA00E20A10 /* Frameworks */,
+				DB978B20229835EA00E20A10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoverExperiences;
+			productName = RoverExperiences;
+			productReference = DB978B22229835EA00E20A10 /* RoverExperiences.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DB978B29229835EA00E20A10 /* RoverExperiencesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB978B38229835EA00E20A10 /* Build configuration list for PBXNativeTarget "RoverExperiencesTests" */;
+			buildPhases = (
+				DB978B26229835EA00E20A10 /* Sources */,
+				DB978B27229835EA00E20A10 /* Frameworks */,
+				DB978B28229835EA00E20A10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB978B2D229835EA00E20A10 /* PBXTargetDependency */,
+			);
+			name = RoverExperiencesTests;
+			productName = RoverExperiencesTests;
+			productReference = DB978B2A229835EA00E20A10 /* RoverExperiencesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		DB9DBF752055974B00E5C77F /* RoverNotifications */ = {
@@ -1886,7 +1996,7 @@
 		DBF49DCA203DE00F00B54652 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Rover Labs Inc.";
 				TargetAttributes = {
@@ -1927,6 +2037,14 @@
 					};
 					DB8C075D215FC4D2000DDD56 = {
 						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
+					DB978B21229835EA00E20A10 = {
+						CreatedOnToolsVersion = 10.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					DB978B29229835EA00E20A10 = {
+						CreatedOnToolsVersion = 10.2.1;
 						ProvisioningStyle = Automatic;
 					};
 					DB9DBF752055974B00E5C77F = {
@@ -2034,6 +2152,8 @@
 				DBA015D7217E6DE700268822 /* RoverTelephonyTests */,
 				DBA015FA217E71E900268822 /* RoverAdSupport */,
 				DBA01602217E71E900268822 /* RoverAdSupportTests */,
+				DB978B21229835EA00E20A10 /* RoverExperiences */,
+				DB978B29229835EA00E20A10 /* RoverExperiencesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2089,6 +2209,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DB8C075C215FC4D2000DDD56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB978B20229835EA00E20A10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB978B28229835EA00E20A10 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2301,6 +2435,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DB978B1E229835EA00E20A10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB978B3F2298376200E20A10 /* ExperiencesAssembler.swift in Sources */,
+				DB978B3C229836B600E20A10 /* RoverObserver.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB978B26229835EA00E20A10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB978B30229835EA00E20A10 /* RoverExperiencesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB9DBF712055974B00E5C77F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2444,7 +2595,6 @@
 				DBC3B42B2148A7D10096C74E /* HTTPClient.swift in Sources */,
 				DBCBE09121614D88001C7A96 /* StaticContextProvider.swift in Sources */,
 				DB75358621595F1000CB5654 /* SyncCoordinatorService.swift in Sources */,
-				492A84A42238351C00B59A5C /* RoverObserver.swift in Sources */,
 				DBCBE09921614EB3001C7A96 /* LocationContextProvider.swift in Sources */,
 				DB8C0785215FEC0E000DDD56 /* UserInfoManager.swift in Sources */,
 				DB71B7DB2145A7A100FF5034 /* PagingResponse.swift in Sources */,
@@ -2539,6 +2689,11 @@
 			isa = PBXTargetDependency;
 			target = DB8C0755215FC4D2000DDD56 /* RoverTicketmaster */;
 			targetProxy = DB8C0760215FC4D2000DDD56 /* PBXContainerItemProxy */;
+		};
+		DB978B2D229835EA00E20A10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB978B21229835EA00E20A10 /* RoverExperiences */;
+			targetProxy = DB978B2C229835EA00E20A10 /* PBXContainerItemProxy */;
 		};
 		DB9DBF812055974B00E5C77F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2887,6 +3042,100 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.rover.RoverTicketmasterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DB978B33229835EA00E20A10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WDEZX8QD47;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Sources/Experiences/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.rover.RoverExperiences;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB978B34229835EA00E20A10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WDEZX8QD47;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Sources/Experiences/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.rover.RoverExperiences;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DB978B35229835EA00E20A10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDEZX8QD47;
+				INFOPLIST_FILE = Tests/ExperiencesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.rover.RoverExperiencesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB978B36229835EA00E20A10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDEZX8QD47;
+				INFOPLIST_FILE = Tests/ExperiencesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.rover.RoverExperiencesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -3652,6 +3901,24 @@
 			buildConfigurations = (
 				DB8C0769215FC4D2000DDD56 /* Debug */,
 				DB8C076A215FC4D2000DDD56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB978B37229835EA00E20A10 /* Build configuration list for PBXNativeTarget "RoverExperiences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB978B33229835EA00E20A10 /* Debug */,
+				DB978B34229835EA00E20A10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB978B38229835EA00E20A10 /* Build configuration list for PBXNativeTarget "RoverExperiencesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB978B35229835EA00E20A10 /* Debug */,
+				DB978B36229835EA00E20A10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
