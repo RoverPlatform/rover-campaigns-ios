@@ -9,6 +9,7 @@
 import SafariServices
 
 public struct UIAssembler {
+    public var associatedDomains: [String]
     public var urlSchemes: [String]
     
     public var sessionKeepAliveTime: Int
@@ -16,7 +17,8 @@ public struct UIAssembler {
     public var isLifeCycleTrackingEnabled: Bool
     public var isVersionTrackingEnabled: Bool
     
-    public init(urlSchemes: [String] = [], sessionKeepAliveTime: Int = 30, isLifeCycleTrackingEnabled: Bool = true, isVersionTrackingEnabled: Bool = true) {
+    public init(associatedDomains: [String] = [], urlSchemes: [String] = [], sessionKeepAliveTime: Int = 30, isLifeCycleTrackingEnabled: Bool = true, isVersionTrackingEnabled: Bool = true) {
+        self.associatedDomains = associatedDomains
         self.urlSchemes = urlSchemes
         self.sessionKeepAliveTime = sessionKeepAliveTime
         self.isLifeCycleTrackingEnabled = isLifeCycleTrackingEnabled
@@ -69,7 +71,7 @@ extension UIAssembler: Assembler {
         
         container.register(Router.self) { resolver in
             let dispatcher = resolver.resolve(Dispatcher.self)!
-            return RouterService(urlSchemes: self.urlSchemes, dispatcher: dispatcher)
+            return RouterService(associatedDomains: self.associatedDomains, urlSchemes: self.urlSchemes, dispatcher: dispatcher)
         }
         
         // MARK: SessionController
