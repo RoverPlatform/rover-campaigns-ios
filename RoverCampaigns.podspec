@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.default_subspec   = "Core"
 
   s.subspec "Core" do |ss|
-    ss.dependency "Rover/Experiences"
+    ss.dependency "RoverCampaigns/Experiences"
     ss.dependency "RoverCampaigns/Notifications"
     ss.dependency "RoverCampaigns/Location"
     ss.dependency "RoverCampaigns/Debug"
@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   
   s.subspec "Experiences" do |ss|
     ss.source_files = "Sources/Experiences/**/*.swift"
-    ss.dependency "Rover/UI"
+    ss.dependency "RoverCampaigns/UI"
     ss.dependency "Rover", "~> 3.0.0-beta.2"
     ss.frameworks = "WebKit"
   end
