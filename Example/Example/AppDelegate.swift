@@ -20,8 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Pass your account token from the Rover Settings app to the Rover SDK.
+        Rover.accountToken = "YOUR_SDK_TOKEN"
+        
         // Initialize the RoverCampaigns SDK with all modules.
         RoverCampaigns.initialize(assemblers: [
+            AdSupportAssembler(),
+            BluetoothAssembler(),
+            DataAssembler(accountToken: "YOUR_SDK_TOKEN", endpoint: URL(string: "https://api.staging.rover.io/graphql")!), // The same token used above
+            RoverCampaignsKit.DebugAssembler(),
             FoundationAssembler(),
             DataAssembler(accountToken: "<YOUR_SDK_TOKEN>"),
             UIAssembler(associatedDomains: ["example.rover.io"], urlSchemes: ["rv-example"]),
