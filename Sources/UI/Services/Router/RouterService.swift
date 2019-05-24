@@ -9,12 +9,14 @@
 import Foundation
 
 class RouterService: Router {
+    let associatedDomains: [String]
     let urlSchemes: [String]
     let dispatcher: Dispatcher
     
     var handlers = [RouteHandler]()
     
-    init(urlSchemes: [String], dispatcher: Dispatcher) {
+    init(associatedDomains: [String], urlSchemes: [String], dispatcher: Dispatcher) {
+        self.associatedDomains = associatedDomains
         self.urlSchemes = urlSchemes
         self.dispatcher = dispatcher
     }
@@ -50,7 +52,13 @@ class RouterService: Router {
     }
     
     func action(for url: URL) -> Action? {
-       if isDeepLink(url: url) {
+        if isUniversalLink(url: url) {
+            for handler in handlers {
+                if let action = handler.universalLinkAction(url: url) {
+                    return action
+                }
+            }
+        } else if isDeepLink(url: url) {
             for handler in handlers {
                 if let action = handler.deepLinkAction(url: url) {
                     return action
@@ -61,6 +69,18 @@ class RouterService: Router {
         return nil
     }
 
+    func isUniversalLink(url: URL) -> Bool {
+        guard let scheme = url.scheme, ["http", "https"].contains(scheme) else {
+            return false
+        }
+        
+        guard let host = url.host, associatedDomains.contains(host) else {
+            return false
+        }
+        
+        return true
+    }
+    
     func isDeepLink(url: URL) -> Bool {
         guard let scheme = url.scheme else {
             return false

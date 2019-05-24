@@ -72,12 +72,6 @@ public struct DataAssembler: Assembler {
             )
         }
         
-        // MARK: RoverObserver
-        
-        container.register(RoverObserver.self) { resolver in
-            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!)
-        }
-        
         // MARK: HTTPClient
         
         container.register(HTTPClient.self) { [accountToken, endpoint] _ in
@@ -162,7 +156,5 @@ public struct DataAssembler: Assembler {
         
         // Set the context provider on the event queue after assembly to allow circular dependency injection
         eventQueue.contextProvider = resolver.resolve(ContextProvider.self)!
-        
-        resolver.resolve(RoverObserver.self)?.enable()
     }
 }
