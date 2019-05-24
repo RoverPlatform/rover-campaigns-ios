@@ -6,7 +6,6 @@
 //  Copyright © 2019 Rover Labs Inc. All rights reserved.
 //
 
-import Rover
 import RoverKit
 
 import CoreLocation
@@ -20,21 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Pass your account token from the Rover Settings app to the Rover SDK.
-        Rover.accountToken = "d6ab40e8a45e3040c372806baba387fd"
-        
         // Initialize the RoverCampaigns SDK with all modules.
         RoverCampaigns.initialize(assemblers: [
+            FoundationAssembler(),
+            DataAssembler(accountToken: "d6ab40e8a45e3040c372806baba387fd"),
+            UIAssembler(associatedDomains: ["example.rover.io"], urlSchemes: ["rv-example"]),
+            ExperiencesAssembler(),
+            NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
+            LocationAssembler(),
+            RoverKit.DebugAssembler(),
             AdSupportAssembler(),
             BluetoothAssembler(),
-            DataAssembler(accountToken: "d6ab40e8a45e3040c372806baba387fd"), // The same token used above
-            RoverKit.DebugAssembler(),
-            FoundationAssembler(),
-            LocationAssembler(),
-            NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
             TelephonyAssembler(),
             TicketmasterAssembler(),
-            UIAssembler(urlSchemes: ["rv-example"]),
             
             // ⚠️ The debug assembler provides customizations useful during development and debugging. It can be safely
             // ignored and is not useful as a learning resource.
@@ -89,37 +86,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RoverCampaigns.shared?.resolve(SyncCoordinator.self)?.sync(completionHandler: completionHandler)
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // The device successfully registered for push notifications. Pass the token to RoverCampaigns.
+        RoverCampaigns.shared!.resolve(TokenManager.self)?.setToken(deviceToken)
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        // Handle RoverCampaigns specific deep links. E.g. rv-example://presentNotificationCenter or rv-example://presentSettings.
+        // Let the Router handle RoverCampaigns deep links such as:
+        //   - rv-example://presentExperience?experienceID=XXX&campaignID=XXX
+        //   - rv-example://presentNotificationCenter
+        //   - rv-example://presentSettings.
         if let router = RoverCampaigns.shared?.resolve(Router.self), router.handle(url) {
             return true
         }
         
-        // This deep link isn't a RoverCampaigns specific URL. Check if the deep link is intended to launch a Rover
-        // experience.
-        if url.host == "presentExperience" {
-            guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems else {
-                return false
-            }
-            
-            guard let experienceID = queryItems.first(where: { $0.name == "experienceID" })?.value else {
-                return false
-            }
-            
-            let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
-            let viewController = RoverViewController()
-            viewController.loadExperience(id: experienceID, campaignID: campaignID)
-            app.present(viewController, animated: true)
-            return true
-
-        }
-        
+        // This URL isn't a RoverCampaigns deep link. Handle your own deep links here.
         return false
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // The device successfully registered for push notifications. Pass the token to RoverCampaigns.
-        RoverCampaigns.shared!.resolve(TokenManager.self)?.setToken(deviceToken)
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        // Let the Router handle RoverCampaigns universal links such as:
+        //  - https://example.rover.io/XXX
+        //  - https://example.rover.io/XXX?campaignID=XXX
+        return RoverCampaigns.shared?.resolve(Router.self)?.handle(userActivity) ?? false
     }
 }
 
