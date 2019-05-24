@@ -23,7 +23,6 @@ PODS:
     - RoverCampaigns/Data
 
 DEPENDENCIES:
-  - Rover (~> 3.0.0-beta.1)
   - RoverAppExtensions (from `../`)
   - RoverCampaigns/AdSupport (from `../`)
   - RoverCampaigns/Bluetooth (from `../`)
@@ -48,6 +47,6 @@ SPEC CHECKSUMS:
   RoverAppExtensions: c60fe075139055e18b58b5b1d4c19e53e93dee88
   RoverCampaigns: b0a5c5472553d7358a357aee9ec6b56bb8f4654c
 
-PODFILE CHECKSUM: cf6af0d272aa78a03d617fa6c0675fb6d17991a2
+PODFILE CHECKSUM: 168dd80623b5b1af569d91b70e10ad1f887617b7
 
 COCOAPODS: 1.6.1
