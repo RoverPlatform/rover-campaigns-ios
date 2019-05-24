@@ -100,28 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        // This deep link isn't a RoverCampaigns specific URL. Check if the deep link is intended to launch a Rover
-        // experience.
-        if url.host == "presentExperience" {
-            guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems else {
-                return false
-            }
-            
-            // For now, you need to support deep links with both `experienceID` and `id` to enable backwards compatibility
-            
-            // For Rover 3.0 devices, the Rover server will send deep links within push notifications using `experienceID` parameter. For backwards compatibility, `id` parameter is also supported.
-            guard let experienceID = queryItems.first(where: { $0.name == "experienceID" || $0.name == "id" })?.value else {
-                return false
-            }
-            
-            let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
-            let viewController = RoverViewController()
-            viewController.loadExperience(id: experienceID, campaignID: campaignID)
-            app.present(viewController, animated: true)
-            return true
-
-        }
-        
         return false
     }
     
