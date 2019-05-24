@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.default_subspec   = "Core"
 
   s.subspec "Core" do |ss|
+    ss.dependency "Rover/Experiences"
     ss.dependency "RoverCampaigns/Notifications"
     ss.dependency "RoverCampaigns/Location"
     ss.dependency "RoverCampaigns/Debug"
@@ -25,7 +26,6 @@ Pod::Spec.new do |s|
   s.subspec "Data" do |ss|
     ss.source_files = "Sources/Data/**/*.swift"
     ss.dependency "RoverCampaigns/Foundation"
-    ss.dependency "Rover", "~> 3.0.0-beta.1"
     ss.frameworks = "SystemConfiguration", "UIKit"
   end
 
@@ -33,6 +33,13 @@ Pod::Spec.new do |s|
     ss.source_files = "Sources/UI/**/*.swift"
     ss.dependency "RoverCampaigns/Data"
     ss.frameworks = "SafariServices"
+  end
+  
+  s.subspec "Experiences" do |ss|
+    ss.source_files = "Sources/Experiences/**/*.swift"
+    ss.dependency "Rover/UI"
+    ss.dependency "Rover", "~> 3.0.0-beta.2"
+    ss.frameworks = "WebKit"
   end
 
   s.subspec "Notifications" do |ss|
