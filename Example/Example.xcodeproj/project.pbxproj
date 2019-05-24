@@ -289,7 +289,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Rover/Rover.framework",
-				"${BUILT_PRODUCTS_DIR}/RoverCampaigns/RoverCampaignsKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RoverCampaigns/RoverCampaigns.framework",
 				"${BUILT_PRODUCTS_DIR}/RoverAppExtensions/RoverAppExtensions.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -297,7 +297,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rover.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RoverCampaignsKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RoverCampaigns.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RoverAppExtensions.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

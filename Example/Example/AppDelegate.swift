@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AdSupportAssembler(),
             BluetoothAssembler(),
             DataAssembler(accountToken: "YOUR_SDK_TOKEN", endpoint: URL(string: "https://api.staging.rover.io/graphql")!), // The same token used above
-            RoverCampaignsKit.DebugAssembler(),
+            RoverCampaigns.DebugAssembler(),
             FoundationAssembler(),
             DataAssembler(accountToken: "<YOUR_SDK_TOKEN>"),
             UIAssembler(associatedDomains: ["example.rover.io"], urlSchemes: ["rv-example"]),

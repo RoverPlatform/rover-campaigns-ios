@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "RoverCampaigns"
-  s.module_name       = "RoverCampaignsKit"
+  s.module_name       = "RoverCampaigns"
   s.version           = "3.0.0-beta.1"
   s.summary           = "iOS framework for the Rover Campaigns app"
   s.homepage          = "https://www.rover.io"
