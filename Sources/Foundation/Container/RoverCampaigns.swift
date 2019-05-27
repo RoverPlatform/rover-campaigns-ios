@@ -9,7 +9,7 @@
 import Foundation
 import os.log
 
-public var shared: RoverCampaignsContainer? = nil
+public private(set) var shared: RoverCampaignsContainer? = nil
 
 public func initialize(assemblers: [Assembler]) {
     guard shared == nil else {
