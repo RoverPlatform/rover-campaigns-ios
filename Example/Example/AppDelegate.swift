@@ -6,7 +6,8 @@
 //  Copyright © 2019 Rover Labs Inc. All rights reserved.
 //
 
-import RoverKit
+import Rover
+import RoverCampaigns
 
 import CoreLocation
 import UIKit
@@ -18,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         // Initialize the RoverCampaigns SDK with all modules.
         RoverCampaigns.initialize(assemblers: [
             FoundationAssembler(),
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ExperiencesAssembler(),
             NotificationsAssembler(appGroup: "group.io.rover.Example"), // Used to share `UserDefaults` data between the main app target and the notification service extension.
             LocationAssembler(),
-            RoverKit.DebugAssembler(),
+            RoverCampaigns.DebugAssembler(),
             AdSupportAssembler(),
             BluetoothAssembler(),
             TelephonyAssembler(),
@@ -100,7 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        // This URL isn't a RoverCampaigns deep link. Handle your own deep links here.
         return false
     }
     
