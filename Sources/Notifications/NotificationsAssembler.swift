@@ -88,7 +88,8 @@ public struct NotificationsAssembler: Assembler {
         container.register(NotificationStore.self) { [maxNotifications] resolver in
             NotificationStoreService(
                 maxSize: maxNotifications,
-                eventQueue: resolver.resolve(EventQueue.self)
+                eventQueue: resolver.resolve(EventQueue.self),
+                userDefaults: UserDefaults(suiteName: self.appGroup)!
             )
         }
         

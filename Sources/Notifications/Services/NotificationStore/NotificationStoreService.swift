@@ -11,6 +11,9 @@ import UIKit
 
 class NotificationStoreService: NotificationStore {
     let eventQueue: EventQueue?
+    
+    let userDefaults: UserDefaults
+    
     let maxSize: Int
     
     var notifications = [Notification]() {
@@ -22,9 +25,10 @@ class NotificationStoreService: NotificationStore {
     var observers = ObserverSet<[Notification]>()
     var stateObservation: NSObjectProtocol?
     
-    init(maxSize: Int, eventQueue: EventQueue?) {
-        self.eventQueue = eventQueue
+    init(maxSize: Int, eventQueue: EventQueue?, userDefaults: UserDefaults) {
         self.maxSize = maxSize
+        self.eventQueue = eventQueue
+        self.userDefaults = userDefaults
     }
     
     // MARK: Observers
@@ -78,6 +82,10 @@ class NotificationStoreService: NotificationStore {
             encoder.outputFormat = .xml
             let data = try encoder.encode(notifications)
             try data.write(to: cache, options: [.atomic])
+            
+            // now store a computed unread count in app-group scoped UserDefaults so it is available in the Notification Extension.
+            let unreadCount = notifications.filter { !$0.isRead }.count
+            userDefaults.set(unreadCount, forKey: "io.rover.unreadNotifications")
             os_log("Cache now contains notification(s)", log: .notifications, type: .debug, notifications.count)
         } catch {
             os_log("Failed to persist notifications to cache: %@", log: .notifications, type: .error, error.localizedDescription)

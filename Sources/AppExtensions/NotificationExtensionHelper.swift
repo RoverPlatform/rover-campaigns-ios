@@ -18,6 +18,10 @@ public class NotificationExtensionHelper {
         }
         self.userDefaults = userDefaults
     }
+    
+    public var unreadNotifications: Int {
+        return userDefaults.integer(forKey: "io.rover.unreadNotifications")
+    }
 
     @discardableResult
     public func didReceive(_ request: UNNotificationRequest, withContent content: UNMutableNotificationContent) -> Bool {
