@@ -6,7 +6,8 @@ Pod::Spec.new do |s|
   s.license           = "Apache License, Version 2.0"
   s.author            = { "Rover Labs Inc." => "support@rover.io" }
   s.platform          = :ios, "10.0"
-  s.source            = { :git => "https://github.com/RoverPlatform/rover-ios.git", :tag => "v#{s.version}" }
+  s.swift_versions    = ["5.0", "4.2"]
+  s.source            = { :git => "https://github.com/RoverPlatform/rover-campaigns-ios.git", :tag => "v#{s.version}" }
   s.cocoapods_version = ">= 1.4.0"
   s.default_subspec   = "Core"
 
