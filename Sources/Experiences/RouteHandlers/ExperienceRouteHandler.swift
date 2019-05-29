@@ -9,11 +9,12 @@
 import Foundation
 
 class ExperienceRouteHandler: RouteHandler {
-    typealias ActionProvider = (ExperienceIdentifier) -> Action?
-    let actionProvider: ActionProvider
+    let idActionProvider: (String, String?) -> Action?
+    let universalLinkActionProvider: (URL, String?) -> Action?
     
-    init(actionProvider: @escaping ActionProvider) {
-        self.actionProvider = actionProvider
+    init(idActionProvider: @escaping (String, String?) -> Action?, universalLinkActionProvider: @escaping (URL, String?) -> Action?) {
+        self.idActionProvider = idActionProvider
+        self.universalLinkActionProvider = universalLinkActionProvider
     }
     
     func deepLinkAction(url: URL) -> Action? {
@@ -25,34 +26,26 @@ class ExperienceRouteHandler: RouteHandler {
             return nil
         }
         
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+        guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems else {
             return nil
         }
         
-        let identifier: ExperienceIdentifier
-        if let queryItem = components.queryItems?.first(where: { $0.name == "id" }) {
-            guard let value = queryItem.value else {
-                return nil
-            }
-            
-            let experienceID = ID(rawValue: value)
-            identifier = ExperienceIdentifier.experienceID(id: experienceID)
-        } else if let queryItem = components.queryItems?.first(where: { $0.name == "campaignID" }) {
-            guard let value = queryItem.value else {
-                return nil
-            }
-            
-            let campaignID = ID(rawValue: value)
-            identifier = ExperienceIdentifier.campaignID(id: campaignID)
-        } else {
+        guard let experienceID = queryItems.first(where: { $0.name == "experienceID" || $0.name == "id" })?.value else {
             return nil
         }
-        
-        return actionProvider(identifier)
+
+        let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
+        return idActionProvider(experienceID, campaignID)
     }
     
     func universalLinkAction(url: URL) -> Action? {
-        let identifier = ExperienceIdentifier.campaignURL(url: url)
-        return actionProvider(identifier)
+        let campaignID: String?
+        if let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems {
+            campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
+        } else {
+            campaignID = nil
+        }
+        
+        return universalLinkActionProvider(url, campaignID)
     }
 }

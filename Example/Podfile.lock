@@ -1,0 +1,57 @@
+PODS:
+  - Rover (3.0.0-beta.2)
+  - RoverAppExtensions (3.0.0-beta.1)
+  - RoverCampaigns/AdSupport (3.0.0-beta.1):
+    - RoverCampaigns/Data
+  - RoverCampaigns/Bluetooth (3.0.0-beta.1):
+    - RoverCampaigns/Data
+  - RoverCampaigns/Core (3.0.0-beta.1):
+    - RoverCampaigns/Debug
+    - RoverCampaigns/Experiences
+    - RoverCampaigns/Location
+    - RoverCampaigns/Notifications
+  - RoverCampaigns/Data (3.0.0-beta.1):
+    - RoverCampaigns/Foundation
+  - RoverCampaigns/Debug (3.0.0-beta.1):
+    - RoverCampaigns/UI
+  - RoverCampaigns/Experiences (3.0.0-beta.1):
+    - Rover (~> 3.0.0-beta.2)
+    - RoverCampaigns/UI
+  - RoverCampaigns/Foundation (3.0.0-beta.1)
+  - RoverCampaigns/Location (3.0.0-beta.1):
+    - RoverCampaigns/Data
+  - RoverCampaigns/Notifications (3.0.0-beta.1):
+    - RoverCampaigns/UI
+  - RoverCampaigns/Telephony (3.0.0-beta.1):
+    - RoverCampaigns/Data
+  - RoverCampaigns/Ticketmaster (3.0.0-beta.1):
+    - RoverCampaigns/Data
+  - RoverCampaigns/UI (3.0.0-beta.1):
+    - RoverCampaigns/Data
+
+DEPENDENCIES:
+  - RoverAppExtensions (from `../`)
+  - RoverCampaigns/AdSupport (from `../`)
+  - RoverCampaigns/Bluetooth (from `../`)
+  - RoverCampaigns/Core (from `../`)
+  - RoverCampaigns/Telephony (from `../`)
+  - RoverCampaigns/Ticketmaster (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Rover
+
+EXTERNAL SOURCES:
+  RoverAppExtensions:
+    :path: "../"
+  RoverCampaigns:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Rover: 34104b587d54e574707f2f45e53d74c65d5ff75f
+  RoverAppExtensions: c60fe075139055e18b58b5b1d4c19e53e93dee88
+  RoverCampaigns: e294fcf251b50fbedbd3371c2ad4f6a655274e07
+
+PODFILE CHECKSUM: 4e581bed0b2417138aab8d6c224c12cf7e9d4f5a
+
+COCOAPODS: 1.6.1

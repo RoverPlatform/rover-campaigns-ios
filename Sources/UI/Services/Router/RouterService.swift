@@ -68,19 +68,19 @@ class RouterService: Router {
         
         return nil
     }
-    
+
     func isUniversalLink(url: URL) -> Bool {
         guard let scheme = url.scheme, ["http", "https"].contains(scheme) else {
             return false
         }
-
+        
         guard let host = url.host, associatedDomains.contains(host) else {
             return false
         }
         
         return true
     }
-
+    
     func isDeepLink(url: URL) -> Bool {
         guard let scheme = url.scheme else {
             return false

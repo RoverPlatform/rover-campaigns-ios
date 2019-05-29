@@ -11,7 +11,8 @@ import CoreLocation
 import os.log
 
 public final class Beacon: NSManagedObject {
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Beacon> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Beacon> {
         return NSFetchRequest<Beacon>(entityName: "Beacon")
     }
     
@@ -24,23 +25,23 @@ public final class Beacon: NSManagedObject {
 
     @NSManaged public private(set) var regionIdentifier: String
     
-    public override func awakeFromInsert() {
+    override public func awakeFromInsert() {
         super.awakeFromInsert()
         self.tags = []
     }
     
-    public override func willSave() {
+    override public func willSave() {
         if self.regionIdentifier != self.region.identifier {
             self.regionIdentifier = self.region.identifier
         }
     }
 }
 
-// MARK: AttributeRepresentable
+// MARK: Attributes
 
-extension Beacon: AttributeRepresentable {
-    public var attributeValue: AttributeValue {
-        let attributes: Attributes = [
+extension Beacon {
+    public var attributes: Attributes {
+        return [
             "id": self.id,
             "name": self.name,
             "uuid": self.uuid.uuidString,
@@ -48,8 +49,6 @@ extension Beacon: AttributeRepresentable {
             "minor": self.minor,
             "tags": self.tags
         ]
-        
-        return .object(attributes)
     }
 }
 
@@ -73,7 +72,7 @@ extension Beacon {
         return EventInfo(
             name: "Beacon Entered",
             namespace: "rover",
-            attributes: ["beacon": self]
+            attributes: ["beacon": self.attributes]
         )
     }
     
@@ -81,7 +80,7 @@ extension Beacon {
         return EventInfo(
             name: "Beacon Exited",
             namespace: "rover",
-            attributes: ["beacon": self]
+            attributes: ["beacon": self.attributes]
         )
     }
 }
@@ -131,14 +130,10 @@ extension Beacon {
 
 extension Collection where Element == Beacon {
     public func wildCardRegions(maxLength: Int) -> Set<CLBeaconRegion> {
-        let uuids = self.map({ $0.uuid })
+        let uuids = self.map { $0.uuid }
         let unique = Set(uuids)
         
-        #if swift(>=4.2)
         let regions = unique.shuffled().prefix(maxLength).map { $0.region }
-        #else
-        let regions = unique.prefix(maxLength).map { $0.region }
-        #endif
         
         return Set<CLBeaconRegion>(regions)
     }

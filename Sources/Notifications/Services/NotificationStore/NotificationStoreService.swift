@@ -11,6 +11,9 @@ import UIKit
 
 class NotificationStoreService: NotificationStore {
     let eventQueue: EventQueue?
+    
+    let userDefaults: UserDefaults
+    
     let maxSize: Int
     
     var notifications = [Notification]() {
@@ -22,9 +25,10 @@ class NotificationStoreService: NotificationStore {
     var observers = ObserverSet<[Notification]>()
     var stateObservation: NSObjectProtocol?
     
-    init(maxSize: Int, eventQueue: EventQueue?) {
-        self.eventQueue = eventQueue
+    init(maxSize: Int, eventQueue: EventQueue?, userDefaults: UserDefaults) {
         self.maxSize = maxSize
+        self.eventQueue = eventQueue
+        self.userDefaults = userDefaults
     }
     
     // MARK: Observers
@@ -78,6 +82,10 @@ class NotificationStoreService: NotificationStore {
             encoder.outputFormat = .xml
             let data = try encoder.encode(notifications)
             try data.write(to: cache, options: [.atomic])
+            
+            // now store a computed unread count in app-group scoped UserDefaults so it is available in the Notification Extension.
+            let unreadCount = notifications.filter { !$0.isRead }.count
+            userDefaults.set(unreadCount, forKey: "io.rover.unreadNotifications")
             os_log("Cache now contains notification(s)", log: .notifications, type: .debug, notifications.count)
         } catch {
             os_log("Failed to persist notifications to cache: %@", log: .notifications, type: .error, error.localizedDescription)
@@ -87,24 +95,24 @@ class NotificationStoreService: NotificationStore {
     // MARK: Adding Notifications
     
     func addNotifications(_ notifications: [Notification]) {
-        let map: ([Notification]) -> [ID: Notification] = { notifications in
+        let map: ([Notification]) -> [String: Notification] = { notifications in
             let ids = notifications.map { $0.id }
             let zipped = zip(ids, notifications)
-            return Dictionary(zipped, uniquingKeysWith: { (a, b) in
-                return a
-            })
+            return Dictionary(zipped) { a, _ in
+                a
+            }
         }
         
         let existing = map(self.notifications)
         let new = map(notifications)
-        let merged = existing.merging(new, uniquingKeysWith: {
+        let merged = existing.merging(new) {
             var notification = $1
             notification.isRead = $0.isRead || $1.isRead
             notification.isDeleted = $0.isDeleted || $1.isDeleted
             return notification
-        })
+        }
         
-        let sorted = merged.values.sorted(by: { $0.deliveredAt > $1.deliveredAt })
+        let sorted = merged.values.sorted { $0.deliveredAt > $1.deliveredAt }
         let trimmed = sorted.prefix(maxSize)
         self.notifications = Array(trimmed)
         persist()
@@ -112,12 +120,12 @@ class NotificationStoreService: NotificationStore {
     
     // MARK: Updating Notifications
     
-    func markNotificationDeleted(_ notificationID: ID) {
+    func markNotificationDeleted(_ notificationID: String) {
         guard let notification = notifications.first(where: { $0.id == notificationID }) else {
             return
         }
         
-        notifications = notifications.map({
+        notifications = notifications.map {
             if $0.id != notification.id {
                 return $0
             }
@@ -125,7 +133,7 @@ class NotificationStoreService: NotificationStore {
             var notification = $0
             notification.isDeleted = true
             return notification
-        })
+        }
         
         persist()
         
@@ -133,17 +141,17 @@ class NotificationStoreService: NotificationStore {
             return
         }
         
-        let attributes: Attributes = ["notification": notification]
+        let attributes: Attributes = ["notification": notification.attributes]
         let event = EventInfo(name: "Notification Marked Deleted", namespace: "rover", attributes: attributes)
         eventQueue.addEvent(event)
     }
     
-    func markNotificationRead(_ notificationID: ID) {
+    func markNotificationRead(_ notificationID: String) {
         guard let notification = notifications.first(where: { $0.id == notificationID }) else {
             return
         }
         
-        notifications = notifications.map({
+        notifications = notifications.map {
             if $0.id != notification.id {
                 return $0
             }
@@ -151,7 +159,7 @@ class NotificationStoreService: NotificationStore {
             var notification = $0
             notification.isRead = true
             return notification
-        })
+        }
         
         persist()
         
@@ -159,7 +167,7 @@ class NotificationStoreService: NotificationStore {
             return
         }
         
-        let attributes: Attributes = ["notification": notification]
+        let attributes: Attributes = ["notification": notification.attributes]
         let event = EventInfo(name: "Notification Marked Read", namespace: "rover", attributes: attributes)
         eventQueue.addEvent(event)
     }

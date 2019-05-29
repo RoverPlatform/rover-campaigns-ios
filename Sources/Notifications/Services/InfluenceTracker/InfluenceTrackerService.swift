@@ -28,15 +28,9 @@ class InfluenceTrackerService: InfluenceTracker {
     }
     
     func startMonitoring() {
-        #if swift(>=4.2)
         self.didBecomeActiveObserver = notificationCenter.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
             self?.trackInfluencedOpen()
         }
-        #else
-        self.didBecomeActiveObserver = notificationCenter.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: OperationQueue.main) { [weak self] _ in
-            self?.trackInfluencedOpen()
-        }
-        #endif
     }
     
     func stopMonitoring() {
@@ -54,12 +48,12 @@ class InfluenceTrackerService: InfluenceTracker {
             clearLastReceivedNotification()
         }
         
-        struct NotificationReceipt: AttributeRepresentable, Decodable {
-            var notificationID: ID
-            var campaignID: ID
+        struct NotificationReceipt: Decodable {
+            var notificationID: String
+            var campaignID: String
             var receivedAt: Date
             
-            var attributeValue: AttributeValue {
+            var attributes: Attributes {
                 return [
                     "id": notificationID,
                     "campaignID": campaignID
@@ -84,7 +78,7 @@ class InfluenceTrackerService: InfluenceTracker {
         }
         
         let attributes: Attributes = [
-            "notification": lastReceivedNotification,
+            "notification": lastReceivedNotification.attributes,
             "source": NotificationSource.influencedOpen.rawValue
         ]
         
