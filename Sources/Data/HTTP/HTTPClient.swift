@@ -30,6 +30,7 @@ extension HTTPClient {
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("gzip", forHTTPHeaderField: "accept-encoding")
         urlRequest.setAccountToken(accountToken)
+        urlRequest.setRoverUserAgent()
         return urlRequest
     }
     
@@ -40,6 +41,7 @@ extension HTTPClient {
         urlRequest.setValue("gzip", forHTTPHeaderField: "content-encoding")
         urlRequest.setValue("application/json", forHTTPHeaderField: "content-type")
         urlRequest.setAccountToken(accountToken)
+        urlRequest.setRoverUserAgent()
         return urlRequest
     }
     
