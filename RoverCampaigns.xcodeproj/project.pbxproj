@@ -11,6 +11,7 @@
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
 		49F7CE69223C2B1F00674784 /* SessionControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE66223C2B1F00674784 /* SessionControllerService.swift */; };
+		49FF54DF22A6F70E00A58001 /* Foundation.URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF54DE22A6F70E00A58001 /* Foundation.URLRequest.swift */; };
 		DB026279214C300E00893E53 /* Location.CLBeaconRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB026272214C2F5200893E53 /* Location.CLBeaconRegion.swift */; };
 		DB02627A214C301600893E53 /* Location.CLCircularRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB026274214C2F8900893E53 /* Location.CLCircularRegion.swift */; };
 		DB03F9B2214A98A900CBFE11 /* Location.CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB03F9B1214A98A900CBFE11 /* Location.CLLocationCoordinate2D.swift */; };
@@ -299,6 +300,7 @@
 		49F7CE64223C2B1F00674784 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		49F7CE65223C2B1F00674784 /* SessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		49F7CE66223C2B1F00674784 /* SessionControllerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionControllerService.swift; sourceTree = "<group>"; };
+		49FF54DE22A6F70E00A58001 /* Foundation.URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foundation.URLRequest.swift; sourceTree = "<group>"; };
 		DB00FDDB20891153008D1A57 /* ImageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfiguration.swift; sourceTree = "<group>"; };
 		DB00FDF7208D09AE008D1A57 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		DB00FDF9208D0A0A008D1A57 /* RouterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterService.swift; sourceTree = "<group>"; };
@@ -1470,6 +1472,7 @@
 				DBCBE087216140F1001C7A96 /* Foundation.JSONDecoder.swift */,
 				DBCBE085216140E6001C7A96 /* Foundation.JSONEncoder.swift */,
 				DB6BE8AD215D41F7000A1FDA /* Foundation.OSLog.swift */,
+				49FF54DE22A6F70E00A58001 /* Foundation.URLRequest.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2659,6 +2662,7 @@
 				DBADA7FB20A4F32500225C80 /* Action.swift in Sources */,
 				DBC3FBF32155375D00372A65 /* PersistedValue.swift in Sources */,
 				DBF49E05203DE1DE00B54652 /* ServiceFactory.swift in Sources */,
+				49FF54DF22A6F70E00A58001 /* Foundation.URLRequest.swift in Sources */,
 				DBF2584120A107BD00400EA2 /* ObserverSet.swift in Sources */,
 				DBF49E06203DE1DE00B54652 /* ServiceKey.swift in Sources */,
 				DB6BE8AE215D41F7000A1FDA /* Foundation.OSLog.swift in Sources */,
