@@ -436,14 +436,16 @@ public struct Adler32: CustomStringConvertible
 
 extension Data
 {
-// Commented out because not compatible with the Swift 4.x compiler, and not needed for our use case.
-    
-//    func withUnsafeBytes<ResultType, ContentType>(_ body: (UnsafePointer<ContentType>) throws -> ResultType) rethrows -> ResultType
-//    {
-//        return try self.withUnsafeBytes({ (rawBufferPointer: UnsafeRawBufferPointer) -> ResultType in
-//            return try body(rawBufferPointer.bindMemory(to: ContentType.self).baseAddress!)
-//        })
-//    }
+    // Preprocessor directives below are a modification by Rover, to provide copy of a deprecated method on Swift 5.x, but to use the stock version in the platform at 4.2 and below, since the following implementation does not build on Swift 4.2 (note that while it would build fine on the 4.2 language mode on the 5.0 compiler, it does not work with the real 4.2 compiler).
+    #if compiler(>=5.0)
+        func withUnsafeBytes<ResultType, ContentType>(_ body: (UnsafePointer<ContentType>) throws -> ResultType) rethrows -> ResultType
+        {
+            return try self.withUnsafeBytes({ (rawBufferPointer: UnsafeRawBufferPointer) -> ResultType in
+                return try body(rawBufferPointer.bindMemory(to: ContentType.self).baseAddress!)
+            })
+        }
+    #else
+    #endif
 }
 
 fileprivate extension Data.CompressionAlgorithm
