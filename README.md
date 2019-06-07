@@ -38,4 +38,4 @@ target 'MyAppTarget' do
 end
 ```
 
-Please continue onwards from https://developer.rover.io/ios/.
+Please continue onwards from https://github.com/RoverPlatform/rover-campaigns-ios/wiki.
