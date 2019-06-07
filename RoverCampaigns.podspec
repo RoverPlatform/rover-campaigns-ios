@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   s.subspec "Experiences" do |ss|
     ss.source_files = "Sources/Experiences/**/*.swift"
     ss.dependency "RoverCampaigns/UI"
-    ss.dependency "Rover", "~> 3.0.0-beta.6"
+    ss.dependency "Rover", "~> 3.0.0"
     ss.frameworks = "WebKit"
   end
 
