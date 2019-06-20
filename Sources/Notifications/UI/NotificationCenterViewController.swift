@@ -80,10 +80,15 @@ open class NotificationCenterViewController: UIViewController {
         
         notificationsObservation = notificationStore.addObserver { [weak self] _ in
             DispatchQueue.main.async {
-                self?.cache = nil
-                self?.tableView.reloadData()
+                self?.reloadData()
             }
         }
+    }
+    
+    /// You may override this to inject behaviour into the UITableView reload process.  Be sure you call super() first.
+    open func reloadData() {
+        self.cache = nil
+        self.tableView.reloadData()
     }
     
     @available(*, unavailable)
