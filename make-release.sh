@@ -46,25 +46,35 @@ git checkout develop
 # destroy develop state!
 git reset --hard origin/develop
 
-# go back to master to start the hotfix
+echo "Making $RELEASE_OR_HOTFIX branch for: $VERSION"
+
 if [ $RELEASE_OR_HOTFIX == "hotfix" ]
 then
+    echo "Assuming hotfix branch already exists."
+    git checkout hotfix/$VERSION
+    echo "Verifying SDK."
+    echo "Verifying SDK with Xcode 10.1 / Swift 4.2"
+    DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=4.2
+    DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=4.2
+
+    echo "Verifying SDK with Xcode 10.2 (or later) / Swift 5 (or later)."
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=5.0
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=5.0
+else
     git checkout master
+    echo "Verifying SDK."
+    echo "Verifying SDK with Xcode 10.1 / Swift 4.2"
+    DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=4.2
+    DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=4.2
+
+    echo "Verifying SDK with Xcode 10.2 (or later) / Swift 5 (or later)."
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=5.0
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=5.0
+
+    git flow $RELEASE_OR_HOTFIX start $VERSION
 fi
 
-echo "Verifying SDK with Xcode 10.1 / Swift 4.2"
-DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=4.2
-DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=4.2
-
-echo "Verifying SDK with Xcode 10.2 (or later) / Swift 5 (or later)."
-DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=5.0
-DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=5.0
-
-echo "Making hotfix branch for: $VERSION"
-
-git flow $RELEASE_OR_HOTFIX start $VERSION
-
-echo "Edit your version numbers (podspecs, README, plists) and press return!"
+echo "Edit your version numbers (podspec, README, plists) and press return!"
 read -n 1
 
 git commit -a -m "Releasing $VERSION."
