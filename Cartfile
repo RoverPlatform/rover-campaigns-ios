@@ -1,1 +1,1 @@
-github "RoverPlatform/rover-ios" == 3.0.0-beta.2
+github "RoverPlatform/rover-ios" ~> 3.0.0
