@@ -265,15 +265,15 @@ open class NotificationCenterViewController: UIViewController {
 // MARK: UITableViewDataSource
 
 extension NotificationCenterViewController: UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reuseIdentifier = cellReuseIdentifier(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
@@ -290,7 +290,7 @@ extension NotificationCenterViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 
 extension NotificationCenterViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         openNotification(at: indexPath)
         
         // Prevents the highlighted state from persisting
@@ -299,7 +299,7 @@ extension NotificationCenterViewController: UITableViewDelegate {
     
     // Swipe to delete in iOS 10
     
-    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         return [UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
             self.deleteNotification(at: indexPath)
         }]
@@ -308,7 +308,7 @@ extension NotificationCenterViewController: UITableViewDelegate {
     // Swipe to delete in iOS 11
     
     @available(iOS 11.0, *)
-    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
             UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
                 self.deleteNotification(at: indexPath)
@@ -316,7 +316,7 @@ extension NotificationCenterViewController: UITableViewDelegate {
         ])
     }
     
-    func openNotification(at indexPath: IndexPath) {
+    open func openNotification(at indexPath: IndexPath) {
         let notification = notifications[indexPath.row]
         
         if !notification.isRead {
@@ -349,7 +349,7 @@ extension NotificationCenterViewController: UITableViewDelegate {
         eventQueue.addEvent(eventInfo)
     }
     
-    func deleteNotification(at indexPath: IndexPath) {
+    open func deleteNotification(at indexPath: IndexPath) {
         let notification = notifications[indexPath.row]
         if notification.isDeleted {
             return
@@ -366,7 +366,7 @@ extension NotificationCenterViewController: UITableViewDelegate {
 // MARK: UINavigationBarDelegate
 
 extension NotificationCenterViewController: UINavigationBarDelegate {
-    public func position(for bar: UIBarPositioning) -> UIBarPosition {
+    open func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
 }
@@ -432,11 +432,11 @@ extension NotificationCenterViewController: UIViewControllerTransitioningDelegat
         }
     }
     
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SlideLeftAnimator()
     }
     
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SlideRightAnimator()
     }
 }
