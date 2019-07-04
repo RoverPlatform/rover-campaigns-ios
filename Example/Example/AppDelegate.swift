@@ -155,7 +155,12 @@ extension AppDelegate: CLLocationManagerDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // A notification was received while the app was in the foreground. Tell the operating system to display the notification the same way as if the app was in the background.
+        // A notification was received while the app was in the foreground.
+        if let roverNotification = notification.roverNotification {
+            // If it's a Rover notification, add it to the Rover Notification Center immediately. This means if the app is currently open to the notification center the table view can live update to include it immediately.
+            RoverCampaigns.shared?.resolve(NotificationStore.self)?.addNotification(roverNotification)
+        }
+        // Tell the operating system to display the notification the same way as if the app was in the background.
         completionHandler([.badge, .sound, .alert])
     }
     
