@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class NotificationCenterViewController: UIViewController {
+open class NotificationCenterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UIViewControllerTransitioningDelegate {
     public let dispatcher: Dispatcher
     public let eventQueue: EventQueue
     public let imageStore: ImageStore
@@ -260,11 +260,9 @@ open class NotificationCenterViewController: UIViewController {
     open func cellReuseIdentifier(at indexPath: IndexPath) -> String {
         return "notification"
     }
-}
 
-// MARK: UITableViewDataSource
+    // MARK: UITableViewDataSource
 
-extension NotificationCenterViewController: UITableViewDataSource {
     open func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -285,11 +283,9 @@ extension NotificationCenterViewController: UITableViewDataSource {
         notificationCell.configure(with: notification, imageStore: imageStore)
         return notificationCell
     }
-}
 
-// MARK: UITableViewDelegate
+    // MARK: UITableViewDelegate
 
-extension NotificationCenterViewController: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         openNotification(at: indexPath)
         
@@ -361,19 +357,15 @@ extension NotificationCenterViewController: UITableViewDelegate {
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
     }
-}
 
-// MARK: UINavigationBarDelegate
+    // MARK: UINavigationBarDelegate
 
-extension NotificationCenterViewController: UINavigationBarDelegate {
     open func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
-}
 
-// MARK: UIViewControllerTransitioningDelegate
+    // MARK: UIViewControllerTransitioningDelegate
 
-extension NotificationCenterViewController: UIViewControllerTransitioningDelegate {
     class SlideLeftAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
             guard let toViewController = transitionContext.viewController(forKey: .to) else {
