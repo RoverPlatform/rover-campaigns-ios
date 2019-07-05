@@ -127,7 +127,7 @@ open class NotificationCenterViewController: UIViewController, UITableViewDataSo
     }
     
     /// Reset the application icon badge number to 0 any time the notification center is viewed, regardless of the number of unread messages
-    func resetApplicationIconBadgeNumber() {
+    open func resetApplicationIconBadgeNumber() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
