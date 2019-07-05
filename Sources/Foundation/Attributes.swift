@@ -268,7 +268,7 @@ public class Attributes: NSObject, NSCoding, Codable, RawRepresentable, Expressi
                     var nestedContainer = container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: key)
                     try encodeToContainer(dictionary: value.rawValue, container: &nestedContainer)
                 default:
-                    let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "Unexpected attribute value type. Expected one of Int, String, Double, Boolean, or an array thereof, or a dictionary of all of the above including arrays.")
+                    let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "Unexpected attribute value type. Expected one of Int, String, Double, Boolean, or an array thereof, or a dictionary of all of the above including arrays. Got \(type(of: value))")
                     throw EncodingError.invalidValue(value, context)
                 }
             }

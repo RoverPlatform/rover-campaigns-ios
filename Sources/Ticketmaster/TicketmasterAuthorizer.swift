@@ -36,7 +36,7 @@ public protocol TicketmasterAuthorizer {
      }
      ````
      */
-    func setCredentials(id: String, email: String, firstName: String?)
+    func setCredentials(id: String, email: String?, firstName: String?)
     /**
      Clear the user's Ticketmaster credentials after a successful sign-out with the [Presence SDK](https://developer.ticketmaster.com/products-and-docs/sdks/presence-sdk/). Implement the `onLogoutAllSuccessful()` method in your `PresenceLoginDelegate` and call this method.
      

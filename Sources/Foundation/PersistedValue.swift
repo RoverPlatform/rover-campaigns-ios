@@ -63,7 +63,7 @@ public class PersistedValue<T> where T: Codable {
                     let data = try encoder.encode(newValue)
                     userDefaults.set(data, forKey: storageKey)
                 } catch {
-                    os_log("Failed to encode persisted value: %@", log: .general, type: .error, error.localizedDescription)
+                    os_log("Failed to encode persisted value: %@", log: .general, type: .error, error.saneDescription)
                 }
             }
         }
@@ -79,5 +79,11 @@ public class PersistedValue<T> where T: Codable {
         self.encoder = encoder
         self.storageKey = storageKey
         self.userDefaults = userDefaults
+    }
+}
+
+extension Error {
+    var saneDescription: String {
+        return "Error: \(self.localizedDescription), details: \((self as NSError).userInfo.debugDescription)"
     }
 }

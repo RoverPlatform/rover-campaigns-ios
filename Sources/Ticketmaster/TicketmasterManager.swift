@@ -18,12 +18,11 @@ class TicketmasterManager {
         var firstName: String?
         
         /// Return the basic UserInfo dictionary for ticketmaster given just the locally known data.
-        var userInfo: [String: Any?] {
+        var userInfo: [String: String] {
             return [
-                "id": id,
                 "email": email,
                 "firstName": firstName
-            ]
+            ].compactMapValues { $0 }
         }
     }
     
@@ -39,29 +38,32 @@ class TicketmasterManager {
 extension TicketmasterManager: TicketmasterAuthorizer {
     func setCredentials(accountManagerMemberID: String, hostMemberID: String) {
         if !accountManagerMemberID.isEmpty {
-            self.member.value = Member(id: accountManagerMemberID, email: nil, firstName: nil)
-        } else if hostMemberID.isEmpty {
-            self.member.value = Member(id: hostMemberID, email: nil, firstName: nil)
+            setCredentials(id: accountManagerMemberID, email: nil, firstName: nil)
+        } else if !hostMemberID.isEmpty {
+            setCredentials(id: hostMemberID, email: nil, firstName: nil)
         } else {
             // neither value was given, treat it as a logout.
+            os_log("Neither accountManagerMemberID or hostMemberID was given to Rover ticketmaster module legacy API.", log: .general, type: .fault)
             clearCredentials()
         }
     }
     
-    func setCredentials(id: String, email: String, firstName: String?) {
+    func setCredentials(id: String, email: String?, firstName: String?) {
         let newMember = Member(id: id, email: email, firstName: firstName)
         self.member.value = newMember
         
         // As a side-effect, set the fields into the `ticketmaster` hash in userInfo so they are immediately available even without a server sync succeeding.
         self.userInfoManager.updateUserInfo {
-            if let existingTicketmasterUserInfo = $0.rawValue["ticketmaster"] as? [String: Any?] {
+            if let existingTicketmasterUserInfo = $0.rawValue["ticketmaster"] as? Attributes {
                 // ticketmaster already exists, just clobber the three fields:
-                $0.rawValue["ticketmaster"] = existingTicketmasterUserInfo.merging(newMember.userInfo) { $1 }
+                $0.rawValue["ticketmaster"] = Attributes(rawValue: existingTicketmasterUserInfo.rawValue.merging(newMember.userInfo) { $1 })
             } else {
                 // ticketmaster data does not already exist, so set it:
-                $0.rawValue["ticketmaster"] = newMember.userInfo
+                $0.rawValue["ticketmaster"] = Attributes(rawValue: newMember.userInfo)
             }
         }
+        
+        os_log("Ticketmaster member identity has been set: %s", log: .general, newMember.email ?? "none")
     }
     
     func clearCredentials() {
@@ -126,11 +128,11 @@ extension TicketmasterManager: SyncParticipant {
             return .noData
         }
         
-        let localAttributes: [String: Any?] = member.value?.userInfo ?? [String: Any?]()
+        let localAttributes: [String: Any] = member.value?.userInfo ?? [String: Any]()
         
         // Set the `ticketmaster` field on userInfo, but clobber the id, email, and firstName fields that might have come back from the server with our local values.
         self.userInfoManager.updateUserInfo {
-            $0.rawValue["ticketmaster"] = localAttributes.merging(attributes.rawValue) { (localValue, _) in localValue }
+            $0.rawValue["ticketmaster"] = Attributes(rawValue: localAttributes.merging(attributes.rawValue) { (localValue, _) in localValue })
         }
         
         return .newData(nextRequest: nil)
