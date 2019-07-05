@@ -36,7 +36,17 @@ class NotificationHandlerService: NotificationHandler {
     }
     
     func action(for response: UNNotificationResponse) -> Action? {
-        guard let data = try? JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo, options: []) else {
+        guard let notification = response.notification.roverNotification else {
+            return nil
+        }
+        return actionProvider(notification)
+    }
+}
+
+public extension UNNotification {
+    /// Decode the Rover notification in the APNS UNNotification, if it contains one.
+    var roverNotification: Notification? {
+        guard let data = try? JSONSerialization.data(withJSONObject: self.request.content.userInfo, options: []) else {
             return nil
         }
         
@@ -49,8 +59,7 @@ class NotificationHandlerService: NotificationHandler {
         }
         
         do {
-            let payload = try JSONDecoder.default.decode(Payload.self, from: data)
-            return actionProvider(payload.rover.notification)
+            return try JSONDecoder.default.decode(Payload.self, from: data).rover.notification
         } catch {
             return nil
         }
