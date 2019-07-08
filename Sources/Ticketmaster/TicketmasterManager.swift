@@ -75,7 +75,7 @@ extension TicketmasterManager: TicketmasterAuthorizer {
         // As a side-effect, set the fields into the `ticketmaster` hash in userInfo so they are immediately available even without a server sync succeeding.
         self.userInfoManager.updateUserInfo {
             if let existingTicketmasterUserInfo = $0.rawValue["ticketmaster"] as? Attributes {
-                // ticketmaster already exists, just clobber the three fields:
+                // ticketmaster already exists, just clobber the two fields:
                 $0.rawValue["ticketmaster"] = Attributes(rawValue: existingTicketmasterUserInfo.rawValue.merging(newMember.userInfo) { $1 })
             } else {
                 // ticketmaster data does not already exist, so set it:
@@ -150,7 +150,7 @@ extension TicketmasterManager: SyncParticipant {
         
         let localAttributes: [String: Any] = member.value?.userInfo ?? [String: Any]()
         
-        // Set the `ticketmaster` field on userInfo, but clobber the id, email, and firstName fields that might have come back from the server with our local values.
+        // Set the `ticketmaster` field on userInfo, but clobber the email and firstName fields that might have come back from the server with our local values.
         self.userInfoManager.updateUserInfo {
             $0.rawValue["ticketmaster"] = Attributes(rawValue: localAttributes.merging(attributes.rawValue) { (localValue, _) in localValue })
         }

@@ -19,7 +19,7 @@ public protocol TicketmasterAuthorizer {
      
      - Parameters:
      - id: The value of the `PresenceMember`'s `id` property.
-     - firstName: The value of the `PresenceMember`'s `email` property (optional).
+     - email: The value of the `PresenceMember`'s `email` property (optional).
      - firstName: The value of the `PresenceMember`'s `firstName` property (optional).
      
      ````
