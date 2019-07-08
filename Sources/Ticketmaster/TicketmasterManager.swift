@@ -28,8 +28,28 @@ class TicketmasterManager {
     
     var member = PersistedValue<Member>(storageKey: "io.rover.RoverTicketmaster")
     
+    struct LegacyMember: Codable {
+        var hostID: String
+        var teamID: String
+    }
+    var legacyMember = PersistedValue<LegacyMember>(storageKey: "io.rover.RoverTicketmaster")
+    
     init(userInfoManager: UserInfoManager) {
         self.userInfoManager = userInfoManager
+        
+        // do migration from 3.2 and older, if needed.
+        if let legacyData = legacyMember.value, member.value == nil {
+            if !legacyData.hostID.isEmpty {
+                member.value = Member(id: legacyData.hostID, email: nil, firstName: nil)
+                os_log("Migrated Ticketmaster data for Archtics member: %s", log: .general, legacyData.hostID)
+            } else if !legacyData.teamID.isEmpty {
+                member.value = Member(id: legacyData.teamID, email: nil, firstName: nil)
+                os_log("Migrated Ticketmaster data for TM member: %s", log: .general, legacyData.teamID)
+            } else {
+                os_log("Unable to migrate TM data for either type, since neither was present. Ignoring.", log: .general)
+                member.value = nil
+            }
+        }
     }
 }
 

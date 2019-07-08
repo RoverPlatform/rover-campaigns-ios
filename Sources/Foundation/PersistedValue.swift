@@ -36,7 +36,7 @@ public class PersistedValue<T> where T: Codable {
                 do {
                     return try decoder.decode(T.self, from: data)
                 } catch {
-                    os_log("Failed to decode persisted value: %@", log: .general, type: .error, error.localizedDescription)
+                    os_log("Failed to decode persisted value: %@", log: .general, type: .error, error.saneDescription)
                     return nil
                 }
             }
