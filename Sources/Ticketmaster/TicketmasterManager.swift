@@ -19,10 +19,11 @@ class TicketmasterManager {
         
         /// Return the basic UserInfo dictionary for ticketmaster given just the locally known data.
         var userInfo: [String: String] {
-            return [
+            let dictWithNulls: [String: String?] = [
                 "email": email,
                 "firstName": firstName
-            ].compactMapValues { $0 }
+            ]
+            return dictWithNulls.filter { $0.value != nil}.mapValues { $0! }
         }
     }
     

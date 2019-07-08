@@ -61,7 +61,7 @@ then
     DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=5.0
     DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=5.0
 else
-    git checkout master
+    git checkout develop
     echo "Verifying SDK."
     echo "Verifying SDK with Xcode 10.1 / Swift 4.2"
     DEVELOPER_DIR=$SWIFT42_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=4.2
