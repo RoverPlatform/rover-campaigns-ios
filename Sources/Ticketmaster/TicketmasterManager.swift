@@ -13,14 +13,43 @@ class TicketmasterManager {
     let userInfoManager: UserInfoManager
     
     struct Member: Codable {
-        var hostID: String
-        var teamID: String
+        var id: String
+        var email: String?
+        var firstName: String?
+        
+        /// Return the basic UserInfo dictionary for ticketmaster given just the locally known data.
+        var userInfo: [String: String] {
+            return [
+                "email": email,
+                "firstName": firstName
+            ].compactMapValues { $0 }
+        }
     }
     
     var member = PersistedValue<Member>(storageKey: "io.rover.RoverTicketmaster")
     
+    struct LegacyMember: Codable {
+        var hostID: String
+        var teamID: String
+    }
+    var legacyMember = PersistedValue<LegacyMember>(storageKey: "io.rover.RoverTicketmaster")
+    
     init(userInfoManager: UserInfoManager) {
         self.userInfoManager = userInfoManager
+        
+        // do migration from 3.2 and older, if needed.
+        if let legacyData = legacyMember.value, member.value == nil {
+            if !legacyData.hostID.isEmpty {
+                member.value = Member(id: legacyData.hostID, email: nil, firstName: nil)
+                os_log("Migrated Ticketmaster data for TM member: %s", log: .general, legacyData.hostID)
+            } else if !legacyData.teamID.isEmpty {
+                member.value = Member(id: legacyData.teamID, email: nil, firstName: nil)
+                os_log("Migrated Ticketmaster data for Archtics member: %s", log: .general, legacyData.teamID)
+            } else {
+                os_log("Unable to migrate TM data for either type, since neither was present. Ignoring.", log: .general)
+                member.value = nil
+            }
+        }
     }
 }
 
@@ -28,7 +57,33 @@ class TicketmasterManager {
 
 extension TicketmasterManager: TicketmasterAuthorizer {
     func setCredentials(accountManagerMemberID: String, hostMemberID: String) {
-        self.member.value = Member(hostID: hostMemberID, teamID: accountManagerMemberID)
+        if !accountManagerMemberID.isEmpty {
+            setCredentials(id: accountManagerMemberID, email: nil, firstName: nil)
+        } else if !hostMemberID.isEmpty {
+            setCredentials(id: hostMemberID, email: nil, firstName: nil)
+        } else {
+            // neither value was given, treat it as a logout.
+            os_log("Neither accountManagerMemberID or hostMemberID was given to Rover ticketmaster module legacy API.", log: .general, type: .fault)
+            clearCredentials()
+        }
+    }
+    
+    func setCredentials(id: String, email: String?, firstName: String?) {
+        let newMember = Member(id: id, email: email, firstName: firstName)
+        self.member.value = newMember
+        
+        // As a side-effect, set the fields into the `ticketmaster` hash in userInfo so they are immediately available even without a server sync succeeding.
+        self.userInfoManager.updateUserInfo {
+            if let existingTicketmasterUserInfo = $0.rawValue["ticketmaster"] as? Attributes {
+                // ticketmaster already exists, just clobber the two fields:
+                $0.rawValue["ticketmaster"] = Attributes(rawValue: existingTicketmasterUserInfo.rawValue.merging(newMember.userInfo) { $1 })
+            } else {
+                // ticketmaster data does not already exist, so set it:
+                $0.rawValue["ticketmaster"] = Attributes(rawValue: newMember.userInfo)
+            }
+        }
+        
+        os_log("Ticketmaster member identity has been set: %s", log: .general, newMember.email ?? "none")
     }
     
     func clearCredentials() {
@@ -48,8 +103,7 @@ extension SyncQuery {
             attributes
             """,
         arguments: [
-            SyncQuery.Argument(name: "hostMemberID", type: "String"),
-            SyncQuery.Argument(name: "teamMemberID", type: "String")
+            SyncQuery.Argument(name: "id", type: "String")
         ],
         fragments: []
     )
@@ -64,8 +118,7 @@ extension TicketmasterManager: SyncParticipant {
         return SyncRequest(
             query: .ticketmaster,
             values: [
-                "hostMemberID": member.hostID,
-                "teamMemberID": member.teamID
+                "id": member.id,
             ]
         )
     }
@@ -95,8 +148,11 @@ extension TicketmasterManager: SyncParticipant {
             return .noData
         }
         
+        let localAttributes: [String: Any] = member.value?.userInfo ?? [String: Any]()
+        
+        // Set the `ticketmaster` field on userInfo, but clobber the email and firstName fields that might have come back from the server with our local values.
         self.userInfoManager.updateUserInfo {
-            $0.rawValue["ticketmaster"] = attributes
+            $0.rawValue["ticketmaster"] = Attributes(rawValue: localAttributes.merging(attributes.rawValue) { (localValue, _) in localValue })
         }
         
         return .newData(nextRequest: nil)
