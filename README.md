@@ -20,7 +20,7 @@ The simplest approach is to specify `Rover` as a dependency of your app's target
 
 ```ruby
 target 'MyAppTarget' do
-  pod 'RoverCampaigns', '~> 3.3'
+  pod 'RoverCampaigns', '~> 3.4'
 end
 ```
 
@@ -28,13 +28,13 @@ Alternatively you can specify the exact set of subspecs you want to include.
 
 ```ruby
 target 'MyAppTarget' do
-    pod 'RoverCampaigns/Foundation',    '~> 3.3'
-    pod 'RoverCampaigns/Data',          '~> 3.3'
-    pod 'RoverCampaigns/UI',            '~> 3.3'
-    pod 'RoverCampaigns/Notifications', '~> 3.3'
-    pod 'RoverCampaigns/Location',      '~> 3.3'
-    pod 'RoverCampaigns/Bluetooth',     '~> 3.3'
-    pod 'RoverCampaigns/Debug',         '~> 3.3'
+    pod 'RoverCampaigns/Foundation',    '~> 3.4'
+    pod 'RoverCampaigns/Data',          '~> 3.4'
+    pod 'RoverCampaigns/UI',            '~> 3.4'
+    pod 'RoverCampaigns/Notifications', '~> 3.4'
+    pod 'RoverCampaigns/Location',      '~> 3.4'
+    pod 'RoverCampaigns/Bluetooth',     '~> 3.4'
+    pod 'RoverCampaigns/Debug',         '~> 3.4'
 end
 ```
 
