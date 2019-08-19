@@ -349,7 +349,7 @@ public class RoverObserver {
         let optionHash: [String: Any?] = [
             "id": pollOption.id,
             "text": pollOption.text.rawValue,
-            "image": (pollOption as? ImagePollBlock.ImagePoll.Option)?.image.url.absoluteString
+            "image": (pollOption as? ImagePollBlock.ImagePoll.Option)?.image?.url.absoluteString
         ]
         
         let attributes: Attributes = [
