@@ -85,7 +85,14 @@ public class RoverObserver {
                 using: { [weak self] notification in
                     self?.trackBlockTapped(userInfo: notification.userInfo)
                 }
-            )
+            ),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.pollAnsweredNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] notification in
+                    self?.trackPollAnswered(userInfo: notification.userInfo)
+            })
         ]
     }
     
@@ -322,6 +329,57 @@ public class RoverObserver {
         
         let eventInfo = EventInfo(
             name: "Block Tapped",
+            namespace: "rover",
+            attributes: attributes
+        )
+        
+        eventQueue.addEvent(eventInfo)
+    }
+    
+    private func trackPollAnswered(userInfo: [AnyHashable: Any]?) {
+        guard let userInfo = userInfo,
+            let experience = userInfo[ScreenViewController.experienceUserInfoKey] as? Experience,
+            let screen = userInfo[ScreenViewController.screenUserInfoKey] as? Screen,
+            let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
+            let pollOption = userInfo[ScreenViewController.optionUserInfoKey] as? PollOption
+        else {
+                return
+        }
+        
+        let optionHash: [String: Any?] = [
+            "id": pollOption.id,
+            "text": pollOption.text.rawValue,
+            "image": (pollOption as? ImagePollBlock.ImagePoll.Option)?.image?.url.absoluteString
+        ]
+        
+        let attributes: Attributes = [
+            "experience": [
+                "id": experience.id,
+                "name": experience.name,
+                "keys": experience.keys,
+                "tags": experience.tags
+            ],
+            "screen": [
+                "id": screen.id,
+                "name": screen.name,
+                "keys": screen.keys,
+                "tags": screen.tags
+            ],
+            "block": [
+                "id": block.id,
+                "name": block.name,
+                "keys": block.keys,
+                "tags": block.tags
+            ],
+            "option": optionHash.compactMapValues { $0 }
+        ]
+        
+        if let campaignID = userInfo[ScreenViewController.campaignIDUserInfoKey] as? String {
+            (attributes["experience"] as? Attributes)?["campaignID"] = campaignID
+        }
+        
+        let eventInfo = EventInfo(
+            name: "Poll Answered",
             namespace: "rover",
             attributes: attributes
         )
