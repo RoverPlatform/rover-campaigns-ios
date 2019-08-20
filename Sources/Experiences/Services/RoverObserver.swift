@@ -346,11 +346,14 @@ public class RoverObserver {
                 return
         }
         
-        let optionHash: [String: Any?] = [
+        var optionHash = [
             "id": pollOption.id,
-            "text": pollOption.text.rawValue,
-            "image": (pollOption as? ImagePollBlock.ImagePoll.Option)?.image?.url.absoluteString
+            "text": pollOption.text.rawValue
         ]
+        
+        if let pollImage = (pollOption as? ImagePollBlock.ImagePoll.Option)?.image {
+            optionHash["poll"] = pollImage.url.absoluteString
+        }
         
         let attributes: Attributes = [
             "experience": [
@@ -371,7 +374,7 @@ public class RoverObserver {
                 "keys": block.keys,
                 "tags": block.tags
             ],
-            "option": optionHash.compactMapValues { $0 }
+            "option": optionHash
         ]
         
         if let campaignID = userInfo[ScreenViewController.campaignIDUserInfoKey] as? String {
