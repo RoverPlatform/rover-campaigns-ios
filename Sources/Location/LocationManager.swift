@@ -20,6 +20,9 @@ class LocationManager {
     
     var location: Context.Location?
     
+    // Used to avoid tracking redundant location change events
+    var lastReportedLocation: CLLocation?
+    
     typealias RegionIdentifier = String
     
     var currentGeofences = Set<Geofence>()
@@ -86,6 +89,17 @@ extension LocationManager: LocationContextProvider {
 
 extension LocationManager: RegionManager {
     func updateLocation(manager: CLLocationManager) {
+        if manager.location?.coordinate.latitude == lastReportedLocation?.coordinate.latitude,
+            manager.location?.coordinate.longitude == lastReportedLocation?.coordinate.longitude,
+            manager.location?.altitude == lastReportedLocation?.altitude,
+            manager.location?.horizontalAccuracy == lastReportedLocation?.horizontalAccuracy,
+            manager.location?.verticalAccuracy == lastReportedLocation?.verticalAccuracy {
+            os_log("Location is the same as last known location, skipping", log: .location, type: .debug)
+            return
+        }
+        
+        lastReportedLocation = manager.location
+        
         if let location = manager.location {
             self.trackLocationUpdate(location: location)
         } else {
