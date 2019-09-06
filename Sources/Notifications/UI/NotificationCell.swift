@@ -39,9 +39,9 @@ open class NotificationCell: UITableViewCell {
         }
         
         if #available(iOS 13.0, *) {
-            backgroundColor = notification.isRead ? UIColor.systemBackground : UIColor.systemBlue.withAlphaComponent(0.25)
+            backgroundColor = notification.isRead ? UIColor.systemBackground : UIColor.systemGray5
         } else {
-            backgroundColor = notification.isRead ? UIColor.white : UIColor.blue.withAlphaComponent(0.05)
+            backgroundColor = notification.isRead ? UIColor.white : UIColor(red: 0.898039, green: 0.898039, blue: 0.917647, alpha: 1.0)
         }
     }
     
