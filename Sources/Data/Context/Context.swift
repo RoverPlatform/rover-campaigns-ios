@@ -17,6 +17,10 @@ public struct Context: Codable, Equatable {
     
     public var isBluetoothEnabled: Bool?
     
+    // MARK: Dark Mode
+    
+    public var isDarkModeEnabled: Bool?
+    
     // MARK: Locale
     
     public var localeLanguage: String?
@@ -168,6 +172,7 @@ public struct Context: Codable, Equatable {
     
     public init(
         advertisingIdentifier: String?,
+        isDarkModeEnabled: Bool?,
         isBluetoothEnabled: Bool?,
         localeLanguage: String?,
         localeRegion: String?,
@@ -200,6 +205,7 @@ public struct Context: Codable, Equatable {
         userInfo: Attributes?
     ) {
         self.advertisingIdentifier = advertisingIdentifier
+        self.isDarkModeEnabled = isDarkModeEnabled
         self.isBluetoothEnabled = isBluetoothEnabled
         self.localeLanguage = localeLanguage
         self.localeRegion = localeRegion

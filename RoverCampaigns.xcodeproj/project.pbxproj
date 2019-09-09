@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
+		49EE59702326E3FC0051EC71 /* DarkModeContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */; };
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
 		49F7CE69223C2B1F00674784 /* SessionControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE66223C2B1F00674784 /* SessionControllerService.swift */; };
@@ -296,6 +297,7 @@
 /* Begin PBXFileReference section */
 		0DB764902256C5DD00038605 /* Data+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
 		492A84A32238351C00B59A5C /* RoverObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverObserver.swift; sourceTree = "<group>"; };
+		49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeContextProvider.swift; sourceTree = "<group>"; };
 		49F7CE64223C2B1F00674784 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		49F7CE65223C2B1F00674784 /* SessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		49F7CE66223C2B1F00674784 /* SessionControllerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionControllerService.swift; sourceTree = "<group>"; };
@@ -1208,6 +1210,7 @@
 		DBCBE09C21614F83001C7A96 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */,
 				DBA01615217E773900268822 /* AdSupportContextProvider.swift */,
 				DBCBE09221614E64001C7A96 /* BluetoothContextProvider.swift */,
 				DBCBE09A21614EC9001C7A96 /* DebugContextProvider.swift */,
@@ -2667,6 +2670,7 @@
 				DBADA80320A4F37C00225C80 /* Dispatcher.swift in Sources */,
 				DBFDF52420AE2B1C0031EF47 /* Foundation.DateFormatter.swift in Sources */,
 				DBADA7FD20A4F32500225C80 /* BlockObserver.swift in Sources */,
+				49EE59702326E3FC0051EC71 /* DarkModeContextProvider.swift in Sources */,
 				DBF49E00203DE1DE00B54652 /* Resolver.swift in Sources */,
 				DBF49E04203DE1DE00B54652 /* Container.swift in Sources */,
 				DB1D5DC52107D32C0071928F /* Attributes.swift in Sources */,

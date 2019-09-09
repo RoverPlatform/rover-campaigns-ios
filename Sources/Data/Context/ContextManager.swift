@@ -17,6 +17,22 @@ class ContextManager {
     init() { }
 }
 
+// MARK: DarkModeContextProvider
+
+extension ContextManager: DarkModeContextProvider {
+    var isDarkModeEnabled: Bool? {
+        #if swift(>=5.1)
+        if #available(iOS 13.0, *) {
+            return UIScreen.main.traitCollection.userInterfaceStyle == .dark
+        } else {
+            return false
+        }
+        #else
+        return false
+        #endif
+    }
+}
+
 // MARK: LocaleContextProvider
 
 extension ContextManager: LocaleContextProvider {
@@ -52,6 +68,8 @@ extension ContextManager: ReachabilityContextProvider {
         return self.reachability.isReachableViaWiFi
     }
 }
+
+
 
 // MARK: StaticContextProvider
 
