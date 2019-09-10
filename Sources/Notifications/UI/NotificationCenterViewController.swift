@@ -327,6 +327,7 @@ open class NotificationCenterViewController: UIViewController, UITableViewDataSo
         case .openURL(let url):
             if let action = router.action(for: url) as? PresentViewAction {
                 action.viewControllerToPresent.transitioningDelegate = self
+                action.viewControllerToPresent.modalPresentationStyle = .fullScreen
                 dispatcher.dispatch(action, completionHandler: nil)
             } else {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)

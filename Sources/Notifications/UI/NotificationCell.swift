@@ -30,11 +30,27 @@ open class NotificationCell: UITableViewCell {
     
     open func configureBackgroundColor() {
         guard let notification = notification else {
-            backgroundColor = UIColor.white
+            #if swift(>=5.1)
+            if #available(iOS 13.0, *) {
+                backgroundColor = .systemBackground
+            } else {
+                backgroundColor = .white
+            }
+            #else
+            backgroundColor = .white
+            #endif
             return
         }
         
-        backgroundColor = notification.isRead ? UIColor.white : UIColor.blue.withAlphaComponent(0.05)
+        #if swift(>=5.1)
+        if #available(iOS 13.0, *) {
+            backgroundColor = notification.isRead ? UIColor.systemBackground : UIColor.systemGray5
+        } else {
+            backgroundColor = notification.isRead ? UIColor.white : UIColor(red: 0.898039, green: 0.898039, blue: 0.917647, alpha: 1.0)
+        }
+        #else
+        backgroundColor = notification.isRead ? UIColor.white : UIColor(red: 0.898039, green: 0.898039, blue: 0.917647, alpha: 1.0)
+        #endif
     }
     
     open func configureTextLabel() {

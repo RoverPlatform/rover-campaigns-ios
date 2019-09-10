@@ -37,10 +37,12 @@ extension SyncClient {
                 """
         }()
         
-        let fragments: [String]? = {
+        let fragmentsUnsorted: [String]? = {
             let fragments = syncRequests.map { Set($0.query.fragments) }.reduce(Set<String>()) { $0.union($1) }
             return Array(fragments)
         }()
+        
+        let fragments = fragmentsUnsorted?.sorted()
         
         let variablesDict: [String: Any] = {
             syncRequests.reduce([String: Any]()) { result, request in

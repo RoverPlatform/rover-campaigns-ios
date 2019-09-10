@@ -41,6 +41,7 @@ public struct DataAssembler: Assembler {
             ModularContextProvider(
                 adSupportContextProvider: resolver.resolve(AdSupportContextProvider.self),
                 bluetoothContextProvider: resolver.resolve(BluetoothContextProvider.self),
+                darkModeContextProvider: resolver.resolve(DarkModeContextProvider.self),
                 debugContextProvider: resolver.resolve(DebugContextProvider.self),
                 locationContextProvider: resolver.resolve(LocationContextProvider.self),
                 localeContextProvider: resolver.resolve(LocaleContextProvider.self),
@@ -80,6 +81,11 @@ public struct DataAssembler: Assembler {
                 endpoint: endpoint,
                 session: URLSession(configuration: URLSessionConfiguration.default)
             )
+        }
+        
+        // MARK: DarkModeContextProvider
+        container.register(DarkModeContextProvider.self) { resolver in
+            resolver.resolve(ContextManager.self)!
         }
         
         // MARK: LocaleContextProvider
