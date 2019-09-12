@@ -9,41 +9,41 @@ let package = Package(
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "Foundation",
-            targets: ["Foundation"]),
+            name: "RoverFoundation",
+            targets: ["RoverFoundation"]),
         .library(
-            name: "Data",
-            targets: ["Data"]),
+            name: "RoverData",
+            targets: ["RoverData"]),
         .library(
-            name: "UI",
-            targets: ["UI"]),
+            name: "RoverUI",
+            targets: ["RoverUI"]),
         .library(
-            name: "Experiences",
-            targets: ["Experiences"]),
+            name: "RoverExperiences",
+            targets: ["RoverExperiences"]),
         .library(
-            name: "Notifications",
-            targets: ["Notifications"]),
+            name: "RoverNotifications",
+            targets: ["RoverNotifications"]),
         .library(
-            name: "Location",
-            targets: ["Location"]),
+            name: "RoverLocation",
+            targets: ["RoverLocation"]),
         .library(
-            name: "Bluetooth",
-            targets: ["Bluetooth"]),
+            name: "RoverBluetooth",
+            targets: ["RoverBluetooth"]),
         .library(
-            name: "Debug",
-            targets: ["Debug"]),
+            name: "RoverDebug",
+            targets: ["RoverDebug"]),
         .library(
-            name: "Telephony",
-            targets: ["Telephony"]),
+            name: "RoverTelephony",
+            targets: ["RoverTelephony"]),
         .library(
-            name: "AdSupport",
-            targets: ["AdSupport"]),
+            name: "RoverAdSupport",
+            targets: ["RoverAdSupport"]),
         .library(
-            name: "Ticketmaster",
-            targets: ["Ticketmaster"]),
+            name: "RoverTicketmaster",
+            targets: ["RoverTicketmaster"]),
         .library(
-            name: "AppExtensions",
-            targets: ["AppExtensions"]),
+            name: "RoverAppExtensions",
+            targets: ["RoverAppExtensions"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -54,53 +54,52 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "Foundation",
+            name: "RoverFoundation",
             dependencies: [],
             path: "Sources/Foundation"),
         .target(
-            name: "Data",
-            dependencies: ["Foundation"],
+            name: "RoverData",
+            dependencies: ["RoverFoundation"],
             path: "Sources/Data"),
         .target(
-            name: "UI",
-            dependencies: ["Data"],
+            name: "RoverUI",
+            dependencies: ["RoverData"],
             path: "Sources/UI"),
         .target(
-            name: "AdSupport",
-            dependencies: ["Data"],
+            name: "RoverAdSupport",
+            dependencies: ["RoverData"],
             path: "Sources/AdSupport"),
         .target(
-            name: "AppExtensions",
+            name: "RoverAppExtensions",
             dependencies: [],
             path: "Sources/AppExtensions"),
         .target(
-            name: "Bluetooth",
-            dependencies: ["Data"],
+            name: "RoverBluetooth",
+            dependencies: ["RoverData"],
             path: "Sources/Bluetooth"),        
-
         .target(
-            name: "Debug",
-            dependencies: ["UI"],
+            name: "RoverDebug",
+            dependencies: ["RoverUI"],
             path: "Sources/Debug"),
         .target(
-            name: "Experiences",
-            dependencies: ["UI", "Rover"],
+            name: "RoverExperiences",
+            dependencies: ["RoverUI", "Rover"],
             path: "Sources/Experiences"),
         .target(
-            name: "Location",
-            dependencies: ["Data"],
+            name: "RoverLocation",
+            dependencies: ["RoverData"],
             path: "Sources/Location"),
         .target(
-            name: "Notifications",
-            dependencies: ["UI"],
+            name: "RoverNotifications",
+            dependencies: ["RoverUI"],
             path: "Sources/Notifications"),
         .target(
-            name: "Telephony",
-            dependencies: ["Data"],
+            name: "RoverTelephony",
+            dependencies: ["RoverData"],
             path: "Sources/Telephony"),
         .target(
-            name: "Ticketmaster",
-            dependencies: ["Data"],
+            name: "RoverTicketmaster",
+            dependencies: ["RoverData"],
             path: "Sources/Ticketmaster"),
 
         .testTarget(
