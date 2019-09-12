@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public struct EventInfo {
     public let name: String

@@ -7,6 +7,9 @@
 //
 
 import CoreLocation
+#if !COCOAPODS
+import RoverData
+#endif
 
 extension CLLocation {
     public func context(placemark: CLPlacemark?) -> Context.Location {

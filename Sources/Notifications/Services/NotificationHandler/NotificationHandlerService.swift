@@ -7,6 +7,9 @@
 //
 
 import UserNotifications
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 class NotificationHandlerService: NotificationHandler {
     let dispatcher: Dispatcher

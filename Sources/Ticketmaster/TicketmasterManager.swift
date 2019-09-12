@@ -8,6 +8,10 @@
 
 import Foundation
 import os.log
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class TicketmasterManager {
     let userInfoManager: UserInfoManager

@@ -7,6 +7,9 @@
 //
 
 import UserNotifications
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public protocol NotificationHandler {
     @discardableResult

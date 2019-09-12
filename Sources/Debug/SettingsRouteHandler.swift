@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+import RoverUI
+#endif
 
 class SettingsRouteHandler: RouteHandler {
     typealias ActionProvider = () -> Action?

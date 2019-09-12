@@ -7,6 +7,10 @@
 //
 
 import SafariServices
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 public struct UIAssembler {
     public var associatedDomains: [String]

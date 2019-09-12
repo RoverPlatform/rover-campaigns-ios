@@ -6,7 +6,10 @@
 //  Copyright © 2018 Rover Labs Inc. All rights reserved.
 //
 
+#if !COCOAPODS
 import AdSupport
+import RoverData
+#endif
 
 class AdSupportManager {
     let identifierManager = ASIdentifierManager.shared()

@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 public struct Notification: Codable, Equatable, Hashable {
     public var id: String

@@ -9,6 +9,11 @@
 import os.log
 import UIKit
 
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
+
 class NotificationsSyncParticipant: SyncParticipant {
     let store: NotificationStore
     

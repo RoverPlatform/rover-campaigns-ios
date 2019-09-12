@@ -9,6 +9,10 @@
 import Foundation
 import os
 import Rover
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 /// Observes notifications posted by the Rover SDK on the default `NotificationCenter` and converts them into events
 /// added to the `EventQueue`.

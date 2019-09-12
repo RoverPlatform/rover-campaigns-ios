@@ -8,6 +8,9 @@
 
 import os.log
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 class ContextManager {
     let persistedPushToken = PersistedValue<Context.PushToken>(storageKey: "io.rover.RoverData.pushToken")

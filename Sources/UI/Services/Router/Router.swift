@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public protocol Router {
     func addHandler(_ handler: RouteHandler)

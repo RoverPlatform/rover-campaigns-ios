@@ -8,6 +8,11 @@
 
 import UIKit
 
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
+
 class LifeCycleTrackerService: LifeCycleTracker {
     let eventQueue: EventQueue
     let sessionController: SessionController

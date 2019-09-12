@@ -7,6 +7,9 @@
 //
 
 import CoreLocation
+#if !COCOAPODS
+import RoverData
+#endif
 
 extension CLPlacemark {
     var context: Context.Location? {

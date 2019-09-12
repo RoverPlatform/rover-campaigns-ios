@@ -8,6 +8,9 @@
 
 import MobileCoreServices
 import UserNotifications
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public class NotificationExtensionHelper {
     let userDefaults: UserDefaults

@@ -8,6 +8,11 @@
 
 import UIKit
 import UserNotifications
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+import RoverUI
+#endif
 
 public struct NotificationsAssembler: Assembler {
     public var appGroup: String?

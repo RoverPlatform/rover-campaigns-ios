@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public protocol SyncClient {
     func task(with syncRequests: [SyncRequest], completionHandler: @escaping (HTTPResult) -> Void) -> URLSessionTask

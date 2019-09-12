@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public struct Event: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {

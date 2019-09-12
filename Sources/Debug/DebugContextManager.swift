@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class DebugContextManager {
     let persistedValue = PersistedValue<Bool>(storageKey: "io.rover.RoverDebug.isTestDevice")
