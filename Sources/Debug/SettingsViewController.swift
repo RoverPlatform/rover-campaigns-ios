@@ -68,15 +68,7 @@ open class SettingsViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [
             .foregroundColor: UIColor.white
         ]
-        
-        if #available(iOS 11.0, *) {
-            navigationBar.prefersLargeTitles = true
-            navigationBar.largeTitleTextAttributes = [
-                .foregroundColor: UIColor.white,
-                .font: UIFont.systemFont(ofSize: 32.0, weight: .semibold)
-            ]
-        }
-        
+
         let navigationItem = makeNavigationItem()
         navigationBar.items = [navigationItem]
         
@@ -87,10 +79,6 @@ open class SettingsViewController: UIViewController {
     open func makeNavigationItem() -> UINavigationItem {
         let navigationItem = UINavigationItem()
         navigationItem.title = title
-        
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .always
-        }
         
         if presentingViewController != nil {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
