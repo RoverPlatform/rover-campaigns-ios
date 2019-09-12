@@ -71,7 +71,7 @@ let package = Package(
             path: "Sources/AdSupport"),
         .target(
             name: "RoverAppExtensions",
-            dependencies: [],
+            dependencies: ["RoverFoundation"],
             path: "Sources/AppExtensions"),
         .target(
             name: "RoverBluetooth",
