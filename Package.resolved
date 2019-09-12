@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Rover",
+        "repositoryURL": "https://github.com/RoverPlatform/rover-ios",
+        "state": {
+          "branch": "feature/swift-pm",
+          "revision": "88a70bbef3e0ba15cd1d0151602f5b4b0a4de121",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
