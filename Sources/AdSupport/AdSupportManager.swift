@@ -6,8 +6,8 @@
 //  Copyright © 2018 Rover Labs Inc. All rights reserved.
 //
 
-#if !COCOAPODS
 import AdSupport
+#if !COCOAPODS
 import RoverData
 #endif
 
