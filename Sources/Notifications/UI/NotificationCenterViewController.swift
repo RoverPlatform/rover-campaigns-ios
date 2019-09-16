@@ -7,6 +7,11 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+import RoverUI
+#endif
 
 open class NotificationCenterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UIViewControllerTransitioningDelegate {
     public let dispatcher: Dispatcher

@@ -7,6 +7,10 @@
 //
 
 import CoreBluetooth
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 public class BluetoothAssembler: Assembler {
     let showPowerAlertKey: Bool

@@ -7,6 +7,10 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class SessionControllerService: SessionController {
     let eventQueue: EventQueue

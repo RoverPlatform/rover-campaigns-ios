@@ -9,6 +9,10 @@
 import os.log
 import UIKit
 
+#if !COCOAPODS
+import RoverFoundation
+#endif
+
 open class PresentViewAction: Action {
     public var viewControllerToPresent: UIViewController
     public var animated: Bool

@@ -7,6 +7,9 @@
 //
 
 import CoreLocation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 extension CLBeaconRegion {
     public var attributes: Attributes {

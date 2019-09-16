@@ -9,6 +9,10 @@
 import CoreData
 import CoreLocation
 import os
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 public class LocationAssembler: Assembler {
     let maxGeofenceRegionsToMonitor: Int

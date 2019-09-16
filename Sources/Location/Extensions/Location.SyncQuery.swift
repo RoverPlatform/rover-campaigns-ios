@@ -6,6 +6,10 @@
 //  Copyright © 2018 Rover Labs Inc. All rights reserved.
 //
 
+#if !COCOAPODS
+import RoverData
+#endif
+
 extension SyncQuery {
     static let beacons = SyncQuery(
         name: "beacons",

@@ -7,12 +7,17 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+import RoverUI
+#endif
 
 class ExperienceRouteHandler: RouteHandler {
-    let idActionProvider: (String, String?) -> Action?
-    let universalLinkActionProvider: (URL, String?) -> Action?
+    /// A closure for providing an Action for opening an Experience. (ExperienceID, CampaignID?, ScreenID?).
+    let idActionProvider: (String, String?, String?) -> Action?
+    let universalLinkActionProvider: (URL, String?, String?) -> Action?
     
-    init(idActionProvider: @escaping (String, String?) -> Action?, universalLinkActionProvider: @escaping (URL, String?) -> Action?) {
+    init(idActionProvider: @escaping (String, String?, String?) -> Action?, universalLinkActionProvider: @escaping (URL, String?, String?) -> Action?) {
         self.idActionProvider = idActionProvider
         self.universalLinkActionProvider = universalLinkActionProvider
     }
@@ -35,17 +40,23 @@ class ExperienceRouteHandler: RouteHandler {
         }
 
         let campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
-        return idActionProvider(experienceID, campaignID)
+        let screenID = queryItems.first(where: { $0.name == "screenID" })?.value
+        
+        return idActionProvider(experienceID, campaignID, screenID)
     }
     
     func universalLinkAction(url: URL) -> Action? {
         let campaignID: String?
+        let screenID: String?
         if let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems {
             campaignID = queryItems.first(where: { $0.name == "campaignID" })?.value
+            screenID = queryItems.first(where: { $0.name == "screenID" })?.value
+            
         } else {
             campaignID = nil
+            screenID = nil
         }
         
-        return universalLinkActionProvider(url, campaignID)
+        return universalLinkActionProvider(url, campaignID, screenID)
     }
 }

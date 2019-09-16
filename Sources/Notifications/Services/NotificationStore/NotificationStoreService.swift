@@ -8,6 +8,10 @@
 
 import os.log
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class NotificationStoreService: NotificationStore {
     let eventQueue: EventQueue?

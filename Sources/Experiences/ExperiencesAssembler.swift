@@ -8,6 +8,11 @@
 
 import Rover
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+import RoverUI
+#endif
 
 public struct ExperiencesAssembler: Assembler {
     public init() { }
@@ -16,25 +21,25 @@ public struct ExperiencesAssembler: Assembler {
         
         // MARK: Action (presentExperience)
         
-        container.register(Action.self, name: "presentExperience", scope: .transient) { (resolver, id: String, campaignID: String?) in
-            let viewControllerToPresent = resolver.resolve(UIViewController.self, name: "experience", arguments: id, campaignID)!
+        container.register(Action.self, name: "presentExperience", scope: .transient) { (resolver, id: String, campaignID: String?, screenID: String?) in
+            let viewControllerToPresent = resolver.resolve(UIViewController.self, name: "experience", arguments: id, campaignID, screenID)!
             return resolver.resolve(Action.self, name: "presentView", arguments: viewControllerToPresent)!
         }
         
-        container.register(Action.self, name: "presentExperience", scope: .transient) { (resolver, universalLink: URL, campaignID: String?) in
-            let viewControllerToPresent = resolver.resolve(UIViewController.self, name: "experience", arguments: universalLink, campaignID)!
+        container.register(Action.self, name: "presentExperience", scope: .transient) { (resolver, universalLink: URL, campaignID: String?, screenID: String?) in
+            let viewControllerToPresent = resolver.resolve(UIViewController.self, name: "experience", arguments: universalLink, campaignID, screenID)!
             return resolver.resolve(Action.self, name: "presentView", arguments: viewControllerToPresent)!
         }
         
         // MARK: RouteHandler (experience)
         
         container.register(RouteHandler.self, name: "experience") { resolver in            
-            let idActionProvider: (String, String?) -> Action? = { [weak resolver] id, campaignID in
-                resolver?.resolve(Action.self, name: "presentExperience", arguments: id, campaignID)
+            let idActionProvider: (String, String?, String?) -> Action? = { [weak resolver] id, campaignID, screenID in
+                resolver?.resolve(Action.self, name: "presentExperience", arguments: id, campaignID, screenID)
             }
                 
-            let universalLinkActionProvider: (URL, String?) -> Action? = { [weak resolver] universalLink, campaignID in
-                resolver?.resolve(Action.self, name: "presentExperience", arguments: universalLink, campaignID)
+            let universalLinkActionProvider: (URL, String?, String?) -> Action? = { [weak resolver] universalLink, campaignID, screenID in
+                resolver?.resolve(Action.self, name: "presentExperience", arguments: universalLink, campaignID, screenID)
             }
             
             return ExperienceRouteHandler(
@@ -51,15 +56,15 @@ public struct ExperiencesAssembler: Assembler {
         
         // MARK: UIViewController (experience)
         
-        container.register(UIViewController.self, name: "experience", scope: .transient) { (resolver, id: String, campaignID: String?) in
+        container.register(UIViewController.self, name: "experience", scope: .transient) { (resolver, id: String, campaignID: String?, screenID: String?) in
             let viewController = RoverViewController()
-            viewController.loadExperience(id: id, campaignID: campaignID)
+            viewController.loadExperience(id: id, campaignID: campaignID, initialScreenID: screenID)
             return viewController
         }
         
-        container.register(UIViewController.self, name: "experience", scope: .transient) { (resolver, universalLink: URL, campaignID: String?) in
+        container.register(UIViewController.self, name: "experience", scope: .transient) { (resolver, universalLink: URL, campaignID: String?, screenID: String?) in
             let viewController = RoverViewController()
-            viewController.loadExperience(universalLink: universalLink, campaignID: campaignID)
+            viewController.loadExperience(universalLink: universalLink, campaignID: campaignID, initialScreenID: screenID)
             return viewController
         }
     }

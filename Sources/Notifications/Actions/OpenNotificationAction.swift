@@ -7,6 +7,10 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class OpenNotificationAction: Action {
     let eventQueue: EventQueue

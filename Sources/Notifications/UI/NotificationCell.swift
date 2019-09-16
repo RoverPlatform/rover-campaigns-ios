@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverUI
+#endif
 
 open class NotificationCell: UITableViewCell {
     public var notification: Notification?

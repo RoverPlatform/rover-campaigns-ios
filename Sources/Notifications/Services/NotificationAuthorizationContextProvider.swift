@@ -7,6 +7,10 @@
 //
 
 import UserNotifications
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class NotificationAuthorizationManager {
     let authorizationStatus = PersistedValue<Int>(storageKey: "io.rover.RoverNotifications.authorizationStatus")

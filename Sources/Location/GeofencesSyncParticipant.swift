@@ -8,6 +8,10 @@
 
 import CoreData
 import os.log
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class GeofencesSyncParticipant: PagingSyncParticipant {
     typealias Response = GeofencesSyncResponse

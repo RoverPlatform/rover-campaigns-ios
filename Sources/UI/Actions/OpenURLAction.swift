@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 open class OpenURLAction: Action {
     public let url: URL

@@ -7,6 +7,11 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverUI
+import RoverData
+#endif
 
 public struct DebugAssembler: Assembler {
     public init() { }

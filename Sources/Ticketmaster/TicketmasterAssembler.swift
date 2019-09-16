@@ -6,6 +6,11 @@
 //  Copyright © 2018 Rover Labs Inc. All rights reserved.
 //
 
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
+
 public class TicketmasterAssembler: Assembler {
     public init() {
     }
