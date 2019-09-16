@@ -8,6 +8,9 @@
 
 import CoreTelephony
 import os.log
+#if !COCOAPODS
+import RoverData
+#endif
 
 class TelephonyManager {
     let telephonyNetworkInfo = CTTelephonyNetworkInfo()

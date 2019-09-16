@@ -7,6 +7,9 @@
 //
 
 import CoreLocation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public protocol RegionManager: AnyObject {
     var currentGeofences: Set<Geofence> { get }

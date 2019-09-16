@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public struct Context: Codable, Equatable {
     // MARK: AdSupport

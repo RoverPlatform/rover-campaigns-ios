@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 public struct DataAssembler: Assembler {
     public var accountToken: String

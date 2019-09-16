@@ -8,6 +8,10 @@
 
 import UIKit
 
+#if !COCOAPODS
+import RoverFoundation
+#endif
+
 open class SettingsViewController: UIViewController {
     public let isTestDevice = PersistedValue<Bool>(storageKey: "io.rover.RoverDebug.isTestDevice")
     

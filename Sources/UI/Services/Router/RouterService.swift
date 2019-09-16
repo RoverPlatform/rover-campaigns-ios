@@ -8,6 +8,10 @@
 
 import Foundation
 
+#if !COCOAPODS
+import RoverFoundation
+#endif
+
 class RouterService: Router {
     let associatedDomains: [String]
     let urlSchemes: [String]

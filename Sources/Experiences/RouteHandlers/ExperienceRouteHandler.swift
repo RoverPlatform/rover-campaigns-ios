@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if !COCOAPODS
+import RoverFoundation
+import RoverUI
+#endif
 
 class ExperienceRouteHandler: RouteHandler {
     /// A closure for providing an Action for opening an Experience. (ExperienceID, CampaignID?, ScreenID?).

@@ -8,6 +8,10 @@
 
 import Foundation
 import os.log
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class VersionTrackerService: VersionTracker {
     let bundle: Bundle

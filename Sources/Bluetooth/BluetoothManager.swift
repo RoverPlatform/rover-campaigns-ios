@@ -7,6 +7,10 @@
 //
 
 import CoreBluetooth
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+#endif
 
 class BluetoothManager: NSObject {
     let centralManager: CBCentralManager

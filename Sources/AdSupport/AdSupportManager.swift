@@ -7,6 +7,9 @@
 //
 
 import AdSupport
+#if !COCOAPODS
+import RoverData
+#endif
 
 class AdSupportManager {
     let identifierManager = ASIdentifierManager.shared()

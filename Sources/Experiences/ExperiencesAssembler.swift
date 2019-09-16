@@ -8,6 +8,11 @@
 
 import Rover
 import UIKit
+#if !COCOAPODS
+import RoverFoundation
+import RoverData
+import RoverUI
+#endif
 
 public struct ExperiencesAssembler: Assembler {
     public init() { }
