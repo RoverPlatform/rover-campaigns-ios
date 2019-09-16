@@ -74,7 +74,7 @@ else
     git flow $RELEASE_OR_HOTFIX start $VERSION
 fi
 
-echo "Edit your version numbers (podspec, README, plists) and press return!"
+echo "Edit your version numbers (podspec, README, plists, and VERSION.swift) and press return!"
 read -n 1
 
 git commit -a -m "Releasing $VERSION."
