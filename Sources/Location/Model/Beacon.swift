@@ -49,8 +49,8 @@ extension Beacon {
             "id": self.id,
             "name": self.name,
             "uuid": self.uuid.uuidString,
-            "major": self.major,
-            "minor": self.minor,
+            "major": Int(self.major),
+            "minor": Int(self.minor),
             "tags": self.tags
         ]
     }
