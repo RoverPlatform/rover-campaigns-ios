@@ -32,7 +32,7 @@ public extension EventInfo {
         screenLabel: String? = nil,
         contentID: String? = nil
     ) {
-        var attributes = [
+        let attributes: Attributes = [
             "screenName": screenName
         ]
         
@@ -44,10 +44,7 @@ public extension EventInfo {
             attributes["contentID"] = contentID
         }
         
-        self.name = "Screen Viewed"
         // using a nil namespace to represent events for screens owned by the app vendor.
-        self.namespace = nil
-        self.attributes = Attributes(rawValue: attributes)
-        self.timestamp = Date()
+        self.init(name: "Screen Viewed", attributes: attributes)
     }
 }
