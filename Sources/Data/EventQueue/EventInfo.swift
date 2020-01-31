@@ -30,21 +30,23 @@ public extension EventInfo {
     init(
         forViewingScreenWithName screenName: String,
         screenLabel: String? = nil,
-        contentID: String? = nil
+        contentID: String? = nil,
+        namespace: String? = nil,
+        attributes: Attributes? = nil
     ) {
-        let attributes: Attributes = [
-            "screenName": screenName
-        ]
+        let eventAttributes: Attributes = attributes ?? [:]
+        
+        eventAttributes["screenName"] = screenName
         
         if let screenLabel = screenLabel {
-            attributes["screenLabel"] = screenLabel
+            eventAttributes["screenLabel"] = screenLabel
         }
         
         if let contentID = contentID {
-            attributes["contentID"] = contentID
+            eventAttributes["contentID"] = contentID
         }
         
         // using a nil namespace to represent events for screens owned by the app vendor.
-        self.init(name: "Screen Viewed", attributes: attributes)
+        self.init(name: "Screen Viewed", namespace: namespace, attributes: eventAttributes)
     }
 }
