@@ -28,9 +28,9 @@ public struct EventInfo {
 public extension EventInfo {
     /// Create an EventInfo that tracks a Screen Viewed event for Analytics use.  Use it for tracking screens & content in your app belonging to components other than Rover.
     init(
-        forViewingScreenWithName screenName: String,
-        screenLabel: String? = nil,
+        screenViewedWithName screenName: String,
         contentID: String? = nil,
+        contentLabel: String? = nil,
         namespace: String? = nil,
         attributes: Attributes? = nil
     ) {
@@ -38,14 +38,14 @@ public extension EventInfo {
         
         eventAttributes["screenName"] = screenName
         
-        if let screenLabel = screenLabel {
-            eventAttributes["screenLabel"] = screenLabel
-        }
-        
         if let contentID = contentID {
             eventAttributes["contentID"] = contentID
         }
         
+        if let contentLabel = contentLabel {
+            eventAttributes["contentLabel"] = contentLabel
+        }
+
         // using a nil namespace to represent events for screens owned by the app vendor.
         self.init(name: "Screen Viewed", namespace: namespace, attributes: eventAttributes)
     }

@@ -128,7 +128,7 @@ class TicketmasterManager {
         attributes["venue"] = venueAttributes
         attributes["artist"] = artistAttributes
         
-        let eventInfo = EventInfo(forViewingScreenWithName: roverScreenName, namespace: "ticketmaster", attributes: attributes)
+        let eventInfo = EventInfo(screenViewedWithName: roverScreenName, namespace: "ticketmaster", attributes: attributes)
         
         eventQueue.addEvent(eventInfo)
     }
