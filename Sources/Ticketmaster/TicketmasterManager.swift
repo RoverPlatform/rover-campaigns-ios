@@ -93,7 +93,7 @@ class TicketmasterManager {
 
         if let eventDate = notification.userInfo?["event_date"] as? Date {
             // In order to be (somewhat) consistent with the Android version of the Presence SDK (which yields a pre-rendered date string in a non-standard format), render it into the following format:
-            // Mon, Apr 13, 7 PM
+            // Mon, Apr 13, 7:00 PM
             let formatter = DateFormatter()
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.setLocalizedDateFormatFromTemplate("E, MMM d, h:mm a")
