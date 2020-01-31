@@ -115,7 +115,7 @@ public class EventQueue {
                 self.eventQueue = try PropertyListDecoder().decode([Event].self, from: data)
                 os_log("%d event(s) restored from cache", log: .events, type: .debug, self.eventQueue.count)
             } catch {
-                os_log("Failed to restore events from cache: %@", log: .events, type: .error, error.localizedDescription)
+                os_log("Failed to restore events from cache: %@", log: .events, type: .error, error.logDescription)
             }
         }
     }
@@ -181,7 +181,7 @@ public class EventQueue {
                 try data.write(to: cache, options: [.atomic])
                 os_log("Cache now contains %d event(s)", log: .events, type: .debug, self.eventQueue.count)
             } catch {
-                os_log("Failed to persist events to cache: %@", log: .events, type: .error, error.localizedDescription)
+                os_log("Failed to persist events to cache: %@", log: .events, type: .error, error.logDescription)
             }
         }
     }
@@ -223,7 +223,7 @@ public class EventQueue {
                 switch result {
                 case let .error(error, isRetryable):
                     if let error = error {
-                        os_log("Failed to upload events: %@", log: .events, type: .error, error.localizedDescription)
+                        os_log("Failed to upload events: %@", log: .events, type: .error, error.logDescription)
                     }
                     
                     if isRetryable {
@@ -238,7 +238,7 @@ public class EventQueue {
                         os_log("Successfully uploaded %d event(s)", log: .events, type: .debug, events.count)
                         self.removeEvents(events)
                     } catch {
-                        os_log("Failed to upload events: %@", log: .events, type: .error, error.localizedDescription)
+                        os_log("Failed to upload events: %@", log: .events, type: .error, error.logDescription)
                         os_log("Will retry failed events", log: .events, type: .info)
                     }
                 }
