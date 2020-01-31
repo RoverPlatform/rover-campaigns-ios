@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
+		499A689C23E47D5400C24C23 /* Foundation.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A689B23E47D5300C24C23 /* Foundation.Error.swift */; };
 		49EE59702326E3FC0051EC71 /* DarkModeContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */; };
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
@@ -297,6 +298,7 @@
 /* Begin PBXFileReference section */
 		0DB764902256C5DD00038605 /* Data+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
 		492A84A32238351C00B59A5C /* RoverObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverObserver.swift; sourceTree = "<group>"; };
+		499A689B23E47D5300C24C23 /* Foundation.Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.Error.swift; sourceTree = "<group>"; };
 		49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeContextProvider.swift; sourceTree = "<group>"; };
 		49F7CE64223C2B1F00674784 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		49F7CE65223C2B1F00674784 /* SessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
@@ -1469,6 +1471,7 @@
 		DBFDF52220AE2B0B0031EF47 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				499A689B23E47D5300C24C23 /* Foundation.Error.swift */,
 				DBFDF52320AE2B1C0031EF47 /* Foundation.DateFormatter.swift */,
 				DBCBE087216140F1001C7A96 /* Foundation.JSONDecoder.swift */,
 				DBCBE085216140E6001C7A96 /* Foundation.JSONEncoder.swift */,
@@ -1659,7 +1662,6 @@
 				DB6ADD5620B33EC0002F226C /* Frameworks */,
 				DB6ADD5720B33EC0002F226C /* Headers */,
 				DB6ADD5820B33EC0002F226C /* Resources */,
-				4953CDA32231747D000986C8 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -2352,27 +2354,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4953CDA32231747D000986C8 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		DB0C8F1C20583A5600E0D860 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -2657,6 +2638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499A689C23E47D5400C24C23 /* Foundation.Error.swift in Sources */,
 				DBADA7FC20A4F32500225C80 /* ActionObserver.swift in Sources */,
 				DBF49E02203DE1DE00B54652 /* Assembler.swift in Sources */,
 				DBADA7FB20A4F32500225C80 /* Action.swift in Sources */,
