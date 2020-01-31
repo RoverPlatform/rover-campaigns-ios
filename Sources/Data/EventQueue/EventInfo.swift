@@ -48,11 +48,3 @@ public extension EventInfo {
         self.init(name: "Screen Viewed", attributes: eventAttributes)
     }
 }
-
-public extension EventQueue {
-    func trackScreenViewed(screenName: String, contentID: String? = nil, contentName: String? = nil) {
-        self.addEvent(
-            EventInfo(screenViewedWithName: screenName, contentID: contentID, contentName: contentName)
-        )
-    }
-}
