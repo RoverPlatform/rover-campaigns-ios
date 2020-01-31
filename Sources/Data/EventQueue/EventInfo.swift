@@ -30,11 +30,9 @@ public extension EventInfo {
     init(
         screenViewedWithName screenName: String,
         contentID: String? = nil,
-        contentLabel: String? = nil,
-        namespace: String? = nil,
-        attributes: Attributes? = nil
+        contentName: String? = nil
     ) {
-        let eventAttributes: Attributes = attributes ?? [:]
+        let eventAttributes: Attributes = [:]
         
         eventAttributes["screenName"] = screenName
         
@@ -42,11 +40,19 @@ public extension EventInfo {
             eventAttributes["contentID"] = contentID
         }
         
-        if let contentLabel = contentLabel {
-            eventAttributes["contentLabel"] = contentLabel
+        if let contentName = contentName {
+            eventAttributes["contentName"] = contentName
         }
 
         // using a nil namespace to represent events for screens owned by the app vendor.
-        self.init(name: "Screen Viewed", namespace: namespace, attributes: eventAttributes)
+        self.init(name: "Screen Viewed", attributes: eventAttributes)
+    }
+}
+
+public extension EventQueue {
+    func trackScreenViewed(screenName: String, contentID: String? = nil, contentName: String? = nil) {
+        self.addEvent(
+            EventInfo(screenViewedWithName: screenName, contentID: contentID, contentName: contentName)
+        )
     }
 }

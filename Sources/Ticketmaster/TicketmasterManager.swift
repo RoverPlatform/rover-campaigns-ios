@@ -76,9 +76,9 @@ class TicketmasterManager {
             return
         }
         
-        // the same fields are common amongst all the events we monitor for.
-        let attributes: Attributes = [:]
+        let attributes: Attributes = ["screenName": roverScreenName]
         
+        // the same fields are common amongst all the events we monitor for.
         let eventAttributes: Attributes = [:]
         let venueAttributes: Attributes = [:]
         let artistAttributes: Attributes = [:]
@@ -134,7 +134,7 @@ class TicketmasterManager {
             attributes["artist"] = artistAttributes
         }
         
-        let eventInfo = EventInfo(screenViewedWithName: roverScreenName, namespace: "ticketmaster", attributes: attributes)
+        let eventInfo = EventInfo(name: "Screen Viewed", namespace: "ticketmaster", attributes: attributes)
         
         eventQueue.addEvent(eventInfo)
     }
