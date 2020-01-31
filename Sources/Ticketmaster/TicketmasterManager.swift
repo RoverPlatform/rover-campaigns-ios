@@ -124,9 +124,15 @@ class TicketmasterManager {
             artistAttributes["id"] = artistID
         }
         
-        attributes["event"] = eventAttributes
-        attributes["venue"] = venueAttributes
-        attributes["artist"] = artistAttributes
+        if !eventAttributes.rawValue.isEmpty {
+            attributes["event"] = eventAttributes
+        }
+        if !venueAttributes.rawValue.isEmpty {
+            attributes["venue"] = venueAttributes
+        }
+        if !artistAttributes.rawValue.isEmpty {
+            attributes["artist"] = artistAttributes
+        }
         
         let eventInfo = EventInfo(screenViewedWithName: roverScreenName, namespace: "ticketmaster", attributes: attributes)
         
