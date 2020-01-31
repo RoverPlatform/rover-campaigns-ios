@@ -229,7 +229,7 @@ extension TicketmasterManager: SyncParticipant {
         do {
             response = try JSONDecoder.default.decode(Response.self, from: data)
         } catch {
-            os_log("Failed to decode response: %@", log: .sync, type: .error, error.debugDescription)
+            os_log("Failed to decode response: %@", log: .sync, type: .error, error.localizedDescription)
             return .failed
         }
         
