@@ -71,7 +71,7 @@ class SyncCoordinatorService: SyncCoordinator {
             switch result {
             case .error(let error, _):
                 if let error = error {
-                    os_log("Sync task failed: %@", log: .sync, type: .error, error.debugDescription)
+                    os_log("Sync task failed: %@", log: .sync, type: .error, error.logDescription)
                 } else {
                     os_log("Sync task failed", log: .sync, type: .error)
                 }

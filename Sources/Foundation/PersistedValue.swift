@@ -36,7 +36,7 @@ public class PersistedValue<T> where T: Codable {
                 do {
                     return try decoder.decode(T.self, from: data)
                 } catch {
-                    os_log("Failed to decode persisted value: %@", log: .general, type: .error, error.debugDescription)
+                    os_log("Failed to decode persisted value: %@", log: .general, type: .error, error.logDescription)
                     return nil
                 }
             }
@@ -63,7 +63,7 @@ public class PersistedValue<T> where T: Codable {
                     let data = try encoder.encode(newValue)
                     userDefaults.set(data, forKey: storageKey)
                 } catch {
-                    os_log("Failed to encode persisted value: %@", log: .general, type: .error, error.debugDescription)
+                    os_log("Failed to encode persisted value: %@", log: .general, type: .error, error.logDescription)
                 }
             }
         }

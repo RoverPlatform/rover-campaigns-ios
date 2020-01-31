@@ -115,7 +115,7 @@ extension Geofence {
                 os_signpost(.end, log: .persistence, name: "fetchGeofences", "type=all")
             }
         } catch {
-            os_log("Failed to fetch geofences: %@", log: .persistence, type: .error, error.debugDescription)
+            os_log("Failed to fetch geofences: %@", log: .persistence, type: .error, error.logDescription)
             return []
         }
         
@@ -143,7 +143,7 @@ extension Geofence {
                 os_signpost(.end, log: .persistence, name: "fetchGeofences", "type=regionIdentifier")
             }
         } catch {
-            os_log("Failed to fetch geofence: %@", log: .persistence, type: .error, error.debugDescription)
+            os_log("Failed to fetch geofence: %@", log: .persistence, type: .error, error.logDescription)
             return nil
         }
         
@@ -162,7 +162,7 @@ extension Geofence {
         do {
             try context.execute(deleteRequest)
         } catch {
-            os_log("Failed to delete geofences: %@", log: .persistence, type: .error, error.debugDescription)
+            os_log("Failed to delete geofences: %@", log: .persistence, type: .error, error.logDescription)
         }
     }
 }

@@ -69,7 +69,7 @@ class NotificationStoreService: NotificationStore {
             notifications = try PropertyListDecoder().decode([Notification].self, from: data)
             os_log("%d notification(s) restored from cache", log: .notifications, type: .debug, notifications.count)
         } catch {
-            os_log("Failed to restore notifications from cache: %@", log: .notifications, type: .error, error.debugDescription)
+            os_log("Failed to restore notifications from cache: %@", log: .notifications, type: .error, error.logDescription)
         }
     }
     
@@ -92,7 +92,7 @@ class NotificationStoreService: NotificationStore {
             userDefaults.set(unreadCount, forKey: "io.rover.unreadNotifications")
             os_log("Cache now contains notification(s)", log: .notifications, type: .debug, notifications.count)
         } catch {
-            os_log("Failed to persist notifications to cache: %@", log: .notifications, type: .error, error.debugDescription)
+            os_log("Failed to persist notifications to cache: %@", log: .notifications, type: .error, error.logDescription)
         }
     }
     

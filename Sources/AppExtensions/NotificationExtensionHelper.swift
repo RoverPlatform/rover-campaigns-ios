@@ -122,7 +122,7 @@ public class NotificationExtensionHelper {
         let downloadResult = downloadAttachment(attachmentURL)
 
         if let error = downloadResult.error {
-            print(error.debugDescription)
+            print(error.logDescription)
             return
         }
 

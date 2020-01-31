@@ -10,7 +10,7 @@ import Foundation
 
 public extension Error {
     /// Give a more verbose description of an error (particularly, including any details in `userInfo`).
-    var debugDescription: String {
+    var logDescription: String {
         return "Error: \(self.localizedDescription), details: \((self as NSError).userInfo.debugDescription)"
     }
 }

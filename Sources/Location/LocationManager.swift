@@ -126,7 +126,7 @@ extension LocationManager: RegionManager {
             }
             
             guard error == nil else {
-                os_log("Error geocoding location: %@", log: .location, type: .error, error!.debugDescription)
+                os_log("Error geocoding location: %@", log: .location, type: .error, error!.logDescription)
                 return
             }
             

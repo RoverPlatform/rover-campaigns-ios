@@ -99,7 +99,7 @@ extension Beacon {
         do {
             beacons = try context.fetch(fetchRequest)
         } catch {
-            os_log("Failed to fetch beacons: %@", log: .persistence, type: .error, error.debugDescription)
+            os_log("Failed to fetch beacons: %@", log: .persistence, type: .error, error.logDescription)
             return []
         }
         
@@ -114,7 +114,7 @@ extension Beacon {
             let beacons = try context.fetch(fetchRequest)
             return Set(beacons)
         } catch {
-            os_log("Failed to fetch beacons: %@", log: .persistence, type: .error, error.debugDescription)
+            os_log("Failed to fetch beacons: %@", log: .persistence, type: .error, error.logDescription)
             return []
         }
     }
@@ -125,7 +125,7 @@ extension Beacon {
         do {
             try context.execute(deleteRequest)
         } catch {
-            os_log("Failed to delete beacons: %@", log: .persistence, type: .error, error.debugDescription)
+            os_log("Failed to delete beacons: %@", log: .persistence, type: .error, error.logDescription)
         }
     }
 }
