@@ -60,7 +60,7 @@ extension PagingSyncParticipant {
         do {
             return try JSONDecoder.default.decode(Response.self, from: data)
         } catch {
-            os_log("Failed to decode response: %@", log: .sync, type: .error, error.localizedDescription)
+            os_log("Failed to decode response: %@", log: .sync, type: .error, error.debugDescription)
             return nil
         }
     }
@@ -94,10 +94,10 @@ extension PagingSyncParticipant {
         if let error = saveError {
             if let multipleErrors = (error as NSError).userInfo[NSDetailedErrorsKey] as? [Error] {
                 multipleErrors.forEach {
-                    os_log("Failed to insert objects: %@", log: .sync, type: .error, $0.localizedDescription)
+                    os_log("Failed to insert objects: %@", log: .sync, type: .error, $0.debugDescription)
                 }
             } else {
-                os_log("Failed to insert objects: %@", log: .sync, type: .error, error.localizedDescription)
+                os_log("Failed to insert objects: %@", log: .sync, type: .error, error.debugDescription)
             }
             
             return false

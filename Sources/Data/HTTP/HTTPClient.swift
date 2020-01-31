@@ -50,7 +50,7 @@ extension HTTPClient {
         do {
             encoded = try JSONEncoder.default.encode(payload)
         } catch {
-            os_log("Failed to encode events: %@", log: .networking, type: .error, error.localizedDescription)
+            os_log("Failed to encode events: %@", log: .networking, type: .error, error.debugDescription)
             return nil
         }
         
