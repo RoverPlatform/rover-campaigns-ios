@@ -22,7 +22,8 @@ public class TicketmasterAssembler: Assembler {
         
         container.register(TicketmasterManager.self) { resolver in
             let userInfoManager = resolver.resolve(UserInfoManager.self)!
-            return TicketmasterManager(userInfoManager: userInfoManager)
+            let eventQueue = resolver.resolve(EventQueue.self)!
+            return TicketmasterManager(userInfoManager: userInfoManager, eventQueue: eventQueue)
         }
         
         container.register(SyncParticipant.self, name: "ticketmaster") { resolver in

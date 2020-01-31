@@ -319,3 +319,13 @@ extension EventQueue {
         }
     }
 }
+
+// MARK: Screen Tracking
+
+public extension EventQueue {
+    func trackScreenViewed(screenName: String, contentID: String? = nil, contentName: String? = nil) {
+        self.addEvent(
+            EventInfo(screenViewedWithName: screenName, contentID: contentID, contentName: contentName)
+        )
+    }
+}
