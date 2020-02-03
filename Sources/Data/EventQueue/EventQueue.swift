@@ -16,6 +16,9 @@ public class EventQueue {
     let maxBatchSize: Int
     let maxQueueSize: Int
     
+    typealias ViewDidAppearFunction = @convention(c) (UIViewController, Selector, Bool) -> Void
+    typealias ViewDidAppearBlock = @convention(block) (UIViewController, Selector, Bool) -> Void
+    
     // swiftlint:disable:next implicitly_unwrapped_optional // Use an implicitly unwrapped optional to allow circular dependency injection
     var contextProvider: ContextProvider!
     
@@ -57,6 +60,33 @@ public class EventQueue {
         self.flushInterval = flushInterval
         self.maxBatchSize = maxBatchSize
         self.maxQueueSize = maxQueueSize
+        
+        let method = class_getInstanceMethod(UIViewController.self, #selector(UIViewController.viewDidAppear(_:)))!
+        
+        let original = method_getImplementation(method)
+        
+        
+        
+        let instrumentedViewDidAppearBlock: ViewDidAppearBlock = { (viewController: UIViewController, selector, animated) in
+            print("POOP! \(type(of: viewController))")
+            
+
+            
+            
+            let viewDidAppear: ViewDidAppearFunction = unsafeBitCast(original, to: ViewDidAppearFunction.self)
+            viewDidAppear(viewController, selector, animated)
+            
+//            original()
+        }
+
+
+
+
+
+        let newImpl = imp_implementationWithBlock(instrumentedViewDidAppearBlock)
+
+
+        method_setImplementation(method, newImpl)
     }
     
     public func restore() {
