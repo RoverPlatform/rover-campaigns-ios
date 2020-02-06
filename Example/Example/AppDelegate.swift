@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             LocationAssembler(),
             RoverCampaigns.DebugAssembler(),
             AdSupportAssembler(),
-            BluetoothAssembler(),
             TelephonyAssembler(),
             TicketmasterAssembler(),
             

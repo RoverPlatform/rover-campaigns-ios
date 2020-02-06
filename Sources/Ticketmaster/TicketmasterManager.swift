@@ -14,7 +14,8 @@ import RoverData
 #endif
 
 class TicketmasterManager {
-    let userInfoManager: UserInfoManager
+    private let userInfoManager: UserInfoManager
+    private let eventQueue: EventQueue
     
     struct Member: Codable {
         var id: String
@@ -39,8 +40,9 @@ class TicketmasterManager {
     }
     var legacyMember = PersistedValue<LegacyMember>(storageKey: "io.rover.RoverTicketmaster")
     
-    init(userInfoManager: UserInfoManager) {
+    init(userInfoManager: UserInfoManager, eventQueue: EventQueue) {
         self.userInfoManager = userInfoManager
+        self.eventQueue = eventQueue
         
         // do migration from 3.2 and older, if needed.
         if let legacyData = legacyMember.value, member.value == nil {
@@ -55,7 +57,95 @@ class TicketmasterManager {
                 member.value = nil
             }
         }
+        
+        // Begin observing for TM PSDK's events.
+        TicketmasterManager.tmEvents.keys.forEach { notificationName in
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.receiveTicketmasterNotification),
+                name: NSNotification.Name(rawValue: notificationName),
+                object: nil
+            )
+        }
     }
+    
+    @objc
+    func receiveTicketmasterNotification(_ notification: Foundation.Notification) {
+        guard let roverScreenName = TicketmasterManager.tmEvents[notification.name.rawValue] else {
+            os_log("TicketmasterManager received an unexpected NSNotification, ignoring.", log: .general, type: .error)
+            return
+        }
+        
+        let attributes: Attributes = ["screenName": roverScreenName]
+        
+        // the same fields are common amongst all the events we monitor for.
+        let eventAttributes: Attributes = [:]
+        let venueAttributes: Attributes = [:]
+        let artistAttributes: Attributes = [:]
+        
+        if let eventID = notification.userInfo?["event_id"] {
+            eventAttributes["id"] = eventID
+        }
+        
+        if let eventName = notification.userInfo?["event_name"] {
+            eventAttributes["name"] = eventName
+        }
+
+        if let eventDate = notification.userInfo?["event_date"] as? Date {
+            // In order to be (somewhat) consistent with the Android version of the Presence SDK (which yields a pre-rendered date string in a non-standard format), render it into the following format:
+            // Mon, Apr 13, 7:00 PM
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.setLocalizedDateFormatFromTemplate("E, MMM d, h:mm a")
+            eventAttributes["date"] = formatter.string(from: eventDate)
+        }
+        
+        if let eventImageURL = notification.userInfo?["event_image_url"] {
+            eventAttributes["imageURL"] = eventImageURL
+        }
+        
+        if let venueName = notification.userInfo?["venue_name"] {
+            venueAttributes["name"] = venueName
+        }
+        
+        if let venueID = notification.userInfo?["venue_id"] {
+            venueAttributes["id"] = venueID
+        }
+        
+        if let currentTicketCount = notification.userInfo?["current_ticket_count"] {
+            attributes["currentTicketCount"] = currentTicketCount
+        }
+        
+        if let artistName = notification.userInfo?["artist_name"] ?? notification.userInfo?["atrist_name"] /* [sic] */ {
+            artistAttributes["name"] = artistName
+        }
+        
+        if let artistID = notification.userInfo?["artist_id"] {
+            artistAttributes["id"] = artistID
+        }
+        
+        if !eventAttributes.rawValue.isEmpty {
+            attributes["event"] = eventAttributes
+        }
+        if !venueAttributes.rawValue.isEmpty {
+            attributes["venue"] = venueAttributes
+        }
+        if !artistAttributes.rawValue.isEmpty {
+            attributes["artist"] = artistAttributes
+        }
+        
+        let eventInfo = EventInfo(name: "Screen Viewed", namespace: "ticketmaster", attributes: attributes)
+        
+        eventQueue.addEvent(eventInfo)
+    }
+    
+    private static let tmEvents = [
+        "TMX_MYTICKETSCREENSHOWED": "My Tickets",
+        "TMX_MANAGETICKETSCREENSHOWED": "Manage Ticket",
+        "TMX_ADDPAYMENTINFOSCREENSHOWED": "Add Payment Info",
+        "TMX_MYTICKETBARCODESCREENSHOWED": "Ticket Barcode",
+        "TMX_TICKETDETAILSSCREENSHOWED": "Ticket Details"
+    ]
 }
 
 // MARK: TicketmasterAuthorizer
@@ -145,7 +235,7 @@ extension TicketmasterManager: SyncParticipant {
         do {
             response = try JSONDecoder.default.decode(Response.self, from: data)
         } catch {
-            os_log("Failed to decode response: %@", log: .sync, type: .error, error.localizedDescription)
+            os_log("Failed to decode response: %@", log: .sync, type: .error, error.logDescription)
             return .failed
         }
         

@@ -7,7 +7,6 @@ target 'Example' do
 
   # Pods for Example
   pod 'RoverCampaigns/Core', :path => '../'
-  pod 'RoverCampaigns/Bluetooth', :path => '../'
   pod 'RoverCampaigns/Telephony', :path => '../'
   pod 'RoverCampaigns/AdSupport', :path => '../'
   pod 'RoverCampaigns/Ticketmaster', :path => '../'

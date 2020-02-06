@@ -42,7 +42,7 @@ class NotificationsSyncParticipant: SyncParticipant {
         do {
             response = try JSONDecoder.default.decode(Response.self, from: data)
         } catch {
-            os_log("Failed to decode response: %@", log: .sync, type: .error, error.localizedDescription)
+            os_log("Failed to decode response: %@", log: .sync, type: .error, error.logDescription)
             return .failed
         }
         

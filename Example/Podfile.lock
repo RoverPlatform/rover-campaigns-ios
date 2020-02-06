@@ -1,44 +1,41 @@
 PODS:
-  - Rover (3.4.0)
-  - RoverAppExtensions (3.4.0)
-  - RoverCampaigns/AdSupport (3.4.0):
+  - Rover (3.5.2)
+  - RoverAppExtensions (3.5.2)
+  - RoverCampaigns/AdSupport (3.5.2):
     - RoverCampaigns/Data
-  - RoverCampaigns/Bluetooth (3.4.0):
-    - RoverCampaigns/Data
-  - RoverCampaigns/Core (3.4.0):
+  - RoverCampaigns/Core (3.5.2):
     - RoverCampaigns/Debug
     - RoverCampaigns/Experiences
     - RoverCampaigns/Location
     - RoverCampaigns/Notifications
-  - RoverCampaigns/Data (3.4.0):
+  - RoverCampaigns/Data (3.5.2):
     - RoverCampaigns/Foundation
-  - RoverCampaigns/Debug (3.4.0):
+  - RoverCampaigns/Debug (3.5.2):
     - RoverCampaigns/UI
-  - RoverCampaigns/Experiences (3.4.0):
-    - Rover (~> 3.4)
+  - RoverCampaigns/Experiences (3.5.2):
+    - Rover (~> 3.5)
     - RoverCampaigns/UI
-  - RoverCampaigns/Foundation (3.4.0)
-  - RoverCampaigns/Location (3.4.0):
+  - RoverCampaigns/Foundation (3.5.2)
+  - RoverCampaigns/Location (3.5.2):
     - RoverCampaigns/Data
-  - RoverCampaigns/Notifications (3.4.0):
+  - RoverCampaigns/Notifications (3.5.2):
     - RoverCampaigns/UI
-  - RoverCampaigns/Telephony (3.4.0):
+  - RoverCampaigns/Telephony (3.5.2):
     - RoverCampaigns/Data
-  - RoverCampaigns/Ticketmaster (3.4.0):
+  - RoverCampaigns/Ticketmaster (3.5.2):
     - RoverCampaigns/Data
-  - RoverCampaigns/UI (3.4.0):
+  - RoverCampaigns/UI (3.5.2):
     - RoverCampaigns/Data
 
 DEPENDENCIES:
   - RoverAppExtensions (from `../`)
   - RoverCampaigns/AdSupport (from `../`)
-  - RoverCampaigns/Bluetooth (from `../`)
   - RoverCampaigns/Core (from `../`)
   - RoverCampaigns/Telephony (from `../`)
   - RoverCampaigns/Ticketmaster (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Rover
 
 EXTERNAL SOURCES:
@@ -48,10 +45,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Rover: da062abad458611c8468fa6d21a1a22de0ff519d
-  RoverAppExtensions: 3ae6daced7e4c31640f1eea8b29c909d69a3e81b
-  RoverCampaigns: 1d59d8aacd8cc3780acf68b6cb8b222a1aff66a2
+  Rover: 0181691b7911451d0f8ac48d3042bde4245a0003
+  RoverAppExtensions: ffd48c260ce5d2a5c51b9ab3a136407936883c10
+  RoverCampaigns: f2e2c6d49807c62ecd5ea72e3e6b7a524b4dc8cc
 
-PODFILE CHECKSUM: 4e581bed0b2417138aab8d6c224c12cf7e9d4f5a
+PODFILE CHECKSUM: 9d356855be9da26a7642e120d5ec51da4bb10995
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4
