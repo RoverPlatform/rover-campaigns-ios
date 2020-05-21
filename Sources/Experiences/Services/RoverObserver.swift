@@ -14,14 +14,17 @@ import RoverFoundation
 import RoverData
 #endif
 
-/// Observes notifications posted by the Rover SDK on the default `NotificationCenter` and converts them into events
+/// Observes notifications posted by the Rover SDK on the default `NotificationCenter`.
+/// For each Rover SDK event an associated Campaign event is tracked, as well as optionally tagging the user when interacting with certain elements
 /// added to the `EventQueue`.
 public class RoverObserver {
     private let eventQueue: EventQueue
+    private let userInfoManager: UserInfoManager
     private var observers: [NSObjectProtocol] = []
     
-    public init(eventQueue: EventQueue) {
+    public init(eventQueue: EventQueue, userInfoManager: UserInfoManager) {
         self.eventQueue = eventQueue
+        self.userInfoManager = userInfoManager
     }
     
     deinit {
@@ -34,6 +37,7 @@ public class RoverObserver {
         }
         
         observers = [
+            // Events
             NotificationCenter.default.addObserver(
                 forName: ExperienceViewController.experiencePresentedNotification,
                 object: nil,
@@ -96,7 +100,30 @@ public class RoverObserver {
                 queue: nil,
                 using: { [weak self] notification in
                     self?.trackPollAnswered(userInfo: notification.userInfo)
-            })
+            }),
+            
+            // Auto Tagging
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.blockTappedNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.tagUser(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
+            }),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.pollAnsweredNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.tagUser(notificationName: ScreenViewController.pollAnsweredNotification, userInfo: notification.userInfo)
+            }),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.screenPresentedNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.tagUser(notificationName: ScreenViewController.screenPresentedNotification, userInfo: notification.userInfo)
+            }),
         ]
     }
     
@@ -108,7 +135,7 @@ public class RoverObserver {
     private func trackExperiencePresented(userInfo: [AnyHashable: Any]?) {
         guard let userInfo = userInfo,
             let experience = userInfo[ExperienceViewController.experienceUserInfoKey] as? Experience else {
-            return
+                return
         }
         
         let attributes: Attributes = [
@@ -346,7 +373,7 @@ public class RoverObserver {
             let screen = userInfo[ScreenViewController.screenUserInfoKey] as? Screen,
             let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
             let pollOption = userInfo[ScreenViewController.optionUserInfoKey] as? PollOption
-        else {
+            else {
                 return
         }
         
@@ -392,5 +419,46 @@ public class RoverObserver {
         )
         
         eventQueue.addEvent(eventInfo)
+    }
+    
+    // TagUser: keeps track of the last 100 tags from interactions within an experience. It is setup as a FILO queue
+    // with the ability to bump existing tags to the front of the queue upon repeated interactions.
+    private func tagUser(notificationName: NSNotification.Name, userInfo: [AnyHashable: Any]?) {
+        let tags: [String]
+        switch notificationName {
+        case ScreenViewController.blockTappedNotification:
+            guard let userInfo = userInfo,
+                let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block else {
+                    return
+            }
+            tags = block.tags
+        case ScreenViewController.screenPresentedNotification:
+            guard let userInfo = userInfo,
+                let screen = userInfo[ScreenViewController.screenUserInfoKey] as? Screen else {
+                    return
+            }
+            tags = screen.tags
+        case ScreenViewController.pollAnsweredNotification:
+            guard let userInfo = userInfo,
+                let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
+                let pollOption = userInfo[ScreenViewController.optionUserInfoKey] as? PollOption else {
+                    return
+            }
+            
+            tags = block.tags.map{ $0 + "_" +  pollOption.text.rawValue.prefix(15)}
+        default:
+            return
+        }
+        
+        if tags.count > 0   {
+            userInfoManager.updateUserInfo {
+                if let existingTags  = $0.rawValue["experience_tags"] as? [String] {
+                    // If a tag exists remove it and add it to the front of the list, ensuring the array is capped @ 100 elements
+                    $0.rawValue["experience_tags"] = Array((tags + existingTags.filter{!tags.contains($0)}).prefix(100))
+                } else {
+                    $0.rawValue["experience_tags"] = tags
+                }
+            }
+        }
     }
 }

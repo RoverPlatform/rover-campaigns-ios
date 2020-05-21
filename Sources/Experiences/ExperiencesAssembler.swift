@@ -37,7 +37,7 @@ public struct ExperiencesAssembler: Assembler {
             let idActionProvider: (String, String?, String?) -> Action? = { [weak resolver] id, campaignID, screenID in
                 resolver?.resolve(Action.self, name: "presentExperience", arguments: id, campaignID, screenID)
             }
-                
+            
             let universalLinkActionProvider: (URL, String?, String?) -> Action? = { [weak resolver] universalLink, campaignID, screenID in
                 resolver?.resolve(Action.self, name: "presentExperience", arguments: universalLink, campaignID, screenID)
             }
@@ -51,7 +51,7 @@ public struct ExperiencesAssembler: Assembler {
         // MARK: RoverObserver
         
         container.register(RoverObserver.self) { resolver in
-            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!)
+            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!, userInfoManager: resolver.resolve(UserInfoManager.self)!)
         }
         
         // MARK: UIViewController (experience)
