@@ -45,10 +45,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Rover: 0181691b7911451d0f8ac48d3042bde4245a0003
-  RoverAppExtensions: ffd48c260ce5d2a5c51b9ab3a136407936883c10
-  RoverCampaigns: f2e2c6d49807c62ecd5ea72e3e6b7a524b4dc8cc
+  Rover: b1ea0ac6ce1387ade3f0f38c0912c55388df95c5
+  RoverAppExtensions: be8c5b08cc9c11d7dede447118f13b26010adf9b
+  RoverCampaigns: 59c64bbd9106bd6a8a730fa33d0ecf522944aab4
 
 PODFILE CHECKSUM: 9d356855be9da26a7642e120d5ec51da4bb10995
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

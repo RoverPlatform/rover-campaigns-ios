@@ -137,6 +137,8 @@ public class Attributes: NSObject, NSCoding, Codable, RawRepresentable, Expressi
                 return
             }
             
+            
+            
             if let nestedDictionary = value as? Attributes {
                 transformed[key] = nestedDictionary
                 return
@@ -315,5 +317,26 @@ class BooleanValue: NSObject, NSCoding {
     
     init(_ value: Bool) {
         self.value = value
+    }
+}
+
+
+// TODO: make this  private
+public struct Tag: Codable, Equatable, Hashable {
+    public static func == (lhs: Tag, rhs: Tag) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
+    }
+    
+    public var rawValue: String
+    public var expiresAt: Date?
+}
+
+extension Tag: ExpressibleByStringLiteral {
+    public init(stringLiteral: String) {
+        self.rawValue = stringLiteral
     }
 }
