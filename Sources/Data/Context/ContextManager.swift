@@ -15,7 +15,6 @@ import RoverFoundation
 class ContextManager {
     let persistedPushToken = PersistedValue<Context.PushToken>(storageKey: "io.rover.RoverData.pushToken")
     let persistedUserInfo = PersistedValue<Attributes>(storageKey: "io.rover.RoverData.userInfo")
-    let persistedTags = PersistedValue<Set<Tag>>(storageKey: "io.rover.RoverData.tags")
     let reachability = Reachability(hostname: "google.com")!
     
     init() { }
@@ -133,7 +132,7 @@ extension ContextManager: StaticContextProvider {
         }
         
         guard let entitlements = plist["Entitlements"] as? [String: Any], let apsEnvironment = entitlements["aps-environment"] as? String else {
-            os_log("No entry for \"aps-environment\" found in Entitlements – defaulting to production", log: .context, type: .info)
+            os_log("No entry for \"aps-environment\" found in Entitlements – defaulting to production", log: .context, type: .info)
             return .production
         }
         
@@ -239,96 +238,20 @@ extension ContextManager: TokenManager {
 
 extension ContextManager: UserInfoContextProvider {
     var userInfo: Attributes? {
-        return self.currentUserInfo
+        return self.persistedUserInfo.value
     }
 }
 
-
 // MARK: UserInfoManager
+
 extension ContextManager: UserInfoManager {
-    
-    var currentUserInfo: Attributes {
-        let attributes = self.persistedUserInfo.value ?? Attributes()
-        if let tags = attributes["tags"] as? [String] {
-            tags.forEach { addTag($0) }
-            attributes["tags"] = nil
-            self.persistedUserInfo.value = attributes
-        }
-        attributes["tags"] = tags()
-        return attributes
-    }
-    
-    func addTag(_ tag: String, expiresIn: TimeInterval? = nil) {
-        var result = self.persistedTags.value ?? []
-        
-        var expiresAt: Date?
-        if let expiresIn = expiresIn{
-            expiresAt = Date().addingTimeInterval(expiresIn)
-        }
-        
-        result.update(with: Tag(
-            rawValue: tag,
-            expiresAt: expiresAt
-        ))
-        
-        self.persistedTags.value = result
-    }
-    
-    func removeTag(_ tag: String) {
-        var result = self.persistedTags.value ?? []
-        
-        result.remove(
-            Tag(rawValue: tag)
-        )
-        
-        self.persistedTags.value = result
-    }
-    
-    
-    
     func updateUserInfo(block: (inout Attributes) -> Void) {
         var userInfo = self.persistedUserInfo.value ?? Attributes()
-        let currentTags = tags()
-        userInfo["tags"] = currentTags
         block(&userInfo)
-        
-        if userInfo["tags"] != nil {
-            if let mutatedTags = userInfo["tags"] as? [String] {
-                if mutatedTags != currentTags {
-                    fatalError("Can not modify tags inside an update block. Please call addTag or removeTag")
-                }
-            } else {
-                fatalError("Can not modify tags inside an update block. Please call addTag or removeTag")
-            }
-        }
-
-        // NOTE: never save tags to the userInfo persisted store as this is managed by a different store
-        userInfo["tags"] = nil
         self.persistedUserInfo.value = userInfo
     }
     
     func clearUserInfo() {
         self.persistedUserInfo.value = nil
-        self.persistedTags.value = nil
-    }
-    
-    /**
-        Utility function to return all non expired tags as a list of strings
-     */
-    private func tags() -> [String] {
-        let currentTags = self.persistedTags.value ?? []
-        let unExpiredTags = currentTags.filter {
-            guard let expiresAt = $0.expiresAt else {
-                return true
-            }
-            return expiresAt > Date()
-        }
-        
-        if (currentTags != unExpiredTags) {
-            // Remove expired tags from local storage
-            self.persistedTags.value = unExpiredTags
-        }
-        
-        return unExpiredTags.map { $0.rawValue }
     }
 }

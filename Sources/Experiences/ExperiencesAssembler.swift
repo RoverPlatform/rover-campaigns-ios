@@ -48,10 +48,19 @@ public struct ExperiencesAssembler: Assembler {
             )
         }
         
+        // MARK: Services
+        container.register(ConversionsContextProvider.self) { resolver in
+                   resolver.resolve(ExperienceConversionsManager.self)!
+               }
+        
+        container.register(ExperienceConversionsManager.self) { resolver in
+            ExperienceConversionsManager()
+        }
+        
         // MARK: RoverObserver
         
         container.register(RoverObserver.self) { resolver in
-            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!, userInfoManager: resolver.resolve(UserInfoManager.self)!)
+            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!, conversionsManager: resolver.resolve(ExperienceConversionsManager.self)!)
         }
         
         // MARK: UIViewController (experience)

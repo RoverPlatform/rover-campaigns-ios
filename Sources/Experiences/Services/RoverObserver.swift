@@ -19,12 +19,12 @@ import RoverData
 /// added to the `EventQueue`.
 public class RoverObserver {
     private let eventQueue: EventQueue
-    private let userInfoManager: UserInfoManager
+    private let conversionsManager: ExperienceConversionsManager
     private var observers: [NSObjectProtocol] = []
     
-    public init(eventQueue: EventQueue, userInfoManager: UserInfoManager) {
+    init(eventQueue: EventQueue, conversionsManager: ExperienceConversionsManager) {
         self.eventQueue = eventQueue
-        self.userInfoManager = userInfoManager
+        self.conversionsManager = conversionsManager
     }
     
     deinit {
@@ -108,21 +108,21 @@ public class RoverObserver {
                 object: nil,
                 queue: nil,
                 using: { [weak self] (notification) in
-                    self?.tagUser(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
+                    self?.trackConversion(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
             }),
             NotificationCenter.default.addObserver(
                 forName: ScreenViewController.pollAnsweredNotification,
                 object: nil,
                 queue: nil,
                 using: { [weak self] (notification) in
-                    self?.tagUser(notificationName: ScreenViewController.pollAnsweredNotification, userInfo: notification.userInfo)
+                    self?.trackConversion(notificationName: ScreenViewController.pollAnsweredNotification, userInfo: notification.userInfo)
             }),
             NotificationCenter.default.addObserver(
                 forName: ScreenViewController.screenPresentedNotification,
                 object: nil,
                 queue: nil,
                 using: { [weak self] (notification) in
-                    self?.tagUser(notificationName: ScreenViewController.screenPresentedNotification, userInfo: notification.userInfo)
+                    self?.trackConversion(notificationName: ScreenViewController.screenPresentedNotification, userInfo: notification.userInfo)
             }),
         ]
     }
@@ -422,7 +422,7 @@ public class RoverObserver {
     }
     
     
-    private func tagUser(notificationName: NSNotification.Name, userInfo: [AnyHashable: Any]?) {
+    private func trackConversion(notificationName: NSNotification.Name, userInfo: [AnyHashable: Any]?) {
         var tag: String?
         var expiresIn: TimeInterval?
         
@@ -463,9 +463,9 @@ public class RoverObserver {
         default:
             return
         }
-        
-        if let tag = tag {
-            userInfoManager.addTag(tag, expiresIn: expiresIn)
+                
+        if let tag = tag, let expiresIn = expiresIn {
+            conversionsManager.track(tag, expiresIn)
         }
     }
 }
