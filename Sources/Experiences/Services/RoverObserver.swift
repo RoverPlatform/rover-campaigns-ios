@@ -37,7 +37,30 @@ public class RoverObserver {
         }
         
         observers = [
-            // Events
+            // MARK: Conversion Tracking
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.blockTappedNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.trackConversion(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
+            }),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.pollAnsweredNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.trackConversion(notificationName: ScreenViewController.pollAnsweredNotification, userInfo: notification.userInfo)
+            }),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.screenPresentedNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.trackConversion(notificationName: ScreenViewController.screenPresentedNotification, userInfo: notification.userInfo)
+            }),
+            
+            // MARK: Experience Event Tracking
             NotificationCenter.default.addObserver(
                 forName: ExperienceViewController.experiencePresentedNotification,
                 object: nil,
@@ -100,30 +123,7 @@ public class RoverObserver {
                 queue: nil,
                 using: { [weak self] notification in
                     self?.trackPollAnswered(userInfo: notification.userInfo)
-            }),
-            
-            // Auto Tagging
-            NotificationCenter.default.addObserver(
-                forName: ScreenViewController.blockTappedNotification,
-                object: nil,
-                queue: nil,
-                using: { [weak self] (notification) in
-                    self?.trackConversion(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
-            }),
-            NotificationCenter.default.addObserver(
-                forName: ScreenViewController.pollAnsweredNotification,
-                object: nil,
-                queue: nil,
-                using: { [weak self] (notification) in
-                    self?.trackConversion(notificationName: ScreenViewController.pollAnsweredNotification, userInfo: notification.userInfo)
-            }),
-            NotificationCenter.default.addObserver(
-                forName: ScreenViewController.screenPresentedNotification,
-                object: nil,
-                queue: nil,
-                using: { [weak self] (notification) in
-                    self?.trackConversion(notificationName: ScreenViewController.screenPresentedNotification, userInfo: notification.userInfo)
-            }),
+            })
         ]
     }
     
