@@ -37,7 +37,7 @@ public struct ExperiencesAssembler: Assembler {
             let idActionProvider: (String, String?, String?) -> Action? = { [weak resolver] id, campaignID, screenID in
                 resolver?.resolve(Action.self, name: "presentExperience", arguments: id, campaignID, screenID)
             }
-                
+            
             let universalLinkActionProvider: (URL, String?, String?) -> Action? = { [weak resolver] universalLink, campaignID, screenID in
                 resolver?.resolve(Action.self, name: "presentExperience", arguments: universalLink, campaignID, screenID)
             }
@@ -48,10 +48,19 @@ public struct ExperiencesAssembler: Assembler {
             )
         }
         
+        // MARK: Services
+        container.register(ConversionsContextProvider.self) { resolver in
+                   resolver.resolve(ExperienceConversionsManager.self)!
+               }
+        
+        container.register(ExperienceConversionsManager.self) { resolver in
+            ExperienceConversionsManager()
+        }
+        
         // MARK: RoverObserver
         
         container.register(RoverObserver.self) { resolver in
-            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!)
+            RoverObserver(eventQueue: resolver.resolve(EventQueue.self)!, conversionsManager: resolver.resolve(ExperienceConversionsManager.self)!)
         }
         
         // MARK: UIViewController (experience)

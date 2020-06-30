@@ -20,6 +20,7 @@ class ModularContextProvider {
     weak var telephonyContextProvider: TelephonyContextProvider?
     weak var timeZoneContextProvider: TimeZoneContextProvider?
     weak var userInfoContextProvider: UserInfoContextProvider?
+    weak var conversionsContextProvider: ConversionsContextProvider?
     
     init(
         adSupportContextProvider: AdSupportContextProvider?,
@@ -34,7 +35,8 @@ class ModularContextProvider {
         staticContextProvider: StaticContextProvider,
         telephonyContextProvider: TelephonyContextProvider?,
         timeZoneContextProvider: TimeZoneContextProvider?,
-        userInfoContextProvider: UserInfoContextProvider?
+        userInfoContextProvider: UserInfoContextProvider?,
+        conversionsContextProvider:ConversionsContextProvider?
     ) {
         self.adSupportContextProvider = adSupportContextProvider
         self.bluetoothContextProvider = bluetoothContextProvider
@@ -49,6 +51,7 @@ class ModularContextProvider {
         self.telephonyContextProvider = telephonyContextProvider
         self.timeZoneContextProvider = timeZoneContextProvider
         self.userInfoContextProvider = userInfoContextProvider
+        self.conversionsContextProvider = conversionsContextProvider
     }
 }
 
@@ -86,7 +89,8 @@ extension ModularContextProvider: ContextProvider {
             radio: self.telephonyContextProvider?.radio,
             isTestDevice: self.debugContextProvider?.isTestDevice,
             timeZone: self.timeZoneContextProvider?.timeZone,
-            userInfo: self.userInfoContextProvider?.userInfo
+            userInfo: self.userInfoContextProvider?.userInfo,
+            conversions: self.conversionsContextProvider?.conversions
         )
     }
 }

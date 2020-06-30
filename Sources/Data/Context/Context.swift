@@ -173,6 +173,9 @@ public struct Context: Codable, Equatable {
     
     public var userInfo: Attributes?
     
+    // MARK: Conversions
+    public var conversions: [String]?
+    
     public init(
         advertisingIdentifier: String?,
         isDarkModeEnabled: Bool?,
@@ -205,7 +208,8 @@ public struct Context: Codable, Equatable {
         radio: String?,
         isTestDevice: Bool?,
         timeZone: String?,
-        userInfo: Attributes?
+        userInfo: Attributes?,
+        conversions: [String]?
     ) {
         self.advertisingIdentifier = advertisingIdentifier
         self.isDarkModeEnabled = isDarkModeEnabled
@@ -239,5 +243,6 @@ public struct Context: Codable, Equatable {
         self.isTestDevice = isTestDevice
         self.timeZone = timeZone
         self.userInfo = userInfo
+        self.conversions = conversions
     }
 }

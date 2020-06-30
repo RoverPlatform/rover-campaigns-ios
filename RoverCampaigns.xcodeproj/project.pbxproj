@@ -206,6 +206,9 @@
 		DBFDF43120AC7BA10031EF47 /* NotificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF2584220A1090100400EA2 /* NotificationStore.swift */; };
 		DBFDF43220AC7BA10031EF47 /* NotificationStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9DBF9B205597C300E5C77F /* NotificationStoreService.swift */; };
 		DBFDF52420AE2B1C0031EF47 /* Foundation.DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDF52320AE2B1C0031EF47 /* Foundation.DateFormatter.swift */; };
+		F811288024A545640091DBF4 /* ExperienceConversionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F811287F24A545640091DBF4 /* ExperienceConversionsManager.swift */; };
+		F811288224A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F811288124A5461E0091DBF4 /* ConversionsContextProvider.swift */; };
+		F811288324A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F811288124A5461E0091DBF4 /* ConversionsContextProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -508,6 +511,8 @@
 		DBFB1A88209B8CC500E99F9F /* EventQueueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventQueueObserver.swift; sourceTree = "<group>"; };
 		DBFB1AD4209C9AA600E99F9F /* Location.CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.CLLocationManager.swift; sourceTree = "<group>"; };
 		DBFDF52320AE2B1C0031EF47 /* Foundation.DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foundation.DateFormatter.swift; sourceTree = "<group>"; };
+		F811287F24A545640091DBF4 /* ExperienceConversionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceConversionsManager.swift; sourceTree = "<group>"; };
+		F811288124A5461E0091DBF4 /* ConversionsContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsContextProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -974,6 +979,7 @@
 				DB978B3D229836E600E20A10 /* ExperiencesAssembler.swift */,
 				DB978B24229835EA00E20A10 /* RoverExperiences.h */,
 				DB978B25229835EA00E20A10 /* Info.plist */,
+				F811287F24A545640091DBF4 /* ExperienceConversionsManager.swift */,
 			);
 			path = Experiences;
 			sourceTree = "<group>";
@@ -1225,6 +1231,7 @@
 				DBCBE09421614E85001C7A96 /* TelephonyContextProvider.swift */,
 				DBCBE09D21614FF0001C7A96 /* TimeZoneContextProvider.swift */,
 				DBCBE0A9216155C9001C7A96 /* UserInfoContextProvider.swift */,
+				F811288124A5461E0091DBF4 /* ConversionsContextProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -2443,8 +2450,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB978B4622983A3000E20A10 /* ExperienceRouteHandler.swift in Sources */,
+				F811288024A545640091DBF4 /* ExperienceConversionsManager.swift in Sources */,
 				DB978B3F2298376200E20A10 /* ExperiencesAssembler.swift in Sources */,
 				DB978B3C229836B600E20A10 /* RoverObserver.swift in Sources */,
+				F811288324A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2573,6 +2582,7 @@
 				DBD88A9420C1B58E00085AE0 /* Event.swift in Sources */,
 				DBD88ABE20C1BACF00085AE0 /* DataAssembler.swift in Sources */,
 				DBCBE0A8216154EB001C7A96 /* PushTokenContextProvider.swift in Sources */,
+				F811288224A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */,
 				DBCBE0A021615031001C7A96 /* LocaleContextProvider.swift in Sources */,
 				DBCBE09B21614EC9001C7A96 /* DebugContextProvider.swift in Sources */,
 				DBD88AA820C1B61200085AE0 /* Reachability.swift in Sources */,

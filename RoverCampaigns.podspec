@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "RoverCampaigns"
-  s.version           = "3.7.0"
+  s.version           = "3.7.1"
   s.summary           = "iOS framework for the Rover Campaigns app"
   s.homepage          = "https://www.rover.io"
   s.license           = "Apache License, Version 2.0"
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   s.subspec "Experiences" do |ss|
     ss.source_files = "Sources/Experiences/**/*.swift"
     ss.dependency "RoverCampaigns/UI"
-    ss.dependency "Rover", "~> 3.5"
+    ss.dependency "Rover", "~> 3.7"
     ss.frameworks = "WebKit"
   end
 

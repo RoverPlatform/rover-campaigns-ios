@@ -1,30 +1,30 @@
 PODS:
-  - Rover (3.7.0)
-  - RoverAppExtensions (3.7.0)
-  - RoverCampaigns/AdSupport (3.7.0):
+  - Rover (3.7.1)
+  - RoverAppExtensions (3.7.1)
+  - RoverCampaigns/AdSupport (3.7.1):
     - RoverCampaigns/Data
-  - RoverCampaigns/Core (3.7.0):
+  - RoverCampaigns/Core (3.7.1):
     - RoverCampaigns/Debug
     - RoverCampaigns/Experiences
     - RoverCampaigns/Location
     - RoverCampaigns/Notifications
-  - RoverCampaigns/Data (3.7.0):
+  - RoverCampaigns/Data (3.7.1):
     - RoverCampaigns/Foundation
-  - RoverCampaigns/Debug (3.7.0):
+  - RoverCampaigns/Debug (3.7.1):
     - RoverCampaigns/UI
-  - RoverCampaigns/Experiences (3.7.0):
+  - RoverCampaigns/Experiences (3.7.1):
     - Rover (~> 3.5)
     - RoverCampaigns/UI
-  - RoverCampaigns/Foundation (3.7.0)
-  - RoverCampaigns/Location (3.7.0):
+  - RoverCampaigns/Foundation (3.7.1)
+  - RoverCampaigns/Location (3.7.1):
     - RoverCampaigns/Data
-  - RoverCampaigns/Notifications (3.7.0):
+  - RoverCampaigns/Notifications (3.7.1):
     - RoverCampaigns/UI
-  - RoverCampaigns/Telephony (3.7.0):
+  - RoverCampaigns/Telephony (3.7.1):
     - RoverCampaigns/Data
-  - RoverCampaigns/Ticketmaster (3.7.0):
+  - RoverCampaigns/Ticketmaster (3.7.1):
     - RoverCampaigns/Data
-  - RoverCampaigns/UI (3.7.0):
+  - RoverCampaigns/UI (3.7.1):
     - RoverCampaigns/Data
 
 DEPENDENCIES:
@@ -45,10 +45,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Rover: 0181691b7911451d0f8ac48d3042bde4245a0003
-  RoverAppExtensions: ffd48c260ce5d2a5c51b9ab3a136407936883c10
-  RoverCampaigns: f2e2c6d49807c62ecd5ea72e3e6b7a524b4dc8cc
+  Rover: 13a80ea71660643eaa93db00f918a313e1a79f7b
+  RoverAppExtensions: be8c5b08cc9c11d7dede447118f13b26010adf9b
+  RoverCampaigns: 8290deb3d8876485bc419d404084b3620b53adac
 
 PODFILE CHECKSUM: 9d356855be9da26a7642e120d5ec51da4bb10995
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

@@ -54,7 +54,8 @@ public struct DataAssembler: Assembler {
                 staticContextProvider: resolver.resolve(StaticContextProvider.self)!,
                 telephonyContextProvider: resolver.resolve(TelephonyContextProvider.self),
                 timeZoneContextProvider: resolver.resolve(TimeZoneContextProvider.self),
-                userInfoContextProvider: resolver.resolve(UserInfoContextProvider.self)
+                userInfoContextProvider: resolver.resolve(UserInfoContextProvider.self),
+                conversionsContextProvider: resolver.resolve(ConversionsContextProvider.self)
             )
         }
         
