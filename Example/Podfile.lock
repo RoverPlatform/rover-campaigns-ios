@@ -45,9 +45,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Rover: b1ea0ac6ce1387ade3f0f38c0912c55388df95c5
+  Rover: 13a80ea71660643eaa93db00f918a313e1a79f7b
   RoverAppExtensions: be8c5b08cc9c11d7dede447118f13b26010adf9b
-  RoverCampaigns: 59c64bbd9106bd6a8a730fa33d0ecf522944aab4
+  RoverCampaigns: 8290deb3d8876485bc419d404084b3620b53adac
 
 PODFILE CHECKSUM: 9d356855be9da26a7642e120d5ec51da4bb10995
 
