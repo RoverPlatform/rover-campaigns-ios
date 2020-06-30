@@ -14,14 +14,17 @@ import RoverFoundation
 import RoverData
 #endif
 
-/// Observes notifications posted by the Rover SDK on the default `NotificationCenter` and converts them into events
+/// Observes notifications posted by the Rover SDK on the default `NotificationCenter`.
+/// For each Rover SDK event an associated Campaign event is tracked, as well as optionally tagging the user when interacting with certain elements
 /// added to the `EventQueue`.
 public class RoverObserver {
     private let eventQueue: EventQueue
+    private let conversionsManager: ExperienceConversionsManager
     private var observers: [NSObjectProtocol] = []
     
-    public init(eventQueue: EventQueue) {
+    init(eventQueue: EventQueue, conversionsManager: ExperienceConversionsManager) {
         self.eventQueue = eventQueue
+        self.conversionsManager = conversionsManager
     }
     
     deinit {
@@ -34,6 +37,30 @@ public class RoverObserver {
         }
         
         observers = [
+            // MARK: Conversion Tracking
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.blockTappedNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.trackConversion(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
+            }),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.pollAnsweredNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.trackConversion(notificationName: ScreenViewController.pollAnsweredNotification, userInfo: notification.userInfo)
+            }),
+            NotificationCenter.default.addObserver(
+                forName: ScreenViewController.screenPresentedNotification,
+                object: nil,
+                queue: nil,
+                using: { [weak self] (notification) in
+                    self?.trackConversion(notificationName: ScreenViewController.screenPresentedNotification, userInfo: notification.userInfo)
+            }),
+            
+            // MARK: Experience Event Tracking
             NotificationCenter.default.addObserver(
                 forName: ExperienceViewController.experiencePresentedNotification,
                 object: nil,
@@ -108,7 +135,7 @@ public class RoverObserver {
     private func trackExperiencePresented(userInfo: [AnyHashable: Any]?) {
         guard let userInfo = userInfo,
             let experience = userInfo[ExperienceViewController.experienceUserInfoKey] as? Experience else {
-            return
+                return
         }
         
         let attributes: Attributes = [
@@ -346,7 +373,7 @@ public class RoverObserver {
             let screen = userInfo[ScreenViewController.screenUserInfoKey] as? Screen,
             let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
             let pollOption = userInfo[ScreenViewController.optionUserInfoKey] as? PollOption
-        else {
+            else {
                 return
         }
         
@@ -392,5 +419,53 @@ public class RoverObserver {
         )
         
         eventQueue.addEvent(eventInfo)
+    }
+    
+    
+    private func trackConversion(notificationName: NSNotification.Name, userInfo: [AnyHashable: Any]?) {
+        var tag: String?
+        var expiresIn: TimeInterval?
+        
+        switch notificationName {
+        case ScreenViewController.blockTappedNotification:
+            guard let userInfo = userInfo,
+                let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
+                let conversion = block.conversion
+                else {
+                    return
+            }
+            
+            tag = conversion.tag
+            expiresIn = conversion.expires.timeInterval
+            
+        case ScreenViewController.screenPresentedNotification:
+            guard let userInfo = userInfo,
+                let screen = userInfo[ScreenViewController.screenUserInfoKey] as? Screen,
+                let conversion = screen.conversion else {
+                    return
+            }
+            
+            tag = conversion.tag
+            expiresIn = conversion.expires.timeInterval
+            
+        case ScreenViewController.pollAnsweredNotification:
+            guard let userInfo = userInfo,
+                let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
+                let pollOption = userInfo[ScreenViewController.optionUserInfoKey] as? PollOption,
+                let conversion = block.conversion else {
+                    return
+            }
+            
+            let formattedPollOption = pollOption.text.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
+            tag = "\(conversion.tag)_\(formattedPollOption)"
+            expiresIn = conversion.expires.timeInterval
+            
+        default:
+            return
+        }
+                
+        if let tag = tag, let expiresIn = expiresIn {
+            conversionsManager.track(tag, expiresIn)
+        }
     }
 }

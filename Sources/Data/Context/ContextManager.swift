@@ -132,7 +132,7 @@ extension ContextManager: StaticContextProvider {
         }
         
         guard let entitlements = plist["Entitlements"] as? [String: Any], let apsEnvironment = entitlements["aps-environment"] as? String else {
-            os_log("No entry for \"aps-environment\" found in Entitlements – defaulting to production", log: .context, type: .info)
+            os_log("No entry for \"aps-environment\" found in Entitlements – defaulting to production", log: .context, type: .info)
             return .production
         }
         
