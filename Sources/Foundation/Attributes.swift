@@ -137,8 +137,6 @@ public class Attributes: NSObject, NSCoding, Codable, RawRepresentable, Expressi
                 return
             }
             
-            
-            
             if let nestedDictionary = value as? Attributes {
                 transformed[key] = nestedDictionary
                 return
