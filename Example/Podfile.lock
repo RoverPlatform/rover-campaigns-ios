@@ -13,7 +13,7 @@ PODS:
   - RoverCampaigns/Debug (3.7.1):
     - RoverCampaigns/UI
   - RoverCampaigns/Experiences (3.7.1):
-    - Rover (~> 3.5)
+    - Rover (~> 3.7.1)
     - RoverCampaigns/UI
   - RoverCampaigns/Foundation (3.7.1)
   - RoverCampaigns/Location (3.7.1):
@@ -45,9 +45,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Rover: 13a80ea71660643eaa93db00f918a313e1a79f7b
-  RoverAppExtensions: be8c5b08cc9c11d7dede447118f13b26010adf9b
-  RoverCampaigns: 8290deb3d8876485bc419d404084b3620b53adac
+  Rover: fdc06ea6cc6afe26f0eca0e495ed0fada7adefe8
+  RoverAppExtensions: 149a0340e5a91c6efe617d44f1df1a5993ba44f8
+  RoverCampaigns: 6ab37fa3416d173b3df1b42328bb38cf342e6784
 
 PODFILE CHECKSUM: 9d356855be9da26a7642e120d5ec51da4bb10995
 
