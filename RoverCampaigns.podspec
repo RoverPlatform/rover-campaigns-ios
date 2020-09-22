@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name              = "RoverCampaigns"
-  s.version           = "3.7.3"
+  s.version           = "3.7.4"
   s.summary           = "iOS framework for the Rover Campaigns app"
   s.homepage          = "https://www.rover.io"
   s.license           = "Apache License, Version 2.0"
   s.author            = { "Rover Labs Inc." => "support@rover.io" }
   s.platform          = :ios, "10.0"
-  s.swift_versions    = ["5.0", "4.2"]
+  s.swift_versions    = ["5.3", "5.0", "4.2"]
   s.source            = { :git => "https://github.com/RoverPlatform/rover-campaigns-ios.git", :tag => "v#{s.version}" }
   s.cocoapods_version = ">= 1.4.0"
   s.default_subspec   = "Core"
