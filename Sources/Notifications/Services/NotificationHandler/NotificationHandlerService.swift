@@ -34,7 +34,11 @@ class NotificationHandlerService: NotificationHandler {
             return false
         }
         
-        dispatcher.dispatch(action, completionHandler: completionHandler)
+        dispatcher.dispatch(action) {
+            DispatchQueue.main.async {
+                completionHandler?()
+            }
+        }
         return true
     }
     
