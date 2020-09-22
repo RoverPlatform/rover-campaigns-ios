@@ -1,30 +1,30 @@
 PODS:
   - Rover (3.7.1)
-  - RoverAppExtensions (3.7.3)
-  - RoverCampaigns/AdSupport (3.7.3):
+  - RoverAppExtensions (3.7.4)
+  - RoverCampaigns/AdSupport (3.7.4):
     - RoverCampaigns/Data
-  - RoverCampaigns/Core (3.7.3):
+  - RoverCampaigns/Core (3.7.4):
     - RoverCampaigns/Debug
     - RoverCampaigns/Experiences
     - RoverCampaigns/Location
     - RoverCampaigns/Notifications
-  - RoverCampaigns/Data (3.7.3):
+  - RoverCampaigns/Data (3.7.4):
     - RoverCampaigns/Foundation
-  - RoverCampaigns/Debug (3.7.3):
+  - RoverCampaigns/Debug (3.7.4):
     - RoverCampaigns/UI
-  - RoverCampaigns/Experiences (3.7.3):
+  - RoverCampaigns/Experiences (3.7.4):
     - Rover (~> 3.7.1)
     - RoverCampaigns/UI
-  - RoverCampaigns/Foundation (3.7.3)
-  - RoverCampaigns/Location (3.7.3):
+  - RoverCampaigns/Foundation (3.7.4)
+  - RoverCampaigns/Location (3.7.4):
     - RoverCampaigns/Data
-  - RoverCampaigns/Notifications (3.7.3):
+  - RoverCampaigns/Notifications (3.7.4):
     - RoverCampaigns/UI
-  - RoverCampaigns/Telephony (3.7.3):
+  - RoverCampaigns/Telephony (3.7.4):
     - RoverCampaigns/Data
-  - RoverCampaigns/Ticketmaster (3.7.3):
+  - RoverCampaigns/Ticketmaster (3.7.4):
     - RoverCampaigns/Data
-  - RoverCampaigns/UI (3.7.3):
+  - RoverCampaigns/UI (3.7.4):
     - RoverCampaigns/Data
 
 DEPENDENCIES:
