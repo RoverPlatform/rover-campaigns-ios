@@ -43,6 +43,10 @@ extension NotificationAuthorizationManager: NotificationsContextProvider {
             return "notDetermined"
         case .provisional:
             return "provisional"
+        #if swift(>=5.3)
+        case .ephemeral:
+            return "ephemeral"
+        #endif
         @unknown default:
             return "notDetermined"
         }
