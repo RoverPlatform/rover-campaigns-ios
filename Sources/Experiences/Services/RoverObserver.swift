@@ -43,6 +43,7 @@ public class RoverObserver {
                 object: nil,
                 queue: nil,
                 using: { [weak self] (notification) in
+                    os_log("Conversion tracking observer received block tapped: %@", type: .debug, notification.userInfo?.description ?? "nil")
                     self?.trackConversion(notificationName: ScreenViewController.blockTappedNotification, userInfo: notification.userInfo)
             }),
             NotificationCenter.default.addObserver(
@@ -114,6 +115,7 @@ public class RoverObserver {
                 object: nil,
                 queue: nil,
                 using: { [weak self] notification in
+                    os_log("Standard event observer received block tapped: %@", type: .debug, notification.userInfo?.description ?? "nil")
                     self?.trackBlockTapped(userInfo: notification.userInfo)
                 }
             ),
@@ -426,18 +428,21 @@ public class RoverObserver {
         var tag: String?
         var expiresIn: TimeInterval?
         
+        os_log("Attempting to track conversion, from userInfo: %@", type: .debug, userInfo?.description ?? "nil")
+        
         switch notificationName {
         case ScreenViewController.blockTappedNotification:
             guard let userInfo = userInfo,
                 let block = userInfo[ScreenViewController.blockUserInfoKey] as? Block,
                 let conversion = block.conversion
                 else {
+                os_log("Unable to obtain conversion tracking information from event user info.", type: .error)
                     return
             }
             
             tag = conversion.tag
             expiresIn = conversion.expires.timeInterval
-            
+            os_log("Tracked conversion successfully: tag: %@, expires at: %@", type: .debug, tag ?? "nil", expiresIn?.description ?? "nil")
         case ScreenViewController.screenPresentedNotification:
             guard let userInfo = userInfo,
                 let screen = userInfo[ScreenViewController.screenUserInfoKey] as? Screen,
