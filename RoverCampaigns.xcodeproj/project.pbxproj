@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
+		497194F2253A271B00C9D223 /* DarkModeContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */; };
+		4971953B253A273F00C9D223 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB764902256C5DD00038605 /* Data+Compression.swift */; };
 		499A689C23E47D5400C24C23 /* Foundation.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A689B23E47D5300C24C23 /* Foundation.Error.swift */; };
-		49EE59702326E3FC0051EC71 /* DarkModeContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE596F2326E3FB0051EC71 /* DarkModeContextProvider.swift */; };
 		49F7CE67223C2B1F00674784 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE64223C2B1F00674784 /* Session.swift */; };
 		49F7CE68223C2B1F00674784 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE65223C2B1F00674784 /* SessionController.swift */; };
 		49F7CE69223C2B1F00674784 /* SessionControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F7CE66223C2B1F00674784 /* SessionControllerService.swift */; };
@@ -208,7 +208,6 @@
 		DBFDF52420AE2B1C0031EF47 /* Foundation.DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDF52320AE2B1C0031EF47 /* Foundation.DateFormatter.swift */; };
 		F811288024A545640091DBF4 /* ExperienceConversionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F811287F24A545640091DBF4 /* ExperienceConversionsManager.swift */; };
 		F811288224A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F811288124A5461E0091DBF4 /* ConversionsContextProvider.swift */; };
-		F811288324A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F811288124A5461E0091DBF4 /* ConversionsContextProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2453,7 +2452,6 @@
 				F811288024A545640091DBF4 /* ExperienceConversionsManager.swift in Sources */,
 				DB978B3F2298376200E20A10 /* ExperiencesAssembler.swift in Sources */,
 				DB978B3C229836B600E20A10 /* RoverObserver.swift in Sources */,
-				F811288324A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2580,6 +2578,7 @@
 				DBD88AB620C1B99C00085AE0 /* ContextManager.swift in Sources */,
 				DBC3FBF8215581E500372A65 /* DeviceModel.swift in Sources */,
 				DBD88A9420C1B58E00085AE0 /* Event.swift in Sources */,
+				4971953B253A273F00C9D223 /* Data+Compression.swift in Sources */,
 				DBD88ABE20C1BACF00085AE0 /* DataAssembler.swift in Sources */,
 				DBCBE0A8216154EB001C7A96 /* PushTokenContextProvider.swift in Sources */,
 				F811288224A5461E0091DBF4 /* ConversionsContextProvider.swift in Sources */,
@@ -2594,6 +2593,7 @@
 				DBCBE0A4216153D2001C7A96 /* ContextProvider.swift in Sources */,
 				DB496E3A2148544B0026DE6A /* Data.URLRequest.swift in Sources */,
 				DBCBE0A621615458001C7A96 /* ModularContextProvider.swift in Sources */,
+				497194F2253A271B00C9D223 /* DarkModeContextProvider.swift in Sources */,
 				DBCBE09E21614FF0001C7A96 /* TimeZoneContextProvider.swift in Sources */,
 				DB496E3B214854700026DE6A /* SyncClient.swift in Sources */,
 				DB71B7D92145A77D00FF5034 /* PageInfo.swift in Sources */,
@@ -2657,12 +2657,10 @@
 				DBF2584120A107BD00400EA2 /* ObserverSet.swift in Sources */,
 				DBF49E06203DE1DE00B54652 /* ServiceKey.swift in Sources */,
 				DB6BE8AE215D41F7000A1FDA /* Foundation.OSLog.swift in Sources */,
-				0DB764912256C5DD00038605 /* Data+Compression.swift in Sources */,
 				DBF49E03203DE1DE00B54652 /* ServiceEntry.swift in Sources */,
 				DBADA80320A4F37C00225C80 /* Dispatcher.swift in Sources */,
 				DBFDF52420AE2B1C0031EF47 /* Foundation.DateFormatter.swift in Sources */,
 				DBADA7FD20A4F32500225C80 /* BlockObserver.swift in Sources */,
-				49EE59702326E3FC0051EC71 /* DarkModeContextProvider.swift in Sources */,
 				DBF49E00203DE1DE00B54652 /* Resolver.swift in Sources */,
 				DBF49E04203DE1DE00B54652 /* Container.swift in Sources */,
 				DB1D5DC52107D32C0071928F /* Attributes.swift in Sources */,
