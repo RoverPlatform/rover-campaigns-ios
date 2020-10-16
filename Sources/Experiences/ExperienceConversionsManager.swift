@@ -15,7 +15,9 @@ import RoverData
 class ExperienceConversionsManager: ConversionsContextProvider {
     private let persistedConversions = PersistedValue<Set<Tag>>(storageKey: "io.rover.RoverExperiences.conversions")
     var conversions: [String]? {
-        return self.persistedConversions.value?.filter{ $0.expiresAt > Date() }.map{ $0.rawValue }
+        let result = self.persistedConversions.value?.filter{ $0.expiresAt > Date() }.map{ $0.rawValue }
+        os_log("ExperienceConversionsManager(%@) yielding persisted conversions value: %@ (raw stored data is %@)", ObjectIdentifier(self).debugDescription, result?.description ?? "nil", self.persistedConversions.value?.description ?? "nil")
+        return result
     }
     
     func track(_ tag: String, _ expiresIn: TimeInterval) {
@@ -24,7 +26,9 @@ class ExperienceConversionsManager: ConversionsContextProvider {
             rawValue: tag,
             expiresAt: Date().addingTimeInterval(expiresIn)
         ))
+        os_log("Conversions updated from %@ to %@", self.persistedConversions.value?.description ?? "nil", result.description)
         self.persistedConversions.value = result
+        os_log("Conversions value after update is: %@", self.persistedConversions.value?.description ?? "nil")
     }
 }
 
