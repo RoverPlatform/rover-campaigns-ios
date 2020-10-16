@@ -12,9 +12,9 @@ import RoverFoundation
 import RoverData
 #endif
 
-class ExperienceConversionsManager: ConversionsContextProvider {
+public class ExperienceConversionsManager: ConversionsContextProvider {
     private let persistedConversions = PersistedValue<Set<Tag>>(storageKey: "io.rover.RoverExperiences.conversions")
-    var conversions: [String]? {
+    public var conversions: [String]? {
         let result = self.persistedConversions.value?.filter{ $0.expiresAt > Date() }.map{ $0.rawValue }
         os_log("ExperienceConversionsManager(%@) yielding persisted conversions value: %@ (raw stored data is %@)", ObjectIdentifier(self).debugDescription, result?.description ?? "nil", self.persistedConversions.value?.description ?? "nil")
         return result
