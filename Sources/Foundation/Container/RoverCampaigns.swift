@@ -25,7 +25,7 @@ public func deinitialize() {
 }
 
 public class RoverCampaignsContainer {
-    var services = [ServiceKey: Any]()
+    public var services = [ServiceKey: Any]()
     
     init(assemblers: [Assembler]) {
         assemblers.forEach { $0.assemble(container: self) }
