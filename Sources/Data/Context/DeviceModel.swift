@@ -24,12 +24,21 @@ enum DeviceModel {
     case iPhoneXR
     case iPhoneXS
     case iPhoneXSMax
+    case iPhone11
+    case iPhone11Pro
+    case iPhone11ProMax
+    case iPhoneSE2ndGen
+    case iPhone12Mini
+    case iPhone12
+    case iPhone12Pro
+    case iPhone12ProMax
     case iPodTouch1stGen
     case iPodTouch2ndGen
     case iPodTouch3rdGen
     case iPodTouch4thGen
     case iPodTouch5thGen
     case iPodTouch6thGen
+    case iPodTouch7thGen
     case iPad1stGen
     case iPad2
     case iPadMini
@@ -44,6 +53,13 @@ enum DeviceModel {
     case iPad5thGen
     case iPadPro2ndGen
     case iPad6thGen
+    case iPad7thGen
+    case iPadPro3rdGen
+    case iPadPro4thGen
+    case iPadMini5thGen
+    case iPadAir3rdGen
+    case iPad8thGen
+    case iPadAir4thGen
     
     var description: String {
         switch self {
@@ -121,6 +137,38 @@ enum DeviceModel {
             return "iPad Pro 2nd Gen"
         case .iPad6thGen:
             return "iPad 6th Gen"
+        case .iPhone11:
+            return "iPhone 11"
+        case .iPhone11Pro:
+            return "iPhone 11 Pro"
+        case .iPhone11ProMax:
+            return "iPhone 11 Pro Max"
+        case .iPhoneSE2ndGen:
+            return "iPhone SE 2nd Gen"
+        case .iPhone12Mini:
+            return "iPhone 12 Mini"
+        case .iPhone12:
+            return "iPhone 12"
+        case .iPhone12Pro:
+            return "iPhone 12 Pro"
+        case .iPhone12ProMax:
+            return "iPhone 12 Pro Max"
+        case .iPodTouch7thGen:
+            return "iPod Touch 7th Gen"
+        case .iPad7thGen:
+            return "iPad 7th Gen"
+        case .iPadPro3rdGen:
+            return "iPad Pro 3rd Gen"
+        case .iPadPro4thGen:
+            return "iPad Pro 4th Gen"
+        case .iPadMini5thGen:
+            return "iPad Mini 5th Gen"
+        case .iPadAir3rdGen:
+            return "iPad Air 3rd Gen"
+        case .iPad8thGen:
+            return "iPad 8th Gen"
+        case .iPadAir4thGen:
+            return "iPad Air 4th Gen"
         }
     }
     
@@ -162,6 +210,22 @@ enum DeviceModel {
             self = .iPhoneXS
         case "iPhone11,4", "iPhone11,6":
             self = .iPhoneXSMax
+        case "iPhone12,1":
+            self = .iPhone11
+        case "iPhone12,3":
+            self = .iPhone11Pro
+        case "iPhone12,5":
+            self = .iPhone11ProMax
+        case "iPhone12,8":
+            self = .iPhoneSE2ndGen
+        case "iPhone13,1":
+            self = .iPhone12Mini
+        case "iPhone13,2":
+            self = .iPhone12
+        case "iPhone13,3":
+            self = .iPhone12Pro
+        case "iPhone13,4":
+            self = .iPhone12ProMax
         case "iPod1,1":
             self = .iPodTouch1stGen
         case "iPod2,1":
@@ -174,6 +238,8 @@ enum DeviceModel {
             self = .iPodTouch5thGen
         case "iPod7,1":
             self = .iPodTouch6thGen
+        case "iPod9,1":
+            self = .iPodTouch7thGen
         case "iPad1,1":
             self = .iPad1stGen
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":
@@ -202,6 +268,21 @@ enum DeviceModel {
             self = .iPadPro2ndGen
         case "iPad7,5", "iPad7,6":
             self = .iPad6thGen
+        case "iPad7,11", "iPad7,12":
+            self = .iPad7thGen
+        case "iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4", "iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8":
+            self = .iPadPro3rdGen
+        case "iPad8,9", "iPad8,10", "iPad8,11", "iPad8,12":
+            self = .iPadPro4thGen
+        case "iPad11,1", "iPad11,2":
+            self = .iPadMini5thGen
+        case "iPad11,3", "iPad11,4":
+            self = .iPadAir3rdGen
+        case "iPad11,6", "iPad11,7":
+            self = .iPad8thGen
+        case "iPad13,1", "iPad13,2":
+            self = .iPadAir4thGen
+                        
         default:
             return nil
         }
