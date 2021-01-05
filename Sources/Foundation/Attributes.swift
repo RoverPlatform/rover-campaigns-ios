@@ -9,7 +9,7 @@
 import Foundation
 import os
 
-// We have a strong guarantee that this will complete. Very determnistic, done in static context at startup, so silence the force try warning.
+// We have a strong guarantee that this will complete. Very deterministic, done in static context at startup, so silence the force try warning.
 // swiftlint:disable:next force_try
 private let roverKeyRegex = try! NSRegularExpression(pattern: "^[a-zA-Z_][a-zA-Z_0-9]*$")
 

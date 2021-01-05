@@ -76,6 +76,11 @@ extension PagingSyncParticipant {
             os_signpost(.begin, log: .sync, name: "insertObjects", "count=%d", nodes.count)
         }
         
+        if (context.persistentStoreCoordinator?.persistentStores.count).map({ $0 == 0 }) ?? true {
+            os_log("Rover's Core Data persistent store not configured, unable to insert objects.", type: .error)
+            return false
+        }
+    
         var saveError: Error?
         context.performAndWait { [context] in
             for node in nodes {
