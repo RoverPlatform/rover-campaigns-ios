@@ -44,13 +44,14 @@ public class LocationAssembler: Assembler {
         container.register(NSPersistentContainer.self, name: "location") { _ in
             let bundles = [Bundle(for: LocationAssembler.self)]
             guard let model = NSManagedObjectModel.mergedModel(from: bundles) else {
-                fatalError("Model not found")
+                fatalError("Core Data model not found for Rover Location module.")
             }
             
             let container = NSPersistentContainer(name: "RoverLocation", managedObjectModel: model)
             container.loadPersistentStores { _, error in
-                guard error == nil else {
-                    fatalError("Failed to load store: \(error!)")
+                if let error = error {
+                    os_log("Core Data store for Rover Location module failed to load, reason: %s", error.logDescription)
+                    assertionFailure("Core Data store for Rover Location module failed to load, reason: \(error.logDescription)")
                 }
             }
             
