@@ -199,19 +199,7 @@ extension ContextManager: StaticContextProvider {
     }
     
     var sdkVersion: String {
-        let bundle: Bundle = {
-            if let bundle = Bundle(identifier: "io.rover.RoverFoundation") {
-                return bundle
-            }
-            
-            if let bundle = Bundle(identifier: "org.cocoapods.RoverCampaigns") {
-                return bundle
-            }
-            
-            fatalError("No bundle found with identifier io.rover.RoverFoundation or org.cocoapods.RoverCampaigns")
-        }()
-        
-        return bundle.infoDictionary!["CFBundleShortVersionString"] as! String
+        return RoverFoundation.Meta.SDKVersion
     }
 }
 
