@@ -41,7 +41,7 @@ public class LocationAssembler: Assembler {
             return container.viewContext
         }
         
-        container.register(NSPersistentContainer.self, name: "location") { _ in
+        container.register(NSPersistentContainer.self, name: "location") { _ in            
             let bundles = [Bundle(for: LocationAssembler.self)]
             guard let model = NSManagedObjectModel.mergedModel(from: bundles) else {
                 fatalError("Core Data model not found for Rover Location module.")
