@@ -57,67 +57,50 @@ let package = Package(
         .target(
             name: "RoverFoundation",
             dependencies: [],
-            path: "Sources/Foundation",
-            exclude: ["Info.plist"]),
+            path: "Sources/Foundation"),
         .target(
             name: "RoverData",
             dependencies: ["RoverFoundation"],
-            path: "Sources/Data",
-            exclude: ["Info.plist"]),
+            path: "Sources/Data"),
         .target(
             name: "RoverUI",
             dependencies: ["RoverData"],
-            path: "Sources/UI",
-            exclude: ["Info.plist"]),
+            path: "Sources/UI"),
         .target(
             name: "RoverAdSupport",
             dependencies: ["RoverData"],
-            path: "Sources/AdSupport",
-            exclude: ["Info.plist"]),
+            path: "Sources/AdSupport"),
         .target(
             name: "RoverAppExtensions",
             dependencies: ["RoverFoundation"],
-            path: "Sources/AppExtensions",
-            exclude: ["Info.plist"]),
+            path: "Sources/AppExtensions"),
         .target(
             name: "RoverBluetooth",
             dependencies: ["RoverData"],
-            path: "Sources/Bluetooth",
-            exclude: ["Info.plist"]),
+            path: "Sources/Bluetooth"),
         .target(
             name: "RoverDebug",
             dependencies: ["RoverUI"],
-            path: "Sources/Debug",
-            exclude: ["Info.plist"]),
+            path: "Sources/Debug"),
         .target(
             name: "RoverExperiences",
             dependencies: ["RoverUI", .product(name: "Rover", package: "rover-ios")],
-            path: "Sources/Experiences",
-            exclude: ["Info.plist"]),
+            path: "Sources/Experiences"),
         .target(
             name: "RoverLocation",
             dependencies: ["RoverData"],
-            path: "Sources/Location",
-            exclude: ["Info.plist"]),
+            path: "Sources/Location"),
         .target(
             name: "RoverNotifications",
             dependencies: ["RoverUI"],
-            path: "Sources/Notifications",
-            exclude: ["Info.plist"]),
+            path: "Sources/Notifications"),
         .target(
             name: "RoverTelephony",
             dependencies: ["RoverData"],
-            path: "Sources/Telephony",
-            exclude: ["Info.plist"]),
+            path: "Sources/Telephony"),
         .target(
             name: "RoverTicketmaster",
             dependencies: ["RoverData"],
-            path: "Sources/Ticketmaster",
-            exclude: ["Info.plist"]),
-
-//        .testTarget(
-//            name: "RoverCampaignsTest",
-//            dependencies: [],
-//            path: "Tests"),
+            path: "Sources/Ticketmaster")
     ]
 )
