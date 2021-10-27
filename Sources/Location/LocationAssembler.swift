@@ -50,7 +50,7 @@ public class LocationAssembler: Assembler {
             guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
                 fatalError("Core Data model not found for Rover Location module.")
             }
-            // unfortunately the entity names see to get set to "RoverCampaigns_RoverLocation.ClassName" rather than "RoverLocation.ClassName" causing a runtime failure.  Manually patch it up here.
+            // unfortunately the entity names seem to get set to "RoverCampaigns_RoverLocation.ClassName" rather than "RoverLocation.ClassName" causing a runtime failure.  Manually patch it up here.
             model.entities.forEach { entity in
                 switch entity.name {
                 case "Beacon":
@@ -68,7 +68,7 @@ public class LocationAssembler: Assembler {
             }
             #endif
             
-            let container = PersistentContainer(name: "RoverLocation", managedObjectModel: model)
+            let container = NSPersistentContainer(name: "RoverLocation", managedObjectModel: model)
             container.loadPersistentStores { _, error in
                 if let error = error {
                     os_log("Core Data store for Rover Location module failed to load, reason: %s", error.logDescription)
