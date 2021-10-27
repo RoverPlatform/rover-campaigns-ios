@@ -41,13 +41,26 @@ public class LocationAssembler: Assembler {
             return container.viewContext
         }
         
-        container.register(NSPersistentContainer.self, name: "location") { _ in            
+        container.register(NSPersistentContainer.self, name: "location") { _ in
+            #if !COCOAPODS
+            // for SwiftPM use Bundle.module:
+            guard let modelURL = Bundle.module.url(forResource: "RoverLocation", withExtension: "momd") else {
+                fatalError("Core Data model not found for Rover Location module.")
+            }
+            guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
+                fatalError("Core Data model not found for Rover Location module.")
+            }
+
+       
+            #else
             let bundles = [Bundle(for: LocationAssembler.self)]
             guard let model = NSManagedObjectModel.mergedModel(from: bundles) else {
                 fatalError("Core Data model not found for Rover Location module.")
             }
+            #endif
             
-            let container = NSPersistentContainer(name: "RoverLocation", managedObjectModel: model)
+            let container = PersistentContainer(name: "RoverCampaigns_RoverLocation", managedObjectModel: model)
+            print("Entities by name:", model.entitiesByName)
             container.loadPersistentStores { _, error in
                 if let error = error {
                     os_log("Core Data store for Rover Location module failed to load, reason: %s", error.logDescription)
