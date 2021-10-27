@@ -113,11 +113,6 @@ let package = Package(
             name: "RoverTicketmaster",
             dependencies: ["RoverData"],
             path: "Sources/Ticketmaster",
-            exclude: ["Info.plist"]),
-
-//        .testTarget(
-//            name: "RoverCampaignsTest",
-//            dependencies: [],
-//            path: "Tests"),
+            exclude: ["Info.plist"])
     ]
 )

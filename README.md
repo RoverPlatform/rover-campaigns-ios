@@ -1,6 +1,6 @@
 # Rover Campaigns iOS SDK
 
-This is Rover Campaigns, the marketing campaigns automation SDK. Rover Campaigns augments our core Rover product, the Experiences designer, to drive mobile engagement and monetization with better mobile campaigns.
+This is Rover Campaigns, the marketing campaigns automation SDK from Rover. Rover Campaigns augments our core Rover Experiences product enable mobile engagement and monetization with better mobile campaigns.
 
 <hr />
 
@@ -12,7 +12,25 @@ Note: if you are looking to include additionally include Experiences functionali
 
 ## Install the SDK
 
-The recommended way to install the Rover SDK is via [Cocoapods](http://cocoapods.org/).
+### SwiftPM
+
+The recommended way to install the Rover Campaigns SDK is via SwiftPM.
+
+In Xcode, in your Project Settings, under Package Dependencies, add a new dependency with the URL of this repository: `https://github.com/rover-platform/rover-campaigns-ios`.
+
+Note that as of Xcode 13, you have to type the repository URL into the search box and press return.
+
+![SwiftPM Repo Dialog Box](readme-images/swiftpm-select-repo.png)
+
+Leave the dependency rule at the default, "Up To Next Major Version".  Rover follows the standard semver semantic versioning rules.
+
+Then, in the subsequent dialog box, choose the Package Products (frameworks) you wish to use.
+
+![SwiftPM Target Dialog Box](readme-images/swiftpm-select-targets.png)
+
+### Cocoapods
+
+As an alternative, you can use [Cocoapods](http://cocoapods.org/).
 
 The Rover [Podspec](https://guides.cocoapods.org/syntax/podspec.html) breaks each of the Rover frameworks out into a separate [Subspec](https://guides.cocoapods.org/syntax/podspec.html#group_subspecs).
 
@@ -36,5 +54,7 @@ target 'MyAppTarget' do
     pod 'RoverCampaigns/Debug',         '~> 3.7.7'
 end
 ```
+
+## Next Steps
 
 Please continue onwards from https://github.com/RoverPlatform/rover-campaigns-ios/wiki.
