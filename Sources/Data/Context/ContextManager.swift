@@ -199,7 +199,7 @@ extension ContextManager: StaticContextProvider {
     }
     
     var sdkVersion: String {
-        return RoverFoundation.Meta.SDKVersion
+        return Meta.SDKVersion
     }
 }
 
