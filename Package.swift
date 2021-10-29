@@ -49,7 +49,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         
-        .package(url: "https://github.com/RoverPlatform/rover-ios", .branch("swiftpm"))
+        // TODO: change this to be a semver dependency once https://github.com/RoverPlatform/rover-campaigns-ios/pull/104 is merged.
+        .package(url: "https://github.com/RoverPlatform/rover-ios", .branch("feature/swiftpm"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

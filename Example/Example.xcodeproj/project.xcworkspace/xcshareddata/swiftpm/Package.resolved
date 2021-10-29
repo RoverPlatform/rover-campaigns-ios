@@ -5,8 +5,8 @@
         "package": "Rover",
         "repositoryURL": "https://github.com/RoverPlatform/rover-ios",
         "state": {
-          "branch": "swiftpm",
-          "revision": "53d7e64618285511e5ae92ada28176a472b7adaa",
+          "branch": "feature/swiftpm",
+          "revision": "b3992e0b7e7efe47a45f6261e3f35c82c4291ecd",
           "version": null
         }
       }
