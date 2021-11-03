@@ -51,18 +51,18 @@ then
     echo "Assuming hotfix branch already exists."
     git checkout hotfix/$VERSION
     echo "Verifying SDK with Xcode."
-    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=5.0
-    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=5.0
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec
 else
     git checkout develop
     echo "Verifying SDK with Xcode."
-    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec --swift-version=5.0
-    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec --swift-version=5.0
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverCampaigns.podspec
+    DEVELOPER_DIR=$SWIFT5_OR_LATER_LOCATION pod lib lint RoverAppExtensions.podspec
 
     git flow $RELEASE_OR_HOTFIX start $VERSION
 fi
 
-echo "Edit your version numbers (podspec, README, plists) and press return!"
+echo "Edit your version numbers (podspec, README, Meta.swift) and press return!"
 read -n 1
 
 git commit --allow-empty -a -m "Releasing $VERSION."

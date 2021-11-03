@@ -7,7 +7,10 @@
 //
 
 import Foundation
-    import UIKit
+import UIKit
+#if !COCOAPODS
+import RoverFoundation
+#endif
 
 extension URLRequest {
     public mutating func setAccountToken(_ accountToken: String) {
@@ -39,8 +42,9 @@ extension URLRequest {
         let osDescriptor = "iOS/" + UIDevice.current.systemVersion
         
         // RoverSDK/$rover-sdk-version
-        let roverBundle = Bundle(identifier: "io.rover.RoverFoundation") ?? Bundle(identifier: "org.cocoapods.RoverCampaigns")
-        let roverVersion = roverBundle?.infoDictionary?["CFBundleShortVersionString"] ?? "unknown"
+        
+
+        let roverVersion = Meta.SDKVersion
         self.setValue("\(appDescriptor) \(cfNetworkDescriptor) \(darwinDescriptor) \(osDescriptor) RoverCampaignsSDK/\(roverVersion)", forHTTPHeaderField: "User-Agent")
     }
 }

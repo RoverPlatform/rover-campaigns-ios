@@ -120,7 +120,7 @@ extension Beacon {
     }
 
     public static func deleteAll(in context: NSManagedObjectContext) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Beacon.fetchRequest()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Beacon.fetchRequest() as! NSFetchRequest<NSFetchRequestResult>
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.execute(deleteRequest)

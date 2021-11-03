@@ -42,10 +42,31 @@ public class LocationAssembler: Assembler {
         }
         
         container.register(NSPersistentContainer.self, name: "location") { _ in
+            #if !COCOAPODS
+            // for SwiftPM use Bundle.module:
+            guard let modelURL = Bundle.module.url(forResource: "RoverLocation", withExtension: "momd") else {
+                fatalError("Core Data model not found for Rover Location module.")
+            }
+            guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
+                fatalError("Core Data model not found for Rover Location module.")
+            }
+            // unfortunately the entity names seem to get set to "RoverCampaigns_RoverLocation.ClassName" rather than "RoverLocation.ClassName" causing a runtime failure.  Manually patch it up here.
+            model.entities.forEach { entity in
+                switch entity.name {
+                case "Beacon":
+                    entity.managedObjectClassName = "RoverLocation.Beacon"
+                case "Geofence":
+                    entity.managedObjectClassName = "RoverLocation.Geofence"
+                default:
+                    break
+                }
+            }
+            #else
             let bundles = [Bundle(for: LocationAssembler.self)]
             guard let model = NSManagedObjectModel.mergedModel(from: bundles) else {
                 fatalError("Core Data model not found for Rover Location module.")
             }
+            #endif
             
             let container = NSPersistentContainer(name: "RoverLocation", managedObjectModel: model)
             container.loadPersistentStores { _, error in
