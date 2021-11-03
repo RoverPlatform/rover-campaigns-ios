@@ -19,7 +19,7 @@ class ViewController: UITabBarController {
         
         // Add the settings view controller to the tab bar.  Note that you typically wouldn't want to add this to the tab bar in your application.  Refer to the documentation.
         let settingsViewController = RoverFoundation.shared!.resolve(UIViewController.self, name: "settings")!
-//        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 0)
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 0)
         
         viewControllers = [
             notificationCenter,
