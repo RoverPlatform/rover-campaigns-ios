@@ -157,7 +157,7 @@ extension Geofence {
     }
 
     public static func deleteAll(in context: NSManagedObjectContext) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Geofence.fetchRequest()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Geofence.fetchRequest()  as! NSFetchRequest<NSFetchRequestResult>
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.execute(deleteRequest)

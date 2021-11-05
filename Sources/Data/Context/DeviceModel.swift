@@ -32,6 +32,10 @@ enum DeviceModel {
     case iPhone12
     case iPhone12Pro
     case iPhone12ProMax
+    case iPhone13
+    case iPhone13Pro
+    case iPhone13ProMax
+    case iPhone13Mini
     case iPodTouch1stGen
     case iPodTouch2ndGen
     case iPodTouch3rdGen
@@ -153,6 +157,14 @@ enum DeviceModel {
             return "iPhone 12 Pro"
         case .iPhone12ProMax:
             return "iPhone 12 Pro Max"
+        case .iPhone13:
+            return "iPhone 13"
+        case .iPhone13Pro:
+            return "iPhone 13 Pro"
+        case .iPhone13ProMax:
+            return "iPhone 13 Pro Max"
+        case .iPhone13Mini:
+            return "iPHone 13 Mini"
         case .iPodTouch7thGen:
             return "iPod Touch 7th Gen"
         case .iPad7thGen:
@@ -226,6 +238,14 @@ enum DeviceModel {
             self = .iPhone12Pro
         case "iPhone13,4":
             self = .iPhone12ProMax
+        case "iPhone14,2":
+            self = .iPhone13Pro
+        case "iPhone14,3":
+            self = .iPhone13ProMax
+        case "iPhone14,4":
+            self = .iPhone13Mini
+        case "iPhone14,5":
+            self = .iPhone13
         case "iPod1,1":
             self = .iPodTouch1stGen
         case "iPod2,1":

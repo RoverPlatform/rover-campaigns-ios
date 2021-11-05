@@ -36,9 +36,3 @@ xcuserdata/
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
-
-# Carthage
-
-Carthage/Checkouts
-Carthage/Build
-/Example/Pods
