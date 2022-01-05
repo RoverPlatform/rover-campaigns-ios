@@ -15,8 +15,12 @@ import RoverData
 #endif
 
 public final class Beacon: NSManagedObject {
-    @nonobjc
+    @nonobjc @available(*, deprecated, message: "Please use Beacon.beaconFetchRequest() instead.")
     public class func fetchRequest() -> NSFetchRequest<Beacon> {
+        return NSFetchRequest<Beacon>(entityName: "Beacon")
+    }
+    
+    public class func beaconFetchRequest() -> NSFetchRequest<Beacon> {
         return NSFetchRequest<Beacon>(entityName: "Beacon")
     }
     
@@ -93,7 +97,7 @@ extension Beacon {
 
 extension Beacon {
     public static func fetchAll(in context: NSManagedObjectContext) -> Set<Beacon> {
-        let fetchRequest: NSFetchRequest<Beacon> = Beacon.fetchRequest()
+        let fetchRequest: NSFetchRequest<Beacon> = Beacon.beaconFetchRequest()
         let beacons: [Beacon]
         
         do {
@@ -107,7 +111,7 @@ extension Beacon {
     }
     
     public static func fetchAll(matchingRegionIdentifiers regionIdentifiers: Set<String>, in context: NSManagedObjectContext) -> Set<Beacon> {
-        let fetchRequest: NSFetchRequest<Beacon> = Beacon.fetchRequest()
+        let fetchRequest: NSFetchRequest<Beacon> = Beacon.beaconFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "regionIdentifier IN %@", regionIdentifiers)
         
         do {
@@ -120,7 +124,7 @@ extension Beacon {
     }
 
     public static func deleteAll(in context: NSManagedObjectContext) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Beacon.fetchRequest() as! NSFetchRequest<NSFetchRequestResult>
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Beacon.beaconFetchRequest() as! NSFetchRequest<NSFetchRequestResult>
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.execute(deleteRequest)

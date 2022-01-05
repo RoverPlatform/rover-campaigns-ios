@@ -15,8 +15,12 @@ import RoverData
 #endif
 
 public final class Geofence: NSManagedObject {
-    @nonobjc
+    @nonobjc @available(*, deprecated, message: "Please use Geofence.geofenceFetchRequest() instead.")
     public class func fetchRequest() -> NSFetchRequest<Geofence> {
+        return NSFetchRequest<Geofence>(entityName: "Geofence")
+    }
+    
+    public class func geofenceFetchRequest() -> NSFetchRequest<Geofence> {
         return NSFetchRequest<Geofence>(entityName: "Geofence")
     }
     
@@ -99,7 +103,7 @@ extension Geofence {
 
 extension Geofence {
     public static func fetchAll(in context: NSManagedObjectContext) -> Set<Geofence> {
-        let fetchRequest: NSFetchRequest<Geofence> = Geofence.fetchRequest()
+        let fetchRequest: NSFetchRequest<Geofence> = Geofence.geofenceFetchRequest()
         let geofences: [Geofence]
         
         do {
@@ -124,7 +128,7 @@ extension Geofence {
     }
     
     public static func fetch(regionIdentifier: String, in context: NSManagedObjectContext) -> Geofence? {
-        let fetchRequest: NSFetchRequest<Geofence> = Geofence.fetchRequest()
+        let fetchRequest: NSFetchRequest<Geofence> = Geofence.geofenceFetchRequest()
         let predicate = NSPredicate(format: "regionIdentifier == %@", regionIdentifier)
         fetchRequest.predicate = predicate
         
@@ -157,7 +161,7 @@ extension Geofence {
     }
 
     public static func deleteAll(in context: NSManagedObjectContext) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Geofence.fetchRequest()  as! NSFetchRequest<NSFetchRequestResult>
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Geofence.geofenceFetchRequest()  as! NSFetchRequest<NSFetchRequestResult>
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.execute(deleteRequest)
