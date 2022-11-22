@@ -10,9 +10,10 @@ import UIKit
 
 #if !COCOAPODS
 import RoverFoundation
+import RoverData
 #endif
 
-open class SettingsViewController: UIViewController {
+open class RoverSettingsViewController: UIViewController {
     public let isTestDevice = PersistedValue<Bool>(storageKey: "io.rover.RoverDebug.isTestDevice")
     
     public private(set) var navigationBar: UINavigationBar?
@@ -140,7 +141,7 @@ open class SettingsViewController: UIViewController {
 
 // MARK: UITableViewDataSource
 
-extension SettingsViewController: UITableViewDataSource {
+extension RoverSettingsViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -157,9 +158,10 @@ extension SettingsViewController: UITableViewDataSource {
             cell.toggle.addTarget(self, action: #selector(toggleTestDevice(_:)), for: .valueChanged)
             return cell
         case 1:
-            let cell = LabelAndValueCell()
+            let cell = LabelAndEditableValueCell()
             cell.label.text = "Device Name"
-            cell.value.text = UIDevice.current.name
+            cell.value.text = RoverFoundation.shared!.resolve(StaticContextProvider.self)?.deviceName
+            cell.value.delegate = self
             return cell
         case 2:
             let cell = LabelAndValueCell()
@@ -271,11 +273,59 @@ extension SettingsViewController: UITableViewDataSource {
             fatalError("init(coder:) has not been implemented")
         }
     }
+    
+    class LabelAndEditableValueCell: UITableViewCell {
+        let label = UILabel()
+        let value = UITextField()
+        
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            self.configure()
+        }
+        
+        func configure() {
+            backgroundColor = UIColor(red: 93 / 255, green: 93 / 255, blue: 93 / 255, alpha: 1.0)
+            selectionStyle = .none
+            
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.font = UIFont.systemFont(ofSize: 15)
+            label.textColor = UIColor(red: 216 / 255, green: 216 / 255, blue: 216 / 255, alpha: 1.0)
+            contentView.addSubview(label)
+            
+            value.translatesAutoresizingMaskIntoConstraints = false
+            value.font = UIFont.systemFont(ofSize: 19)
+            value.textColor = UIColor.white
+            contentView.addSubview(value)
+            
+            NSLayoutConstraint.activate([
+                label.heightAnchor.constraint(equalToConstant: 24.0),
+                label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24.0),
+                label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.0),
+                label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24.0)
+            ])
+            
+            NSLayoutConstraint.activate([
+                value.heightAnchor.constraint(equalToConstant: 24.0),
+                value.topAnchor.constraint(equalTo: label.bottomAnchor),
+                value.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.0),
+                value.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24.0)
+            ])
+            
+            let bottomConstraint = value.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -23.0)
+            bottomConstraint.priority = UILayoutPriority.defaultLow
+            bottomConstraint.isActive = true
+        }
+        
+        @available(*, unavailable)
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
 }
 
 // MARK: UITableViewDelegate
 
-extension SettingsViewController: UITableViewDelegate {
+extension RoverSettingsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row == 2
     }
@@ -308,8 +358,29 @@ extension SettingsViewController: UITableViewDelegate {
 
 // MARK: UINavigationBarDelegate
 
-extension SettingsViewController: UINavigationBarDelegate {
+extension RoverSettingsViewController: UINavigationBarDelegate {
     public func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension RoverSettingsViewController: UITextFieldDelegate {
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        RoverFoundation.shared!.resolve(DeviceNameManager.self)?.setDeviceName(textField.text ?? UIDevice.current.name)
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
