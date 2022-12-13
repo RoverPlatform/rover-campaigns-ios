@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "RoverAppExtensions"
-  s.version           = "3.9.3"
+  s.version           = "3.11.0"
   s.summary           = "Rover Campaigns iOS App Extensions"
   s.homepage          = "https://www.rover.io"
   s.license           = "Apache License, Version 2.0"
