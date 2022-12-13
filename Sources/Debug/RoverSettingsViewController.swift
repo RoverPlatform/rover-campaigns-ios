@@ -160,7 +160,11 @@ extension RoverSettingsViewController: UITableViewDataSource {
         case 1:
             let cell = LabelAndEditableValueCell()
             cell.label.text = "Device Name"
+            #if !COCOAPODS
             cell.value.text = RoverFoundation.shared!.resolve(StaticContextProvider.self)?.deviceName
+            #else
+            cell.value.text = RoverCampaigns.shared!.resolve(StaticContextProvider.self)?.deviceName
+            #endif
             cell.value.delegate = self
             return cell
         case 2:
@@ -376,7 +380,12 @@ extension RoverSettingsViewController: UITextFieldDelegate {
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        RoverFoundation.shared!.resolve(DeviceNameManager.self)?.setDeviceName(textField.text ?? UIDevice.current.name)
+        #if !COCOAPODS
+            RoverFoundation.shared!.resolve(DeviceNameManager.self)?.setDeviceName(textField.text ?? UIDevice.current.name)
+        #else
+            RoverCampaigns.shared!.resolve(DeviceNameManager.self)?.setDeviceName(textField.text ?? UIDevice.current.name)
+        #endif
+
     }
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage          = "https://www.rover.io"
   s.license           = "Apache License, Version 2.0"
   s.author            = { "Rover Labs Inc." => "support@rover.io" }
-  s.platform          = :ios, "10.0"
+  s.platform          = :ios, "11.0"
   s.swift_versions    = ["5.5", "5.4", "5.3", "5.2", "5.1", "5.0"]
   s.source            = { :git => "https://github.com/RoverPlatform/rover-campaigns-ios.git", :tag => "v#{s.version}" }
   s.cocoapods_version = ">= 1.4.0"
